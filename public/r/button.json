@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button",
+  "type": "registry:ui",
+  "title": "Button",
+  "description": "DGA «كود المنصات» button: 4px radius, no border, 2px black focus outline. Variants: primary, outline, subtle, danger.",
+  "files": [
+    {
+      "path": "registry/platformscode/ui/button.tsx",
+      "content": "import { cn } from \"@/lib/utils\"\nimport type { ButtonHTMLAttributes } from \"react\"\n\ntype Variant = \"primary\" | \"outline\" | \"subtle\" | \"danger\"\ntype Size = \"md\" | \"lg\"\n\nconst variants: Record<Variant, string> = {\n  primary:\n    \"bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-hover disabled:bg-muted disabled:text-muted-foreground\",\n  outline:\n    \"bg-transparent text-foreground outline outline-1 -outline-offset-1 outline-border hover:bg-muted disabled:text-muted-foreground\",\n  subtle:\n    \"bg-transparent text-primary hover:bg-primary-light disabled:text-muted-foreground\",\n  danger:\n    \"bg-destructive text-primary-foreground hover:opacity-90 disabled:bg-muted disabled:text-muted-foreground\",\n}\n\nconst sizes: Record<Size, string> = {\n  md: \"px-3 py-2 text-sm\",\n  lg: \"px-4 py-3 text-base\",\n}\n\nexport function Button({\n  className,\n  variant = \"primary\",\n  size = \"md\",\n  ...props\n}: ButtonHTMLAttributes<HTMLButtonElement> & { variant?: Variant; size?: Size }) {\n  return (\n    <button\n      className={cn(\n        \"inline-flex cursor-pointer appearance-none items-center justify-center gap-1 rounded-sm border-0 font-semibold transition-colors\",\n        \"focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring disabled:cursor-not-allowed\",\n        variants[variant],\n        sizes[size],\n        className\n      )}\n      {...props}\n    />\n  )\n}\n",
+      "type": "registry:ui"
+    }
+  ]
+}

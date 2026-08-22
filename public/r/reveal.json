@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "reveal",
+  "type": "registry:component",
+  "title": "Reveal",
+  "description": "Scroll-reveal wrapper (framer-motion whileInView), replays on re-entry, respects prefers-reduced-motion.",
+  "dependencies": [
+    "framer-motion"
+  ],
+  "files": [
+    {
+      "path": "registry/platformscode/components/reveal.tsx",
+      "content": "\"use client\"\n\nimport { motion, useReducedMotion } from \"framer-motion\"\nimport type { ReactNode } from \"react\"\n\nexport function Reveal({\n  children,\n  delay = 0,\n  amount = 0.25,\n  className,\n}: {\n  children: ReactNode\n  delay?: number\n  amount?: number\n  className?: string\n}) {\n  const reduce = useReducedMotion()\n  if (reduce) return <div className={className}>{children}</div>\n  return (\n    <motion.div\n      className={className}\n      initial={{ opacity: 0, y: 24 }}\n      whileInView={{ opacity: 1, y: 0 }}\n      viewport={{ once: false, amount }}\n      transition={{ duration: 0.45, ease: \"easeOut\", delay }}\n    >\n      {children}\n    </motion.div>\n  )\n}\n",
+      "type": "registry:component"
+    }
+  ]
+}

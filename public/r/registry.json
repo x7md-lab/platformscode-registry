@@ -1,78 +1,217 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "acme",
-  "homepage": "https://acme.com",
+  "name": "platformscode",
+  "homepage": "https://platformscode-registry.example.com",
   "items": [
     {
-      "name": "hello-world",
-      "type": "registry:component",
-      "title": "Hello World",
-      "description": "A simple hello world component",
-      "registryDependencies": ["button"],
+      "name": "platformscode-theme",
+      "type": "registry:theme",
+      "title": "Platformscode Theme",
+      "description": "DGA «كود المنصات» design tokens: SA Flag green, gold, IBM Plex Sans Arabic, DGA radii. Light-first.",
+      "cssVars": {
+        "theme": {
+          "font-sans": "\"IBM Plex Sans Arabic\", \"Segoe UI\", Tahoma, system-ui, sans-serif",
+          "radius-sm": "4px",
+          "radius-md": "8px",
+          "radius-lg": "16px",
+          "radius-xl": "24px",
+          "color-primary-hover": "var(--primary-hover)",
+          "color-primary-light": "var(--primary-light)",
+          "color-destructive-light": "var(--destructive-light)",
+          "color-success": "var(--success)",
+          "color-success-light": "var(--success-light)"
+        },
+        "light": {
+          "background": "#f9fafb",
+          "foreground": "#1f2a37",
+          "card": "#ffffff",
+          "card-foreground": "#1f2a37",
+          "popover": "#ffffff",
+          "popover-foreground": "#1f2a37",
+          "muted": "#f3f4f6",
+          "muted-foreground": "#4d5761",
+          "border": "#e5e7eb",
+          "primary": "#1b8354",
+          "primary-hover": "#166a45",
+          "primary-light": "#f3fcf6",
+          "primary-foreground": "#ffffff",
+          "secondary": "#dba102",
+          "destructive": "#d92c20",
+          "destructive-light": "#fef3f2",
+          "success": "#067647",
+          "success-light": "#ecfdf3",
+          "ring": "#161616"
+        }
+      }
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "DGA «كود المنصات» button: 4px radius, no border, 2px black focus outline. Variants: primary, outline, subtle, danger.",
       "files": [
         {
-          "path": "registry/new-york/blocks/hello-world/hello-world.tsx",
+          "path": "registry/platformscode/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "DGA chip: pill with light background and strong text. Variants: default, outline, success, destructive.",
+      "files": [
+        {
+          "path": "registry/platformscode/ui/badge.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "DGA card: white surface, 16px radius, subtle border and shadow.",
+      "files": [
+        {
+          "path": "registry/platformscode/ui/card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "Pulsing placeholder block.",
+      "files": [
+        {
+          "path": "registry/platformscode/ui/skeleton.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "Accordion over Base UI primitives with a framer-motion height entrance, DGA 16px header padding.",
+      "dependencies": [
+        "@base-ui/react",
+        "framer-motion",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/ui/accordion.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "title": "Drawer",
+      "description": "Swipeable drawer over Base UI with snap points, stacking and swipe handle — animated purely with Base UI CSS variables.",
+      "dependencies": ["@base-ui/react"],
+      "files": [
+        {
+          "path": "registry/platformscode/ui/drawer.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "reveal",
+      "type": "registry:component",
+      "title": "Reveal",
+      "description": "Scroll-reveal wrapper (framer-motion whileInView), replays on re-entry, respects prefers-reduced-motion.",
+      "dependencies": ["framer-motion"],
+      "files": [
+        {
+          "path": "registry/platformscode/components/reveal.tsx",
           "type": "registry:component"
         }
       ]
     },
     {
-      "name": "example-form",
-      "type": "registry:component",
-      "title": "Example Form",
-      "description": "A contact form with Zod validation.",
-      "dependencies": ["zod"],
-      "registryDependencies": ["button", "input", "label", "textarea", "card"],
+      "name": "use-media-query",
+      "type": "registry:hook",
+      "title": "useMediaQuery",
+      "description": "Media-query subscription via useSyncExternalStore, with PHONE_QUERY preset.",
       "files": [
         {
-          "path": "registry/new-york/blocks/example-form/example-form.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "complex-component",
-      "type": "registry:component",
-      "title": "Complex Component",
-      "description": "A complex component showing hooks, libs and components.",
-      "registryDependencies": ["card"],
-      "files": [
-        {
-          "path": "registry/new-york/blocks/complex-component/page.tsx",
-          "type": "registry:page",
-          "target": "app/pokemon/page.tsx"
-        },
-        {
-          "path": "registry/new-york/blocks/complex-component/components/pokemon-card.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/new-york/blocks/complex-component/components/pokemon-image.tsx",
-          "type": "registry:component"
-        },
-        {
-          "path": "registry/new-york/blocks/complex-component/lib/pokemon.ts",
-          "type": "registry:lib"
-        },
-        {
-          "path": "registry/new-york/blocks/complex-component/hooks/use-pokemon.ts",
+          "path": "registry/platformscode/hooks/use-media-query.ts",
           "type": "registry:hook"
         }
       ]
     },
     {
-      "name": "example-with-css",
-      "type": "registry:component",
-      "title": "Example with CSS",
-      "description": "A login form with a CSS file.",
+      "name": "digital-stamp",
+      "type": "registry:ui",
+      "title": "Digital Stamp",
+      "description": "Mimic of DGA DgaDigitalSignature: collapsible verification bar with staggered circular check items.",
+      "dependencies": [
+        "framer-motion",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
       "files": [
         {
-          "path": "registry/new-york/blocks/example-with-css/example-card.tsx",
-          "type": "registry:component"
+          "path": "registry/platformscode/ui/digital-stamp.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "navigation-header",
+      "type": "registry:ui",
+      "title": "Navigation Header",
+      "description": "DGA «شريط التنقل العلوي»: logo, nav links with Base UI Menu dropdowns (icon/helper/badge submenu items), primary action, skip link, and a mobile drawer.",
+      "dependencies": [
+        "@base-ui/react",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/ui/navigation-header.tsx",
+          "type": "registry:ui"
         },
         {
-          "path": "registry/new-york/blocks/example-with-css/example-card.css",
-          "type": "registry:component"
+          "path": "registry/platformscode/ui/drawer.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "doc-dialog",
+      "type": "registry:ui",
+      "title": "Doc Dialog",
+      "description": "Document viewer link: Base UI Dialog on wide screens, swipeable bottom Drawer on phones, skeleton-backed page images.",
+      "dependencies": [
+        "@base-ui/react",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/ui/doc-dialog.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/platformscode/ui/drawer.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/platformscode/ui/skeleton.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/platformscode/hooks/use-media-query.ts",
+          "type": "registry:hook"
         }
       ]
     }

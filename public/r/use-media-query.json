@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-media-query",
+  "type": "registry:hook",
+  "title": "useMediaQuery",
+  "description": "Media-query subscription via useSyncExternalStore, with PHONE_QUERY preset.",
+  "files": [
+    {
+      "path": "registry/platformscode/hooks/use-media-query.ts",
+      "content": "\"use client\"\n\nimport * as React from 'react';\n\nexport const PHONE_QUERY = '(max-width: 639px)';\n\nexport function useMediaQuery(query: string) {\n  const subscribe = React.useCallback(\n    (onChange: () => void) => {\n      const list = window.matchMedia(query);\n      list.addEventListener('change', onChange);\n      return () => list.removeEventListener('change', onChange);\n    },\n    [query],\n  );\n\n  return React.useSyncExternalStore(\n    subscribe,\n    () => window.matchMedia(query).matches,\n    () => false,\n  );\n}\n",
+      "type": "registry:hook"
+    }
+  ]
+}

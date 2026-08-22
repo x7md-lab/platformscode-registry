@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card",
+  "type": "registry:ui",
+  "title": "Card",
+  "description": "DGA card: white surface, 16px radius, subtle border and shadow.",
+  "files": [
+    {
+      "path": "registry/platformscode/ui/card.tsx",
+      "content": "import { cn } from \"@/lib/utils\"\nimport type { HTMLAttributes } from \"react\"\n\nexport function Card({ className, ...props }: HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div\n      className={cn(\n        \"rounded-lg border border-border bg-card text-card-foreground shadow-sm\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n",
+      "type": "registry:ui"
+    }
+  ]
+}

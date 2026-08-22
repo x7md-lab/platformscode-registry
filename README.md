@@ -1,22 +1,31 @@
-# registry-template
+# platformscode-registry
 
-You can use the `shadcn` CLI to run your own component registry. Running your own
-component registry allows you to distribute your custom components, hooks, pages, and
-other files to any React project.
+A custom shadcn registry distributing components in the DGA «كود المنصات» design
+language — re-implemented shadcn-style over [Base UI](https://base-ui.com) with
+framer-motion, using [HugeIcons](https://hugeicons.com) as the icon set. Tokens
+(SA Flag green, gold, IBM Plex Sans Arabic, DGA radii) are extracted from
+`@platformscode/core`; no official DGA assets are used. This registry is built
+by community contributor X7md.
 
-> [!IMPORTANT]  
-> This template uses Tailwind v4. For Tailwind v3, see [registry-template-v3](https://github.com/shadcn-ui/registry-template-v3).
+Items: `platformscode-theme` (cssVars), `button`, `badge`, `card`, `skeleton`,
+`accordion`, `drawer`, `reveal`, `use-media-query`, `digital-stamp`, `doc-dialog`.
 
 ## Getting Started
 
-This is a template for creating a custom registry using Next.js.
+Vite + React 19 only — no Next.js.
 
 - The template uses a `registry.json` file to define components and their files.
 - The `shadcn build` command is used to build the registry.
-- The registry items are served as static files under `public/r/[name].json`.
-- The template also includes a route handler for serving registry items.
-- Every registry item are compatible with the `shadcn` CLI.
-- We have also added v0 integration using the `Open in v0` api.
+- The registry items are served as static files under `public/r/[name].json` (available at `/r/[name].json` in dev and in the production build).
+- Every registry item is compatible with the `shadcn` CLI.
+- Each demo section has a preview/code switcher (CodeMirror) showing the item's source.
+
+```bash
+pnpm install
+pnpm registry:build   # compiles registry.json -> public/r/*.json
+pnpm dev              # demo page at http://localhost:5173
+pnpm build            # static output in dist/ (includes /r/*.json)
+```
 
 ## Documentation
 

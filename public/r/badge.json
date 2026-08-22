@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge",
+  "type": "registry:ui",
+  "title": "Badge",
+  "description": "DGA chip: pill with light background and strong text. Variants: default, outline, success, destructive.",
+  "files": [
+    {
+      "path": "registry/platformscode/ui/badge.tsx",
+      "content": "import { cn } from \"@/lib/utils\"\nimport type { HTMLAttributes } from \"react\"\n\ntype Variant = \"default\" | \"outline\" | \"success\" | \"destructive\"\n\nconst variants: Record<Variant, string> = {\n  default: \"bg-muted text-muted-foreground\",\n  outline: \"border border-border bg-card text-muted-foreground\",\n  success: \"bg-success-light text-success\",\n  destructive: \"bg-destructive-light text-destructive\",\n}\n\nexport function Badge({\n  className,\n  variant = \"default\",\n  ...props\n}: HTMLAttributes<HTMLSpanElement> & { variant?: Variant }) {\n  return (\n    <span\n      className={cn(\n        \"inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold\",\n        variants[variant],\n        className\n      )}\n      {...props}\n    />\n  )\n}\n",
+      "type": "registry:ui"
+    }
+  ]
+}

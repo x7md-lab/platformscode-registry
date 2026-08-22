@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "accordion",
+  "type": "registry:ui",
+  "title": "Accordion",
+  "description": "Accordion over Base UI primitives with a framer-motion height entrance, DGA 16px header padding.",
+  "dependencies": [
+    "@base-ui/react",
+    "framer-motion",
+    "@hugeicons/react",
+    "@hugeicons/core-free-icons"
+  ],
+  "files": [
+    {
+      "path": "registry/platformscode/ui/accordion.tsx",
+      "content": "\"use client\"\n\nimport { Accordion as BaseAccordion } from \"@base-ui/react/accordion\"\nimport { motion } from \"framer-motion\"\nimport { HugeiconsIcon } from \"@hugeicons/react\"\nimport { ArrowDown01Icon } from \"@hugeicons/core-free-icons\"\nimport { cn } from \"@/lib/utils\"\nimport type { ComponentProps } from \"react\"\n\nexport function Accordion({\n  className,\n  ...props\n}: ComponentProps<typeof BaseAccordion.Root>) {\n  return <BaseAccordion.Root className={cn(\"w-full\", className)} {...props} />\n}\n\nexport function AccordionItem({\n  className,\n  ...props\n}: ComponentProps<typeof BaseAccordion.Item>) {\n  return (\n    <BaseAccordion.Item\n      className={cn(\"border-b border-border last:border-b-0\", className)}\n      {...props}\n    />\n  )\n}\n\nexport function AccordionTrigger({\n  className,\n  children,\n  ...props\n}: ComponentProps<typeof BaseAccordion.Trigger>) {\n  return (\n    <BaseAccordion.Header className=\"m-0\">\n      <BaseAccordion.Trigger\n        className={cn(\n          \"group flex w-full items-center justify-between gap-4 bg-transparent py-4 text-start text-base font-semibold\",\n          \"cursor-pointer border-0 text-foreground outline-none transition-colors hover:text-primary\",\n          \"focus-visible:rounded-md focus-visible:ring-2 focus-visible:ring-ring\",\n          className\n        )}\n        {...props}\n      >\n        {children}\n        <HugeiconsIcon\n          icon={ArrowDown01Icon}\n          className=\"size-4 shrink-0 text-muted-foreground transition-transform duration-200 group-data-[panel-open]:rotate-180\"\n          aria-hidden\n        />\n      </BaseAccordion.Trigger>\n    </BaseAccordion.Header>\n  )\n}\n\nexport function AccordionContent({\n  className,\n  children,\n  ...props\n}: ComponentProps<typeof BaseAccordion.Panel>) {\n  return (\n    <BaseAccordion.Panel className={cn(\"overflow-hidden\", className)} {...props}>\n      {}\n      <motion.div\n        initial={{ height: 0, opacity: 0 }}\n        animate={{ height: \"auto\", opacity: 1 }}\n        transition={{ duration: 0.25, ease: \"easeOut\" }}\n        className=\"overflow-hidden\"\n      >\n        <div className=\"pb-4 text-sm leading-7 text-muted-foreground\">{children}</div>\n      </motion.div>\n    </BaseAccordion.Panel>\n  )\n}\n",
+      "type": "registry:ui"
+    }
+  ]
+}
