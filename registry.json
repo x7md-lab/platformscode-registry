@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "platformscode",
-  "homepage": "https://platformscode-registry.example.com",
+  "homepage": "https://x7md-lab.github.io/platformscode-registry",
   "items": [
     {
       "name": "platformscode-theme",
