@@ -10,6 +10,9 @@
     "@hugeicons/react",
     "@hugeicons/core-free-icons"
   ],
+  "registryDependencies": [
+    "utils"
+  ],
   "files": [
     {
       "path": "registry/platformscode/ui/accordion.tsx",

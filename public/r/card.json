@@ -4,6 +4,9 @@
   "type": "registry:ui",
   "title": "Card",
   "description": "DGA card: white surface, 16px radius, subtle border and shadow.",
+  "registryDependencies": [
+    "utils"
+  ],
   "files": [
     {
       "path": "registry/platformscode/ui/card.tsx",

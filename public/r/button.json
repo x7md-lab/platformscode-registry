@@ -4,6 +4,9 @@
   "type": "registry:ui",
   "title": "Button",
   "description": "DGA «كود المنصات» button: 4px radius, no border, 2px black focus outline. Variants: primary, outline, subtle, danger.",
+  "registryDependencies": [
+    "utils"
+  ],
   "files": [
     {
       "path": "registry/platformscode/ui/button.tsx",

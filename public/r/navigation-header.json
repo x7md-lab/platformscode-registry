@@ -9,6 +9,9 @@
     "@hugeicons/react",
     "@hugeicons/core-free-icons"
   ],
+  "registryDependencies": [
+    "utils"
+  ],
   "files": [
     {
       "path": "registry/platformscode/ui/navigation-header.tsx",

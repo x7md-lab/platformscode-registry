@@ -54,6 +54,9 @@
           "path": "registry/platformscode/ui/button.tsx",
           "type": "registry:ui"
         }
+      ],
+      "registryDependencies": [
+        "utils"
       ]
     },
     {
@@ -66,6 +69,9 @@
           "path": "registry/platformscode/ui/badge.tsx",
           "type": "registry:ui"
         }
+      ],
+      "registryDependencies": [
+        "utils"
       ]
     },
     {
@@ -78,6 +84,9 @@
           "path": "registry/platformscode/ui/card.tsx",
           "type": "registry:ui"
         }
+      ],
+      "registryDependencies": [
+        "utils"
       ]
     },
     {
@@ -90,6 +99,9 @@
           "path": "registry/platformscode/ui/skeleton.tsx",
           "type": "registry:ui"
         }
+      ],
+      "registryDependencies": [
+        "utils"
       ]
     },
     {
@@ -108,6 +120,9 @@
           "path": "registry/platformscode/ui/accordion.tsx",
           "type": "registry:ui"
         }
+      ],
+      "registryDependencies": [
+        "utils"
       ]
     },
     {
@@ -115,12 +130,17 @@
       "type": "registry:ui",
       "title": "Drawer",
       "description": "Swipeable drawer over Base UI with snap points, stacking and swipe handle — animated purely with Base UI CSS variables.",
-      "dependencies": ["@base-ui/react"],
+      "dependencies": [
+        "@base-ui/react"
+      ],
       "files": [
         {
           "path": "registry/platformscode/ui/drawer.tsx",
           "type": "registry:ui"
         }
+      ],
+      "registryDependencies": [
+        "utils"
       ]
     },
     {
@@ -128,7 +148,9 @@
       "type": "registry:component",
       "title": "Reveal",
       "description": "Scroll-reveal wrapper (framer-motion whileInView), replays on re-entry, respects prefers-reduced-motion.",
-      "dependencies": ["framer-motion"],
+      "dependencies": [
+        "framer-motion"
+      ],
       "files": [
         {
           "path": "registry/platformscode/components/reveal.tsx",
@@ -163,6 +185,9 @@
           "path": "registry/platformscode/ui/digital-stamp.tsx",
           "type": "registry:ui"
         }
+      ],
+      "registryDependencies": [
+        "utils"
       ]
     },
     {
@@ -184,6 +209,9 @@
           "path": "registry/platformscode/ui/drawer.tsx",
           "type": "registry:ui"
         }
+      ],
+      "registryDependencies": [
+        "utils"
       ]
     },
     {
@@ -213,6 +241,9 @@
           "path": "registry/platformscode/hooks/use-media-query.ts",
           "type": "registry:hook"
         }
+      ],
+      "registryDependencies": [
+        "utils"
       ]
     }
   ]

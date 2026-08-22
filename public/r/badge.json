@@ -4,6 +4,9 @@
   "type": "registry:ui",
   "title": "Badge",
   "description": "DGA chip: pill with light background and strong text. Variants: default, outline, success, destructive.",
+  "registryDependencies": [
+    "utils"
+  ],
   "files": [
     {
       "path": "registry/platformscode/ui/badge.tsx",
