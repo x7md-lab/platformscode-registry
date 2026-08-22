@@ -1,0 +1,250 @@
+import {
+  CalendarCheck01Icon,
+  CustomerService01Icon,
+  FileVerifiedIcon,
+  Home01Icon,
+  SecurityCheckIcon,
+  Settings01Icon,
+  ShieldBanIcon,
+} from "@hugeicons/core-free-icons"
+import { Section } from "./section"
+import { Button } from "@/registry/platformscode/ui/button"
+import { Badge } from "@/registry/platformscode/ui/badge"
+import { Card } from "@/registry/platformscode/ui/card"
+import { Skeleton } from "@/registry/platformscode/ui/skeleton"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/registry/platformscode/ui/accordion"
+import { DigitalStamp } from "@/registry/platformscode/ui/digital-stamp"
+import { DocDialog } from "@/registry/platformscode/ui/doc-dialog"
+import {
+  NavigationHeader,
+  NavigationHeaderBrand,
+} from "@/registry/platformscode/ui/navigation-header"
+import buttonSource from "@/registry/platformscode/ui/button.tsx?raw"
+import badgeSource from "@/registry/platformscode/ui/badge.tsx?raw"
+import cardSource from "@/registry/platformscode/ui/card.tsx?raw"
+import accordionSource from "@/registry/platformscode/ui/accordion.tsx?raw"
+import digitalStampSource from "@/registry/platformscode/ui/digital-stamp.tsx?raw"
+import docDialogSource from "@/registry/platformscode/ui/doc-dialog.tsx?raw"
+import navigationHeaderSource from "@/registry/platformscode/ui/navigation-header.tsx?raw"
+
+export const samplePage = {
+  src:
+    "data:image/svg+xml;utf8," +
+    encodeURIComponent(
+      `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1035"><rect width="800" height="1035" fill="#ffffff"/><rect x="60" y="60" width="680" height="40" rx="4" fill="#f3f4f6"/><rect x="60" y="140" width="680" height="16" rx="4" fill="#e5e7eb"/><rect x="60" y="180" width="620" height="16" rx="4" fill="#e5e7eb"/><rect x="60" y="220" width="650" height="16" rx="4" fill="#e5e7eb"/><rect x="60" y="920" width="200" height="60" rx="4" fill="#f3fcf6" stroke="#1b8354"/></svg>`
+    ),
+  width: 800,
+  height: 1035,
+}
+
+export const brand = (
+  <NavigationHeaderBrand
+    href="#"
+    mark={
+      <span className="flex size-10 shrink-0 items-center justify-center rounded-md bg-primary text-lg font-black text-primary-foreground">
+        م
+      </span>
+    }
+    title="شعار المنصة"
+    subtitle="platformscode.sa"
+  />
+)
+
+# كود المنصات
+
+سجل مخصص لتوزيع مكونات بلغة تصميم «كود المنصات» — مبنية فوق Base UI و‏framer-motion، بلا أي إطار عمل سوى React. ثبّت أي مكون عبر `shadcn add` مع رابط ملف JSON الخاص به.
+
+## شريط التنقل العلوي
+
+شعار في بداية الشريط، روابط تنقل بقوائم منسدلة (أيقونة، نص مساعد، وشارة)، وإجراء رئيسي في نهايته. المتغير الجوّال غير مفروض — فعّله عبر خاصية `mobile` متى شئت.
+
+<Section name="navigation-header" code={navigationHeaderSource}>
+  <div className="flex w-full flex-col gap-6 self-start">
+    <div className="w-full overflow-x-auto rounded-md border border-border">
+      <NavigationHeader
+        logo={brand}
+        items={[
+          {
+            label: "الرئيسية",
+            selected: true,
+            menu: [
+              {
+                label: "نظرة عامة",
+                href: "#",
+                icon: Home01Icon,
+                helper: "ملخص لوحة المعلومات والإحصاءات",
+              },
+              { label: "الإعدادات", href: "#", icon: Settings01Icon },
+            ],
+          },
+          {
+            label: "الخدمات",
+            menu: [
+              {
+                label: "الاستعلام عن معاملة",
+                href: "#",
+                icon: FileVerifiedIcon,
+                helper: "تتبع حالة معاملتك برقم الطلب",
+                badge: <Badge variant="success">جديد</Badge>,
+              },
+              { label: "الدعم الفني", href: "#", icon: CustomerService01Icon },
+            ],
+          },
+          { label: "تسجيل", href: "#" },
+        ]}
+        actions={<Button>تسجيل الدخول</Button>}
+      />
+      <div className="bg-background p-6 text-center text-xs text-muted-foreground">
+        محتوى الصفحة
+      </div>
+    </div>
+    <div className="mx-auto w-[390px] max-w-full overflow-hidden rounded-md border border-border">
+      <NavigationHeader
+        mobile
+        logo={brand}
+        items={[
+          { label: "الرئيسية", href: "#", selected: true },
+          { label: "الخدمات", href: "#" },
+          { label: "تسجيل", href: "#" },
+        ]}
+        actions={<Button className="w-full">تسجيل الدخول</Button>}
+      />
+      <div className="bg-background p-4 text-center text-xs text-muted-foreground">
+        المتغير الجوّال — زر القائمة يفتح درجًا سفليًا.
+      </div>
+    </div>
+  </div>
+</Section>
+
+## الزر
+
+زر DGA بنصف قطر 4px وبلا حدود، مع مخطط تركيز أسود بسماكة 2px. الأنماط: أساسي، محدد، خفيف، وخطر — بمقاسين.
+
+<Section name="button" code={buttonSource}>
+  <div className="flex flex-wrap items-center justify-center gap-3">
+    <Button>أساسي</Button>
+    <Button variant="outline">محدد</Button>
+    <Button variant="subtle">خفيف</Button>
+    <Button variant="danger">خطر</Button>
+    <Button size="lg">مقاس كبير</Button>
+    <Button disabled>معطل</Button>
+  </div>
+</Section>
+
+## العلامات التفاعلية
+
+شارة على هيئة حبة دواء بخلفية فاتحة ونص قوي.
+
+<Section name="badge" code={badgeSource}>
+  <div className="flex flex-wrap items-center justify-center gap-3">
+    <Badge>افتراضي</Badge>
+    <Badge variant="outline">محدد</Badge>
+    <Badge variant="success">تم التحقق</Badge>
+    <Badge variant="destructive">مرفوض</Badge>
+  </div>
+</Section>
+
+## البطاقة وهيكل التحميل
+
+سطح أبيض بنصف قطر 16px وظل خفيف، مع هيكل نابض أثناء التحميل.
+
+<Section name="card" code={cardSource}>
+  <Card className="flex w-full max-w-sm flex-col gap-3 p-6">
+    <Skeleton className="h-5 w-2/3" />
+    <Skeleton className="h-4 w-full" />
+    <Skeleton className="h-4 w-5/6" />
+    <div className="pt-2">
+      <Badge variant="success">بطاقة DGA — نصف قطر 16px</Badge>
+    </div>
+  </Card>
+</Section>
+
+## الأكورديون
+
+مبني فوق Base UI مع حركة دخول (ارتفاع 0 ← تلقائي) عبر framer-motion.
+
+<Section name="accordion" code={accordionSource}>
+  <Accordion className="max-w-xl" multiple={false}>
+    <AccordionItem>
+      <AccordionTrigger>ما هو هذا السجل؟</AccordionTrigger>
+      <AccordionContent>
+        سجل shadcn مخصص يعيد تنفيذ لغة تصميم «كود المنصات» كمكونات React فوق
+        Base UI، مع حركات framer-motion للدخول والكشف.
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem>
+      <AccordionTrigger>كيف أثبّت مكونًا؟</AccordionTrigger>
+      <AccordionContent>
+        عبر أمر <code dir="ltr">shadcn add</code> مع رابط ملف JSON الخاص
+        بالمكون من هذا السجل.
+      </AccordionContent>
+    </AccordionItem>
+    <AccordionItem>
+      <AccordionTrigger>هل يلزم Next.js؟</AccordionTrigger>
+      <AccordionContent>
+        لا — المكونات كلها مكونات عميل خالصة تعمل مع React 19 في أي بيئة (Vite
+        هنا).
+      </AccordionContent>
+    </AccordionItem>
+  </Accordion>
+</Section>
+
+## الختم الرقمي
+
+محاكاة لمكوّن DgaDigitalSignature: شريط قابل للطي بعناصر تحقق دائرية الأيقونات تدخل بتتابع متدرج.
+
+<Section name="digital-stamp" code={digitalStampSource}>
+  <DigitalStamp
+    className="w-full max-w-xl"
+    heading="هذه الصفحة موثقة بختم رقمي"
+    items={[
+      {
+        icon: SecurityCheckIcon,
+        title: "مصدر موثوق",
+        description: "تم التحقق من مصدر المستند وسلسلة توقيعه.",
+      },
+      {
+        icon: CalendarCheck01Icon,
+        title: "تاريخ صالح",
+        description: "الختم صادر ضمن فترة الصلاحية.",
+      },
+      {
+        icon: FileVerifiedIcon,
+        title: "محتوى سليم",
+        description: "لم يطرأ أي تعديل على المستند بعد الختم.",
+      },
+      {
+        icon: ShieldBanIcon,
+        title: "مثال لحالة فشل",
+        description: "هكذا يظهر عنصر تحقق غير مجتاز.",
+        ok: false,
+      },
+    ]}
+  />
+</Section>
+
+## عارض المستندات
+
+رابط نصي يفتح المستند: نافذة على الشاشات الواسعة، ودرج سفلي قابل للسحب على الجوال — جرّب تضييق النافذة دون 640px.
+
+<Section name="doc-dialog" code={docDialogSource}>
+  <p className="max-w-xl text-sm leading-7 text-muted-foreground">
+    يمكن الاطلاع على{" "}
+    <DocDialog
+      label="نموذج المستند التجريبي"
+      title="مستند تجريبي"
+      pages={[samplePage]}
+    />{" "}
+    لمعاينة السلوك.
+  </p>
+</Section>
+
+<footer className="mt-10 pb-4 text-center text-xs text-muted-foreground">
+  لغة تصميم «كود المنصات» مستخرجة كرموز فقط — هذا السجل تم بواسطة مساهم مجتمعي{" "}
+  <span dir="ltr">X7md</span>.
+</footer>
