@@ -1,7 +1,18 @@
-import { lazy, Suspense, useState, type ReactNode } from "react"
+import {
+  lazy,
+  Suspense,
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react"
+import { HugeiconsIcon } from "@hugeicons/react"
+import { Copy01Icon, Tick02Icon, TerminalIcon } from "@hugeicons/core-free-icons"
 import { Skeleton } from "@/registry/platformscode/ui/skeleton"
 
 const CodeView = lazy(() => import("./code-view"))
+
+const REGISTRY_URL = "https://x7md-lab.github.io/platformscode-registry/r"
 
 function cnSwitch(active: boolean) {
   return [
@@ -47,6 +58,61 @@ function ViewSwitcher({
   )
 }
 
+function InstallCommand({ name }: { name: string }) {
+  const [copied, setCopied] = useState(false)
+  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
+  const command = `npx shadcn@latest add ${REGISTRY_URL}/${name}.json`
+
+  useEffect(() => () => clearTimeout(timer.current), [])
+
+  async function copy() {
+    try {
+      await navigator.clipboard.writeText(command)
+    } catch {
+      return
+    }
+    setCopied(true)
+    clearTimeout(timer.current)
+    timer.current = setTimeout(() => setCopied(false), 2000)
+  }
+
+  return (
+    <div className="mt-auto flex flex-col gap-2">
+      <span className="flex items-center gap-1.5 text-xs font-semibold text-muted-foreground">
+        <HugeiconsIcon icon={TerminalIcon} size={14} strokeWidth={2} />
+        التثبيت
+      </span>
+      <div
+        dir="ltr"
+        className="group flex items-center gap-2 rounded-md border border-border bg-muted/60 py-1.5 pe-1.5 ps-3 transition-colors hover:border-primary/40"
+      >
+        <span aria-hidden className="select-none font-mono text-xs text-primary">
+          $
+        </span>
+        <code className="grow overflow-x-auto whitespace-nowrap font-mono text-xs text-foreground">
+          {command}
+        </code>
+        <button
+          type="button"
+          onClick={copy}
+          aria-label={copied ? "تم النسخ" : "نسخ الأمر"}
+          className="flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-sm border-0 bg-transparent text-muted-foreground transition-colors hover:bg-card hover:text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring"
+        >
+          <HugeiconsIcon
+            icon={copied ? Tick02Icon : Copy01Icon}
+            size={15}
+            strokeWidth={2}
+            className={copied ? "text-success" : undefined}
+          />
+        </button>
+      </div>
+      <span aria-live="polite" className="sr-only">
+        {copied ? "تم نسخ الأمر" : ""}
+      </span>
+    </div>
+  )
+}
+
 export function Section({
   name,
   code,
@@ -76,6 +142,7 @@ export function Section({
           </Suspense>
         </div>
       )}
+      <InstallCommand name={name} />
     </div>
   )
 }
