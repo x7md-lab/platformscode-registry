@@ -72,10 +72,13 @@ function DrawerOverlay({
     <DrawerPrimitive.Backdrop
       data-slot="drawer-overlay"
       className={cn(
-        // No backdrop-filter: on iOS Safari a blurred fixed/absolute layer
-        // renders against the layout viewport and drifts when the toolbar
-        // collapses — the Base UI demo uses a plain dimmed backdrop.
-        "fixed inset-0 z-50 min-h-dvh bg-black/20 opacity-[max(var(--drawer-overlay-min-opacity,0),calc(1-var(--drawer-swipe-progress)))] transition-opacity duration-450 ease-[cubic-bezier(0.32,0.72,0,1)] select-none data-ending-style:pointer-events-none data-ending-style:opacity-0 data-ending-style:duration-[calc(var(--drawer-swipe-strength)*400ms)] data-snap-points:[--drawer-overlay-min-opacity:0.5] data-starting-style:opacity-0 data-swiping:duration-0 supports-[-webkit-touch-callout:none]:absolute",
+        // Rendered INSIDE the fixed Viewport and anchored to it with
+        // absolute inset-0: on iOS Safari a document-anchored fixed/absolute
+        // backdrop drifts against the visual viewport (toolbar collapse,
+        // deep scroll positions) — the viewport is the only element that
+        // reliably tracks the visible area, so the backdrop borrows its box.
+        // No backdrop-filter either: blurred layers lag the visual viewport.
+        "absolute inset-0 z-0 bg-black/20 opacity-[max(var(--drawer-overlay-min-opacity,0),calc(1-var(--drawer-swipe-progress)))] transition-opacity duration-450 ease-[cubic-bezier(0.32,0.72,0,1)] select-none data-ending-style:pointer-events-none data-ending-style:opacity-0 data-ending-style:duration-[calc(var(--drawer-swipe-strength)*400ms)] data-snap-points:[--drawer-overlay-min-opacity:0.5] data-starting-style:opacity-0 data-swiping:duration-0",
         className
       )}
       {...props}
@@ -111,9 +114,6 @@ function DrawerContent({
 
   return (
     <DrawerPortal data-slot="drawer-portal">
-      {modal === true && (
-        <DrawerOverlay data-snap-points={hasSnapPoints ? "" : undefined} />
-      )}
       <DrawerPrimitive.Viewport
         data-slot="drawer-viewport"
         data-modal={modal}
@@ -129,6 +129,9 @@ function DrawerContent({
           "data-[swipe-direction=right]:items-stretch data-[swipe-direction=right]:justify-end"
         )}
       >
+        {modal === true && (
+          <DrawerOverlay data-snap-points={hasSnapPoints ? "" : undefined} />
+        )}
         <DrawerPrimitive.Popup
           data-slot="drawer-popup"
           data-swipe-axis={swipeAxis}
