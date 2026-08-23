@@ -41,7 +41,7 @@ export function SecondNavHeader({
             : "border-0 border-b border-solid border-border"
         )}
       >
-        <div className="flex min-w-0 items-center gap-4 overflow-x-auto whitespace-nowrap">
+        <div className="flex min-w-0 items-center gap-4 overflow-x-auto whitespace-nowrap [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {content}
         </div>
         {actions ? (
