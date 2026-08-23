@@ -1,5 +1,6 @@
 import type { MDXComponents } from "mdx/types"
 import Home from "./home.mdx"
+import { SiteHeader } from "./site-header"
 
 const components: MDXComponents = {
   h1: (props) => (
@@ -31,8 +32,12 @@ const components: MDXComponents = {
 
 export default function App() {
   return (
-    <div className="mx-auto min-h-svh max-w-3xl px-4 py-8 lg:max-w-5xl xl:max-w-6xl">
-      <Home components={components} />
-    </div>
+    <>
+      <span id="top" />
+      <SiteHeader />
+      <main className="mx-auto min-h-svh max-w-3xl px-4 pb-8 pt-6 lg:max-w-5xl xl:max-w-6xl">
+        <Home components={components} />
+      </main>
+    </>
   )
 }
