@@ -249,6 +249,81 @@ function UsageBlock({ source }: { source: string }) {
   )
 }
 
+// ---- layout shell ----
+//
+// On mobile portrait the section drops out of the page container entirely
+// (`w-screen` + negative inline margins) so a preview can use the full screen
+// width — the card chrome and side gutters come back at `sm` or in landscape.
+
+const MOBILE_BLEED = "max-sm:portrait:mx-[calc(50%-50vw)] max-sm:portrait:w-screen"
+
+const SHELL = [
+  "relative my-4 flex min-h-[300px] flex-col gap-4 rounded-lg border border-border bg-card py-4",
+  MOBILE_BLEED,
+  "max-sm:portrait:rounded-none max-sm:portrait:border-x-0",
+].join(" ")
+
+/** Horizontal gutter shared by everything that is text, not demo. */
+const GUTTER = "px-4"
+
+/** The preview keeps that gutter — except on mobile portrait, where it goes edge to edge. */
+const PREVIEW = [
+  "relative flex min-h-[220px] flex-1 items-center justify-center p-4",
+  "max-sm:portrait:px-0",
+].join(" ")
+
+function SectionToolbar({
+  name,
+  view,
+  onChange,
+}: {
+  name: string
+  view: "preview" | "code"
+  onChange: (view: "preview" | "code") => void
+}) {
+  return (
+    <div className={`flex items-center justify-between gap-4 ${GUTTER}`}>
+      <span dir="ltr" className="font-mono text-xs text-muted-foreground">
+        {name}.tsx
+      </span>
+      <ViewSwitcher view={view} onChange={onChange} />
+    </div>
+  )
+}
+
+function SectionCode({ code }: { code: string }) {
+  return (
+    <div className={GUTTER}>
+      <div
+        dir="ltr"
+        className="overflow-hidden rounded-md border border-border text-start"
+      >
+        <Suspense fallback={<Skeleton className="h-40 w-full rounded-none" />}>
+          <CodeView code={code} />
+        </Suspense>
+      </div>
+    </div>
+  )
+}
+
+function SectionMeta({
+  name,
+  refKey,
+  usage,
+}: {
+  name: string
+  refKey: string
+  usage?: string
+}) {
+  return (
+    <div className={`mt-auto flex flex-col gap-3 ${GUTTER}`}>
+      <InstallCommand name={name} />
+      {usage ? <UsageBlock source={usage} /> : null}
+      <ApiReference name={refKey} />
+    </div>
+  )
+}
+
 export function Section({
   name,
   code,
@@ -263,33 +338,16 @@ export function Section({
   const [view, setView] = useState<"preview" | "code">("preview")
   const refKey = dataRef ?? name
   const usage = usageMap[refKey]
+
   return (
-    <div
-      data-ref={refKey}
-      className="relative my-4 flex min-h-[300px] flex-col gap-4 rounded-lg border border-border bg-card p-4"
-    >
-      <div className="flex items-center justify-between gap-4">
-        <span dir="ltr" className="font-mono text-xs text-muted-foreground">
-          {name}.tsx
-        </span>
-        <ViewSwitcher view={view} onChange={setView} />
-      </div>
+    <div data-ref={refKey} className={SHELL}>
+      <SectionToolbar name={name} view={view} onChange={setView} />
       {view === "preview" ? (
-        <div className="relative flex min-h-[220px] flex-1 items-center justify-center p-4">
-          {children}
-        </div>
+        <div className={PREVIEW}>{children}</div>
       ) : (
-        <div dir="ltr" className="overflow-hidden rounded-md border border-border text-start">
-          <Suspense fallback={<Skeleton className="h-40 w-full rounded-none" />}>
-            <CodeView code={code} />
-          </Suspense>
-        </div>
+        <SectionCode code={code} />
       )}
-      <div className="mt-auto flex flex-col gap-3">
-        <InstallCommand name={name} />
-        {usage ? <UsageBlock source={usage} /> : null}
-        <ApiReference name={refKey} />
-      </div>
+      <SectionMeta name={name} refKey={refKey} usage={usage} />
     </div>
   )
 }
