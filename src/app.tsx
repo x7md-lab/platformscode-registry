@@ -1,6 +1,7 @@
 import type { MDXComponents } from "mdx/types"
 import Home from "./home.mdx"
 import { SiteHeader } from "./site-header"
+import { PreviewSettings } from "./preview-settings"
 
 const components: MDXComponents = {
   h1: (props) => (
@@ -38,6 +39,7 @@ export default function App() {
       <main className="mx-auto min-h-svh max-w-3xl px-4 pb-8 pt-6 lg:max-w-5xl xl:max-w-6xl">
         <Home components={components} />
       </main>
+      <PreviewSettings />
     </>
   )
 }

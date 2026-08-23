@@ -17,6 +17,7 @@ import {
 } from "@hugeicons/core-free-icons"
 import { Skeleton } from "@/registry/platformscode/ui/skeleton"
 import { ApiReference } from "./api-reference"
+import { usePreviewPrefs } from "./preview-prefs"
 import usageMap from "virtual:mdx-usage"
 
 const CodeView = lazy(() => import("./code-view"))
@@ -251,26 +252,34 @@ function UsageBlock({ source }: { source: string }) {
 
 // ---- layout shell ----
 //
-// On mobile portrait the section drops out of the page container entirely
-// (`w-screen` + negative inline margins) so a preview can use the full screen
-// width — the card chrome and side gutters come back at `sm` or in landscape.
+// Previews are contained by default. Turning the container off (preview
+// settings sheet) drops the section out of the page container on mobile
+// portrait — `w-screen` + negative inline margins — so a demo can use the
+// full screen width; the card chrome returns at `sm` or in landscape.
 
-const MOBILE_BLEED = "max-sm:portrait:mx-[calc(50%-50vw)] max-sm:portrait:w-screen"
+const SHELL = "relative my-4 flex min-h-[300px] flex-col gap-4 rounded-lg border border-border bg-card py-4"
 
-const SHELL = [
-  "relative my-4 flex min-h-[300px] flex-col gap-4 rounded-lg border border-border bg-card py-4",
-  MOBILE_BLEED,
+const SHELL_BLEED = [
+  "max-sm:portrait:mx-[calc(50%-50vw)] max-sm:portrait:w-screen",
   "max-sm:portrait:rounded-none max-sm:portrait:border-x-0",
 ].join(" ")
 
 /** Horizontal gutter shared by everything that is text, not demo. */
 const GUTTER = "px-4"
 
-/** The preview keeps that gutter — except on mobile portrait, where it goes edge to edge. */
-const PREVIEW = [
-  "relative flex min-h-[220px] flex-1 items-center justify-center p-4",
-  "max-sm:portrait:px-0",
-].join(" ")
+const PREVIEW = "relative flex min-h-[220px] flex-1 items-center justify-center"
+
+/**
+ * Page-chrome demos (navbars, shells, footers) always run edge to edge and
+ * unpadded — a navbar boxed inside a padded card reads wrong. The container
+ * and padding preferences only govern the regular component previews.
+ */
+const SHELL_LIKE = new Set([
+  "navigation-header",
+  "second-nav-header",
+  "footer",
+  "page-shell",
+])
 
 function SectionToolbar({
   name,
@@ -336,14 +345,33 @@ export function Section({
   "data-ref"?: string
 }) {
   const [view, setView] = useState<"preview" | "code">("preview")
+  const { contained, padded } = usePreviewPrefs()
   const refKey = dataRef ?? name
   const usage = usageMap[refKey]
 
+  // Shell-like demos opt out of both preferences.
+  const isShell = SHELL_LIKE.has(refKey)
+  const bleeds = isShell || !contained
+  const pads = isShell ? false : padded
+
   return (
-    <div data-ref={refKey} className={SHELL}>
+    <div
+      data-ref={refKey}
+      data-contained={!bleeds || undefined}
+      data-shell={isShell || undefined}
+      className={`${SHELL} ${bleeds ? SHELL_BLEED : ""}`}
+    >
       <SectionToolbar name={name} view={view} onChange={setView} />
       {view === "preview" ? (
-        <div className={PREVIEW}>{children}</div>
+        <div
+          className={[
+            PREVIEW,
+            pads ? "p-4" : "p-0",
+            bleeds ? "max-sm:portrait:px-0" : "",
+          ].join(" ")}
+        >
+          {children}
+        </div>
       ) : (
         <SectionCode code={code} />
       )}

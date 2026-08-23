@@ -85,6 +85,8 @@ import tabsSource from "@/registry/platformscode/ui/tabs.tsx?raw"
 import breadcrumbsSource from "@/registry/platformscode/ui/breadcrumbs.tsx?raw"
 import paginationSource from "@/registry/platformscode/ui/pagination.tsx?raw"
 import searchBoxSource from "@/registry/platformscode/ui/search-box.tsx?raw"
+import { FloatingButton } from "@/registry/platformscode/ui/floating-button"
+import floatingButtonSource from "@/registry/platformscode/ui/floating-button.tsx?raw"
 import { PhoneInput } from "@/registry/platformscode/ui/phone-input"
 import phoneInputSource from "@/registry/platformscode/ui/phone-input.tsx?raw"
 import { Modal, ModalTrigger, ModalContent, ModalClose } from "@/registry/platformscode/ui/modal"
@@ -300,6 +302,49 @@ export const brand = (
     <Button size="md">متوسط</Button>
     <Button size="sm">صغير</Button>
     <Button disabled>معطل</Button>
+  </div>
+</Section>
+
+### الزر العائم
+
+زر عائم بشكل حبة الدواء يطفو فوق الصفحة — بأيقونة فقط أو بأيقونة ونص، وبثلاثة أنماط لونية ومتغير للأسطح الملوّنة.
+
+<Section name="floating-button" code={floatingButtonSource}>
+  <div className="flex flex-wrap items-center justify-center gap-4">
+    <FloatingButton icon={CustomerService01Icon} label="تواصل معنا" />
+    <FloatingButton
+      icon={Idea01Icon}
+      label="اقتراح"
+      variant="primary-neutral"
+    />
+    <FloatingButton
+      icon={HelpCircleIcon}
+      label="مساعدة"
+      variant="secondary-solid"
+    />
+    <FloatingButton iconOnly icon={Settings01Icon} label="الإعدادات" />
+    <FloatingButton
+      iconOnly
+      size="large"
+      icon={CustomerService01Icon}
+      label="الدعم"
+    />
+    <span className="flex items-center gap-3 rounded-full bg-primary p-2">
+      <FloatingButton
+        onColor
+        iconOnly
+        icon={Idea01Icon}
+        label="على سطح ملوّن"
+        variant="primary-neutral"
+      />
+      <FloatingButton
+        onColor
+        iconOnly
+        icon={HelpCircleIcon}
+        label="على سطح ملوّن"
+        variant="secondary-solid"
+      />
+    </span>
   </div>
 </Section>
 

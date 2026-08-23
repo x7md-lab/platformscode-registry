@@ -17,6 +17,7 @@
           "radius-xl": "24px",
           "color-primary-hover": "var(--primary-hover)",
           "color-primary-active": "var(--primary-active)",
+          "color-primary-pressed": "var(--primary-pressed)",
           "color-primary-bright": "var(--primary-bright)",
           "color-primary-light": "var(--primary-light)",
           "color-primary-soft": "var(--primary-soft)",
@@ -50,6 +51,7 @@
           "color-neutral-light": "var(--neutral-light)",
           "color-neutral-border": "var(--neutral-border)",
           "color-neutral-strong": "var(--neutral-strong)",
+          "color-neutral-strongest": "var(--neutral-strongest)",
           "color-input": "var(--input)"
         },
         "light": {
@@ -65,6 +67,7 @@
           "primary": "#1b8354",
           "primary-hover": "#166a45",
           "primary-active": "#14573a",
+          "primary-pressed": "#104631",
           "primary-bright": "#54c08a",
           "primary-light": "#f3fcf6",
           "primary-soft": "#dff6e7",
@@ -101,6 +104,7 @@
           "neutral-light": "#f9fafb",
           "neutral-border": "#d2d6db",
           "neutral-strong": "#384250",
+          "neutral-strongest": "#0d121c",
           "ring": "#1b8354",
           "input": "#9da4ae"
         }
@@ -761,6 +765,25 @@
       "files": [
         {
           "path": "registry/platformscode/ui/footer.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "floating-button",
+      "type": "registry:ui",
+      "title": "Floating Button",
+      "description": "DGA «الزر العائم»: pill action with 16/20px padding, brand / neutral / solid variants, on-color palette, icon-only mode and optional viewport pinning above the safe area.",
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/ui/floating-button.tsx",
           "type": "registry:ui"
         }
       ],
