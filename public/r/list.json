@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "list",
+  "type": "registry:ui",
+  "title": "List",
+  "description": "DGA «قائمة التعداد»: ordered, unordered and icon lists with brand markers.",
+  "dependencies": [
+    "@hugeicons/react",
+    "@hugeicons/core-free-icons"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/platformscode/ui/list.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\"\nimport type { IconSvgElement } from \"@hugeicons/react\"\nimport { cn } from \"@/lib/utils\"\nimport type { HTMLAttributes, LiHTMLAttributes } from \"react\"\n\ntype Tone = \"brand\" | \"neutral\" | \"on-color\"\n\nconst markers: Record<Tone, string> = {\n  brand: \"marker:text-primary\",\n  neutral: \"marker:text-muted-foreground\",\n  \"on-color\": \"marker:text-white\",\n}\n\nexport function List({\n  variant = \"unordered\",\n  tone = \"brand\",\n  className,\n  ...props\n}: HTMLAttributes<HTMLUListElement | HTMLOListElement> & {\n  variant?: \"ordered\" | \"unordered\" | \"with-icon\"\n  tone?: Tone\n}) {\n  const shared = cn(\n    \"m-0 flex flex-col gap-2 text-sm leading-7 text-muted-foreground\",\n    variant === \"with-icon\" ? \"list-none ps-0\" : \"ps-6\",\n    variant === \"ordered\" ? \"list-decimal\" : undefined,\n    variant === \"unordered\" ? \"list-disc\" : undefined,\n    markers[tone],\n    className\n  )\n\n  return variant === \"ordered\" ? (\n    <ol className={shared} {...(props as HTMLAttributes<HTMLOListElement>)} />\n  ) : (\n    <ul className={shared} {...(props as HTMLAttributes<HTMLUListElement>)} />\n  )\n}\n\nexport function ListItem({\n  icon,\n  className,\n  children,\n  ...props\n}: LiHTMLAttributes<HTMLLIElement> & { icon?: IconSvgElement }) {\n  return (\n    <li className={cn(icon ? \"flex items-start gap-2\" : undefined, className)} {...props}>\n      {icon ? (\n        <span className=\"mt-1 flex shrink-0 text-primary\">\n          <HugeiconsIcon icon={icon} size={16} strokeWidth={2} />\n        </span>\n      ) : null}\n      {icon ? <span className=\"min-w-0\">{children}</span> : children}\n    </li>\n  )\n}\n",
+      "type": "registry:ui"
+    }
+  ]
+}

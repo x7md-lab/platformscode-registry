@@ -38,13 +38,17 @@ export interface NavItem {
 
 function navItemClass(selected?: boolean, disabled?: boolean) {
   return cn(
-    "inline-flex h-full items-center gap-1 rounded-sm border-0 bg-transparent px-4 text-sm no-underline transition-colors lg:px-6",
+    "relative inline-flex h-full items-center gap-1 rounded-sm border-0 bg-transparent px-4 text-sm no-underline transition-colors lg:px-6",
     "focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring",
     disabled
       ? "cursor-not-allowed text-muted-foreground"
       : selected
         ? "cursor-pointer bg-primary font-semibold text-primary-foreground hover:bg-primary-hover"
-        : "cursor-pointer text-foreground hover:bg-muted active:bg-primary-hover active:text-primary-foreground"
+        : cn(
+            "cursor-pointer text-foreground hover:bg-muted active:bg-primary-hover active:text-primary-foreground",
+            "after:absolute after:inset-x-4 after:bottom-0 after:h-[3px] after:rounded-full after:bg-primary after:opacity-0 after:transition-opacity lg:after:inset-x-6",
+            "hover:after:opacity-100 focus-visible:after:opacity-100 data-[popup-open]:after:opacity-100 active:after:opacity-0"
+          )
   )
 }
 

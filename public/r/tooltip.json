@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tooltip",
+  "type": "registry:ui",
+  "title": "Tooltip",
+  "description": "DGA «التلميح»: Base UI tooltip with title, helper text, arrow, dark or light theme.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/platformscode/ui/tooltip.tsx",
+      "content": "\"use client\"\n\nimport { Tooltip as BaseTooltip } from \"@base-ui/react/tooltip\"\nimport { cn } from \"@/lib/utils\"\nimport type { ComponentProps, ReactNode } from \"react\"\n\ntype Theme = \"dark\" | \"light\"\n\nconst themes: Record<Theme, string> = {\n  dark: \"bg-foreground text-background\",\n  light: \"bg-card text-foreground border border-border shadow-lg\",\n}\n\nconst arrows: Record<Theme, string> = {\n  dark: \"fill-foreground\",\n  light: \"fill-card stroke-border\",\n}\n\nexport function Tooltip({\n  children,\n  title,\n  helperText,\n  theme = \"dark\",\n  side = \"top\",\n  align = \"center\",\n  arrow = true,\n  className,\n  ...props\n}: Omit<ComponentProps<typeof BaseTooltip.Root>, \"children\"> & {\n  children: ReactNode\n  title?: string\n  helperText?: string\n  theme?: Theme\n  side?: ComponentProps<typeof BaseTooltip.Positioner>[\"side\"]\n  align?: ComponentProps<typeof BaseTooltip.Positioner>[\"align\"]\n  arrow?: boolean\n  className?: string\n}) {\n  return (\n    <BaseTooltip.Root {...props}>\n      <BaseTooltip.Trigger\n        render={<span className=\"inline-flex cursor-help\" />}\n      >\n        {children}\n      </BaseTooltip.Trigger>\n      <BaseTooltip.Portal>\n        <BaseTooltip.Positioner\n          side={side}\n          align={align}\n          sideOffset={8}\n          className=\"z-50 outline-none\"\n        >\n          <BaseTooltip.Popup\n            className={cn(\n              \"max-w-64 rounded-md px-3 py-2 text-xs leading-5 outline-none\",\n              \"origin-[var(--transform-origin)] transition-[transform,opacity] duration-150\",\n              \"data-[starting-style]:scale-95 data-[starting-style]:opacity-0\",\n              \"data-[ending-style]:scale-95 data-[ending-style]:opacity-0\",\n              themes[theme],\n              className\n            )}\n          >\n            {arrow ? (\n              <BaseTooltip.Arrow\n                className={cn(\n                  \"data-[side=bottom]:top-[-8px] data-[side=bottom]:rotate-180\",\n                  \"data-[side=left]:right-[-13px] data-[side=left]:rotate-90\",\n                  \"data-[side=right]:left-[-13px] data-[side=right]:-rotate-90\",\n                  \"data-[side=top]:bottom-[-8px]\"\n                )}\n              >\n                <svg width=\"20\" height=\"10\" viewBox=\"0 0 20 10\">\n                  <path\n                    d=\"M9.66 9.06 4.3 3.7A2 2 0 0 0 2.89 3.1H0v-1h20v1h-2.9a2 2 0 0 0-1.4.58l-5.37 5.37a1 1 0 0 1-1.42 0Z\"\n                    className={arrows[theme]}\n                  />\n                </svg>\n              </BaseTooltip.Arrow>\n            ) : null}\n            {title ? <p className=\"m-0 font-bold\">{title}</p> : null}\n            {helperText ? (\n              <p\n                className={cn(\n                  \"m-0\",\n                  title ? \"mt-1 opacity-80\" : undefined\n                )}\n              >\n                {helperText}\n              </p>\n            ) : null}\n          </BaseTooltip.Popup>\n        </BaseTooltip.Positioner>\n      </BaseTooltip.Portal>\n    </BaseTooltip.Root>\n  )\n}\n\nexport const TooltipProvider = BaseTooltip.Provider\n",
+      "type": "registry:ui"
+    }
+  ]
+}

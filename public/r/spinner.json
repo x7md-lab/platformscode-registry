@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner",
+  "type": "registry:ui",
+  "title": "Spinner",
+  "description": "DGA «جاري التحميل»: seven sizes, neutral/brand/on-color tones.",
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/platformscode/ui/spinner.tsx",
+      "content": "import { cn } from \"@/lib/utils\"\nimport type { HTMLAttributes } from \"react\"\n\ntype Size = \"tiny\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\" | \"huge\"\ntype Tone = \"neutral\" | \"brand\" | \"on-color\"\n\nconst sizes: Record<Size, string> = {\n  tiny: \"size-5 border-2\",\n  xs: \"size-6 border-2\",\n  sm: \"size-7 border-2\",\n  md: \"size-8 border-[3px]\",\n  lg: \"size-9 border-[3px]\",\n  xl: \"size-10 border-4\",\n  huge: \"size-11 border-4\",\n}\n\nconst tones: Record<Tone, string> = {\n  neutral: \"border-border border-t-foreground\",\n  brand: \"border-border border-t-primary\",\n  \"on-color\": \"border-white/30 border-t-white\",\n}\n\nexport function Spinner({\n  size = \"md\",\n  tone = \"brand\",\n  label = \"جارٍ التحميل\",\n  className,\n  ...props\n}: HTMLAttributes<HTMLDivElement> & {\n  size?: Size\n  tone?: Tone\n  label?: string\n}) {\n  return (\n    <div\n      role=\"status\"\n      aria-label={label}\n      className={cn(\"inline-flex items-center justify-center\", className)}\n      {...props}\n    >\n      <span\n        aria-hidden\n        className={cn(\n          \"block animate-spin rounded-full border-solid\",\n          sizes[size],\n          tones[tone]\n        )}\n      />\n    </div>\n  )\n}\n",
+      "type": "registry:ui"
+    }
+  ]
+}

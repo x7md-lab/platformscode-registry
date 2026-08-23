@@ -1,13 +1,19 @@
 import {
+  Analytics01Icon,
   CalendarCheck01Icon,
   CustomerService01Icon,
   FileVerifiedIcon,
+  HelpCircleIcon,
   Home01Icon,
+  Idea01Icon,
   SecurityCheckIcon,
   Settings01Icon,
   ShieldBanIcon,
+  UserIcon,
 } from "@hugeicons/core-free-icons"
+import { HugeiconsIcon } from "@hugeicons/react"
 import { Section } from "./section"
+import { InlineAlertDemo, RatingDemo } from "./demos"
 import { Button } from "@/registry/platformscode/ui/button"
 import { Badge } from "@/registry/platformscode/ui/badge"
 import { Card } from "@/registry/platformscode/ui/card"
@@ -24,13 +30,59 @@ import {
   NavigationHeader,
   NavigationHeaderBrand,
 } from "@/registry/platformscode/ui/navigation-header"
-import buttonSource from "@/registry/platformscode/ui/button.tsx?raw"
-import badgeSource from "@/registry/platformscode/ui/badge.tsx?raw"
-import cardSource from "@/registry/platformscode/ui/card.tsx?raw"
-import accordionSource from "@/registry/platformscode/ui/accordion.tsx?raw"
-import digitalStampSource from "@/registry/platformscode/ui/digital-stamp.tsx?raw"
-import docDialogSource from "@/registry/platformscode/ui/doc-dialog.tsx?raw"
+import { Footer } from "@/registry/platformscode/ui/footer"
+import { Link } from "@/registry/platformscode/ui/link"
+import { Select } from "@/registry/platformscode/ui/select"
+import { TextInput } from "@/registry/platformscode/ui/text-input"
+import { Textarea } from "@/registry/platformscode/ui/textarea"
+import { Checkbox } from "@/registry/platformscode/ui/checkbox"
+import { RadioGroup, RadioItem } from "@/registry/platformscode/ui/radio-group"
+import { Switch } from "@/registry/platformscode/ui/switch"
+import { Steps } from "@/registry/platformscode/ui/steps"
+import { List, ListItem } from "@/registry/platformscode/ui/list"
+import { Quote } from "@/registry/platformscode/ui/quote"
+import { Divider } from "@/registry/platformscode/ui/divider"
+import { Avatar, AvatarGroup } from "@/registry/platformscode/ui/avatar"
+import { Metric } from "@/registry/platformscode/ui/metric"
+import { ContentSwitcher } from "@/registry/platformscode/ui/content-switcher"
+import { Tooltip } from "@/registry/platformscode/ui/tooltip"
+import { Spinner } from "@/registry/platformscode/ui/spinner"
+import { ProgressBar } from "@/registry/platformscode/ui/progress-bar"
+import { Tabs, TabsList, Tab, TabPanel } from "@/registry/platformscode/ui/tabs"
+import { Breadcrumbs } from "@/registry/platformscode/ui/breadcrumbs"
+import { Pagination } from "@/registry/platformscode/ui/pagination"
+import { SearchBox } from "@/registry/platformscode/ui/search-box"
 import navigationHeaderSource from "@/registry/platformscode/ui/navigation-header.tsx?raw"
+import footerSource from "@/registry/platformscode/ui/footer.tsx?raw"
+import buttonSource from "@/registry/platformscode/ui/button.tsx?raw"
+import linkSource from "@/registry/platformscode/ui/link.tsx?raw"
+import selectSource from "@/registry/platformscode/ui/select.tsx?raw"
+import badgeSource from "@/registry/platformscode/ui/badge.tsx?raw"
+import textInputSource from "@/registry/platformscode/ui/text-input.tsx?raw"
+import textareaSource from "@/registry/platformscode/ui/textarea.tsx?raw"
+import checkboxSource from "@/registry/platformscode/ui/checkbox.tsx?raw"
+import radioGroupSource from "@/registry/platformscode/ui/radio-group.tsx?raw"
+import switchSource from "@/registry/platformscode/ui/switch.tsx?raw"
+import stepsSource from "@/registry/platformscode/ui/steps.tsx?raw"
+import accordionSource from "@/registry/platformscode/ui/accordion.tsx?raw"
+import cardSource from "@/registry/platformscode/ui/card.tsx?raw"
+import listSource from "@/registry/platformscode/ui/list.tsx?raw"
+import quoteSource from "@/registry/platformscode/ui/quote.tsx?raw"
+import dividerSource from "@/registry/platformscode/ui/divider.tsx?raw"
+import digitalStampSource from "@/registry/platformscode/ui/digital-stamp.tsx?raw"
+import avatarSource from "@/registry/platformscode/ui/avatar.tsx?raw"
+import metricSource from "@/registry/platformscode/ui/metric.tsx?raw"
+import contentSwitcherSource from "@/registry/platformscode/ui/content-switcher.tsx?raw"
+import inlineAlertSource from "@/registry/platformscode/ui/inline-alert.tsx?raw"
+import tooltipSource from "@/registry/platformscode/ui/tooltip.tsx?raw"
+import ratingSource from "@/registry/platformscode/ui/rating.tsx?raw"
+import docDialogSource from "@/registry/platformscode/ui/doc-dialog.tsx?raw"
+import spinnerSource from "@/registry/platformscode/ui/spinner.tsx?raw"
+import progressBarSource from "@/registry/platformscode/ui/progress-bar.tsx?raw"
+import tabsSource from "@/registry/platformscode/ui/tabs.tsx?raw"
+import breadcrumbsSource from "@/registry/platformscode/ui/breadcrumbs.tsx?raw"
+import paginationSource from "@/registry/platformscode/ui/pagination.tsx?raw"
+import searchBoxSource from "@/registry/platformscode/ui/search-box.tsx?raw"
 
 export const samplePage = {
   src:
@@ -59,7 +111,11 @@ export const brand = (
 
 سجل shadcn لمكونات بلغة تصميم «كود المنصات» — مبنية فوق Base UI و‏framer-motion، باستخدام React. ثبّت أي مكون عبر `shadcn add` مع رابط ملف JSON الخاص به.
 
-## شريط التنقل العلوي
+المكونات مرتّبة حسب تصنيفات [دليل كود المنصات](https://design.dga.gov.sa/guidelines/components)، وواجهات الخصائص تحاكي حزمة `platformscode-react`.
+
+## هيكل الواجهة
+
+### شريط التنقل العلوي
 
 يُعد شريط التنقل العلوي مكونًا أساسياً في نظام التصميم حيث يوجه المستخدمين عبر هيكل الموقع الإلكتروني. يظهر عادةً في الجزء العلوي من كل صفحة.
 
@@ -123,7 +179,52 @@ export const brand = (
   </div>
 </Section>
 
-## الزر
+### التذييل
+
+عنصر التذييل يقدم العديد من الوظائف بما فيها توفير روابط الانتقال إلى المعلومات المهمة والتنقل وتقديم معلومات الاتصال. إضافة إلى عرض أيقونات الوسائط الاجتماعية ونماذج الاشتراك.
+
+<Section name="footer" code={footerSource}>
+  <div className="w-full self-start overflow-hidden rounded-md border border-border">
+    <Footer
+      groups={[
+        {
+          title: "الخدمات",
+          links: [
+            { label: "الاستعلام عن معاملة", href: "#" },
+            { label: "إصدار وثيقة", href: "#" },
+            { label: "تحديث البيانات", href: "#" },
+          ],
+        },
+        {
+          title: "عن المنصة",
+          links: [
+            { label: "من نحن", href: "#" },
+            { label: "الأسئلة الشائعة", href: "#" },
+            { label: "تواصل معنا", href: "#" },
+          ],
+        },
+      ]}
+      actions={[
+        { label: "سياسة الخصوصية", href: "#" },
+        { label: "شروط الاستخدام", href: "#" },
+      ]}
+      extraActions={[
+        { label: "خريطة الموقع", href: "#" },
+        { label: "إمكانية الوصول", href: "#" },
+      ]}
+      copyright="جميع الحقوق محفوظة © ١٤٤٧هـ"
+      logo={
+        <span className="flex size-10 items-center justify-center rounded-md bg-primary text-lg font-black text-primary-foreground">
+          م
+        </span>
+      }
+    />
+  </div>
+</Section>
+
+## الإجراءات
+
+### الأزرار
 
 الأزرار هي مكونات تفاعلية تؤدي إلى إجراءات محددة. تصف العلامة الموجودة على الزر الإجراء الذي سيحدث عند النقر فوقه من جهة المستخدم.
 
@@ -138,7 +239,58 @@ export const brand = (
   </div>
 </Section>
 
-## العلامات التفاعلية
+### الرابط
+
+الروابط تسهل التنقل بين الصفحات، حيث يمكن للمستخدمين النقر عليها للإنتقال إلى موقع أو مصدر آخر، أو حتى قسم آخر داخل الصفحة.
+
+<Section name="link" code={linkSource}>
+  <div className="flex flex-wrap items-center justify-center gap-6">
+    <Link href="#">رابط أساسي</Link>
+    <Link href="#" tone="neutral">
+      رابط محايد
+    </Link>
+    <Link href="https://design.dga.gov.sa" external>
+      دليل كود المنصات
+    </Link>
+    <Link href="#" size="lg">
+      مقاس كبير
+    </Link>
+    <Link href="#" disabled>
+      معطل
+    </Link>
+  </div>
+</Section>
+
+### القائمة المنسدلة
+
+تقدم القوائم المنسدلة قائمة من الخيارات التي يمكن للمستخدم من خلالها تحديد خيار واحد أو عدة خيارات.
+
+<Section name="select" code={selectSource}>
+  <div className="flex w-full max-w-sm flex-col gap-4">
+    <Select
+      label="المنطقة"
+      placeholder="اختر المنطقة"
+      options={[
+        { label: "الرياض", value: "riyadh" },
+        { label: "مكة المكرمة", value: "makkah" },
+        { label: "المنطقة الشرقية", value: "eastern" },
+        { label: "عسير", value: "asir" },
+      ]}
+      helperText="تُحدَّد الخدمات المتاحة حسب المنطقة."
+    />
+    <Select
+      label="نوع الطلب"
+      defaultValue="new"
+      options={[
+        { label: "طلب جديد", value: "new" },
+        { label: "تجديد", value: "renew" },
+        { label: "إلغاء", value: "cancel" },
+      ]}
+    />
+  </div>
+</Section>
+
+### العلامات التفاعلية
 
 العلامات التفاعلية هي عناصر صغيرة وتفاعلية تستخدم لعرض المعلومات أو تنفيذ الإجراءات أو السماح بالاختيارات.
 
@@ -151,24 +303,128 @@ export const brand = (
   </div>
 </Section>
 
-## البطاقة وهيكل التحميل
+## النماذج والمدخلات
 
-تعمل البطاقة كحاوية للمعلومات والإجراءات المتعلقة بمفهوم أو عنصر محدد. وهي عادة تجمع بين الصور والنصوص وبعض العناصر التفاعلية.
+### المدخلات
 
-ويعرض الهيكل نسخةً مؤقتةً من المحتوى أثناء تحميل البيانات، بهدف تحسين تجربة المستخدم من خلال تقديم مؤشر مرئي بأن المحتوى قيد التحميل بدلاً من ترك الشاشة فارغة.
+حقول الإدخال في كود المنصات هي عناصر تفاعلية تمكن المستخدمين من إدخال أو تعديل النصوص، الأرقام، أو بيانات أخرى. حيث تعتبر وسيلة للمستخدمين لإدخال المعلومات مثل: أسماء المستخدمين وكلمات المرور أو استفسارات البحث، وتوجد عادة في النماذج أو أشرطة البحث.
 
-<Section name="card" code={cardSource}>
-  <Card className="flex w-full max-w-sm flex-col gap-3 p-6">
-    <Skeleton className="h-5 w-2/3" />
-    <Skeleton className="h-4 w-full" />
-    <Skeleton className="h-4 w-5/6" />
-    <div className="pt-2">
-      <Badge variant="success">بطاقة DGA — نصف قطر 16px</Badge>
-    </div>
-  </Card>
+<Section name="text-input" code={textInputSource}>
+  <div className="flex w-full max-w-sm flex-col gap-4">
+    <TextInput label="الاسم الكامل" placeholder="مثال: محمد بن عبدالله" />
+    <TextInput
+      label="رقم الطلب"
+      placeholder="١٢٣٤٥٦"
+      feedback="success"
+      helperText="تم التحقق من الرقم."
+    />
+    <TextInput
+      label="البريد الإلكتروني"
+      placeholder="name@example.com"
+      alertText="صيغة البريد غير صحيحة."
+    />
+    <TextInput label="رقم الجوال" prefix="+966" placeholder="5X XXX XXXX" />
+    <TextInput label="حقل معطل" placeholder="غير متاح" disabled />
+  </div>
 </Section>
 
-## الأكورديون
+### منطقة النص
+
+هو عنصر واجهة مستخدم يتيح للمستخدمين من إدخال وتحرير سطور متعددة من النص، مما يوفر مساحة أكبر من حقل إدخال النص العادي، مما يجعله مناسب في المدخلات النصية الطويلة، مثل التعليقات أو الأوصاف أو الرسائل.
+
+<Section name="textarea" code={textareaSource}>
+  <Textarea
+    className="max-w-sm"
+    label="تفاصيل الطلب"
+    placeholder="اكتب وصفًا مختصرًا…"
+    helperText="بحد أقصى ٥٠٠ حرف."
+  />
+</Section>
+
+### مربع الاختيار
+
+يتيح مربع الاختيار للمستخدمين إجراء اختيار واحد أو الإشارة إلى اختيار ثنائي. تمكن مربعات الاختيار المستخدمين من التفاعل مع الخيارات داخل الواجهة. حيث يمكن استخدام خانات الاختيار لتحديد خيارات فردية، أو يمكن تجميعها للسماح بتحديد خيارات متعددة في نفس الوقت.
+
+<Section name="checkbox" code={checkboxSource}>
+  <div className="flex w-full max-w-sm flex-col gap-4">
+    <Checkbox
+      defaultChecked
+      label="أوافق على الشروط والأحكام"
+      helperText="يلزم الموافقة قبل إرسال الطلب."
+    />
+    <Checkbox indeterminate label="تحديد جزئي للخدمات" />
+    <Checkbox label="تفعيل الإشعارات" color="neutral" />
+    <Checkbox label="خيار معطل" disabled />
+    <Checkbox label="خيار مطلوب" alertText="هذا الحقل مطلوب." />
+  </div>
+</Section>
+
+### زر الاختيار
+
+زر الاختيار يسمح للمستخدمين بتحديد خيار واحد من مجموعة الخيارات. عند تحديد اختيار معين يتم إلغاء تحديد أي خيار تم تحديده مسبقًا. يمكن للمستخدمين بهذه الطريقة تحديد خيار واحد فقط في كل مرة.
+
+<Section name="radio-group" code={radioGroupSource}>
+  <RadioGroup defaultValue="individual" className="w-full max-w-sm">
+    <RadioItem
+      value="individual"
+      label="فرد"
+      helperText="الخدمات المتاحة للأفراد."
+    />
+    <RadioItem
+      value="business"
+      label="منشأة"
+      helperText="يلزم رقم السجل التجاري."
+    />
+    <RadioItem value="gov" label="جهة حكومية" disabled />
+  </RadioGroup>
+</Section>
+
+### زر التبديل
+
+زر التبديل هو عنصر تحكم يُستخدم للتبديل بسرعة بين حالتين ممكنتين. يُستخدم زر التبديل بشكل خاص للأفعال الثنائية التي تحدث فوراً عندما يقوم المستخدم بـ «قلب زر التبديل». وهو يُستخدم عادةً لإعدادات «التشغيل/الإيقاف».
+
+<Section name="switch" code={switchSource}>
+  <div className="flex w-full max-w-sm flex-col gap-4">
+    <Switch
+      defaultChecked
+      label="إشعارات الرسائل النصية"
+      helperText="تصلك رسالة عند تغيّر حالة الطلب."
+    />
+    <Switch label="الوضع الليلي" />
+    <Switch label="خيار معطل" disabled />
+  </div>
+</Section>
+
+### الخطوات
+
+يُسهّل عنصر واجهة المستخدم الخطوات التنقل خطوة بخطوة عبر عملية أو تسلسل معين، ويُستخدم في النماذج أو العمليات المتعددة الخطوات لإرشاد المستخدمين بطريقة منهجية.
+
+<Section name="steps" code={stepsSource}>
+  <div className="flex w-full flex-col gap-10">
+    <Steps
+      activeStep={1}
+      steps={[
+        { title: "البيانات الأساسية" },
+        { title: "المرفقات" },
+        { title: "المراجعة" },
+        { title: "الإرسال" },
+      ]}
+    />
+    <Steps
+      orientation="vertical"
+      activeStep={2}
+      steps={[
+        { title: "استلام الطلب", description: "تم التحقق من البيانات." },
+        { title: "الدراسة", description: "تمت الدراسة الفنية." },
+        { title: "الاعتماد", description: "بانتظار اعتماد الجهة." },
+      ]}
+    />
+  </div>
+</Section>
+
+## عرض المحتوى
+
+### الأكورديون
 
 يستخدم الأكورديون من أجل "طي" المحتوى و"توسيعه" حيث يساعد في تنظيمه بشكل أكثر كفاءة عن طريق إخفاء المحتوى وعرضه حسب الحاجة، وبالتالي يقلل من الفوضى ويساعد في الحفاظ على تركيز المستخدم من خلال عرض المحتوى المطلوب فقط.
 
@@ -198,7 +454,80 @@ export const brand = (
   </Accordion>
 </Section>
 
-## الختم الرقمي
+### البطاقة وهيكل التحميل
+
+تعمل البطاقة كحاوية للمعلومات والإجراءات المتعلقة بمفهوم أو عنصر محدد. وهي عادة تجمع بين الصور والنصوص وبعض العناصر التفاعلية.
+
+ويعرض الهيكل نسخةً مؤقتةً من المحتوى أثناء تحميل البيانات، بهدف تحسين تجربة المستخدم من خلال تقديم مؤشر مرئي بأن المحتوى قيد التحميل بدلاً من ترك الشاشة فارغة.
+
+<Section name="card" code={cardSource}>
+  <Card className="flex w-full max-w-sm flex-col gap-3 p-6">
+    <Skeleton className="h-5 w-2/3" />
+    <Skeleton className="h-4 w-full" />
+    <Skeleton className="h-4 w-5/6" />
+    <div className="pt-2">
+      <Badge variant="success">بطاقة DGA — نصف قطر 16px</Badge>
+    </div>
+  </Card>
+</Section>
+
+### قائمة التعداد
+
+تُستخدم قوائم التعداد لتنظيم مجموعة من العناصر في وحدة واحدة متماسكة، حيث تُعرض على شكل سلسلة من الخيارات أو الروابط. قائمة تعداد العناصر تبدأ إما برقم أو نقاط.
+
+<Section name="list" code={listSource}>
+  <div className="flex w-full max-w-xl flex-wrap gap-10">
+    <List>
+      <ListItem>الهوية الوطنية سارية المفعول</ListItem>
+      <ListItem>رقم جوال مسجّل في أبشر</ListItem>
+      <ListItem>عنوان وطني محدّث</ListItem>
+    </List>
+    <List variant="ordered">
+      <ListItem>تعبئة النموذج</ListItem>
+      <ListItem>إرفاق المستندات</ListItem>
+      <ListItem>متابعة حالة الطلب</ListItem>
+    </List>
+    <List variant="with-icon">
+      <ListItem icon={SecurityCheckIcon}>اتصال مُعمّى بالكامل</ListItem>
+      <ListItem icon={FileVerifiedIcon}>مستندات موثّقة رقميًا</ListItem>
+    </List>
+  </div>
+</Section>
+
+### الاقتباس
+
+الاقتباس يبرز العبارات المهمة أو المؤثرة داخل الواجهة. حيث يُعد أداة قوية لجذب الانتباه، وتأكيد الرسائل الأساسية، والاستشهاد بمصادر خارجية موثوقة.
+
+<Section name="quote" code={quoteSource}>
+  <Quote
+    className="max-w-xl"
+    author="فريق كود المنصات"
+    role="هيئة الحكومة الرقمية"
+    avatar={<Avatar size={40} text="ك" />}
+  >
+    تجربة رقمية موحّدة للمنصات الحكومية تبدأ من لغة تصميم واحدة يفهمها الجميع.
+  </Quote>
+</Section>
+
+### الخط الفاصل
+
+الخط الفاصل هو عنصر في واجهة المستخدم يقوم بفصل المحتوى بصريًا. يُستخدم لتنظيم أو تجميع المحتوى، مما يسهل على المستخدمين التمييز بين المناطق المختلفة في الصفحة أو التخطيط.
+
+<Section name="divider" code={dividerSource}>
+  <div className="flex w-full max-w-xl flex-col gap-6">
+    <Divider />
+    <Divider label="أو" />
+    <div className="flex h-12 items-center gap-4">
+      <span className="text-sm text-muted-foreground">الرياض</span>
+      <Divider orientation="vertical" />
+      <span className="text-sm text-muted-foreground">جدة</span>
+      <Divider orientation="vertical" />
+      <span className="text-sm text-muted-foreground">الدمام</span>
+    </div>
+  </div>
+</Section>
+
+### الختم الرقمي
 
 مكون الختم الرقمي هو عنصر في الواجهة يضمن أن المستخدمين يتفاعلون مع مصدر موثوق وآمن، مما يؤكد سلامة ومصداقية المواقع الحكومية. يوفر ختمًا رقميًا مشفرًا، مما يعزز الثقة والشفافية في محتوى الموقع.
 
@@ -232,7 +561,113 @@ export const brand = (
   />
 </Section>
 
-## عارض المستندات
+## عرض البيانات
+
+### الصورة الرمزية
+
+الصورة الرمزية هي تمثيل مرئي للمستخدم، يتم عرضه في الملفات الشخصية أو التعليقات أو تطبيقات المراسلة، مما يعزز مشاركة المستخدم وتقديره.
+
+<Section name="avatar" code={avatarSource}>
+  <div className="flex flex-col items-center gap-6">
+    <div className="flex flex-wrap items-center justify-center gap-4">
+      <Avatar size={32} text="م" />
+      <Avatar size={40} text="خ" />
+      <Avatar size={48} text="ع" square />
+      <Avatar
+        size={48}
+        icon={<HugeiconsIcon icon={UserIcon} size={22} strokeWidth={2} />}
+      />
+      <Avatar size={68} text="أ" border />
+    </div>
+    <AvatarGroup>
+      <Avatar size={40} text="م" border />
+      <Avatar size={40} text="خ" border />
+      <Avatar size={40} text="ع" border />
+      <Avatar size={40} text="+٥" border />
+    </AvatarGroup>
+  </div>
+</Section>
+
+### بطاقة المؤشرات
+
+تُستخدم بطاقة المؤشرات غالبًا في لوحات التحكم أو التقارير لتسليط الضوء على الاتجاهات، المقارنات، والقيم العددية التي تعتبر أساسية لمراقبة الأداء على مر الزمن.
+
+<Section name="metric" code={metricSource}>
+  <div className="grid w-full gap-4 sm:grid-cols-2">
+    <Metric
+      label="الطلبات المكتملة"
+      value="١٢٬٤٨٠"
+      trend="up"
+      trendLabel="٨٫٢٪"
+      helperText="مقارنة بالربع السابق"
+      icon={Analytics01Icon}
+    />
+    <Metric
+      label="متوسط زمن المعالجة"
+      value="٣ أيام"
+      trend="down"
+      trendLabel="١٫٤٪"
+      helperText="مقارنة بالربع السابق"
+      icon={CalendarCheck01Icon}
+    />
+  </div>
+</Section>
+
+### مُبدّل المحتوى
+
+تسمح مُبدّلات المحتوى في كود المنصات للمستخدمين بالتنقل بين طرق العرض ذات الصلة بكفاءة. يتم عرض قسم واحد في كل مرة، مما يضمن تجربة مركزة وسهلة الاستخدام.
+
+<Section name="content-switcher" code={contentSwitcherSource}>
+  <ContentSwitcher
+    className="max-w-xl"
+    items={[
+      { label: "نظرة عامة", content: "ملخص الخدمة وشروط التقديم." },
+      { label: "المتطلبات", content: "الهوية الوطنية والعنوان الوطني المحدّث." },
+      { label: "الرسوم", content: "لا توجد رسوم على هذه الخدمة." },
+    ]}
+  />
+</Section>
+
+## التغذية الراجعة
+
+### الإشعارات
+
+الإشعارات هي أدوات أساسية لنقل المعلومات إلى المستخدمين عن التحديثات أو التغييرات داخل النظام. يتم تصنيفها إلى إشعارات مضمنة، وإشعارات منبثقة، وإشعارات قابلة للتنفيذ، جميعها تخدم أغراض متنوعة ضمن تفاعلات المستخدمين.
+
+<Section name="inline-alert" code={inlineAlertSource}>
+  <InlineAlertDemo />
+</Section>
+
+### التلميح
+
+التلميح هو لتقديم معلومات إضافية حول عنصر معين عندما يضع المستخدم مؤشر الفأرة فوقه. يظهر عادة كصندوق صغير أو نافذة منبثقة بالقرب من العنصر وقد يحتوي على نص أو صور أو وسائط أخرى لتوفير السياق أو الإرشاد للمستخدم.
+
+<Section name="tooltip" code={tooltipSource}>
+  <div className="flex flex-wrap items-center justify-center gap-8">
+    <Tooltip title="رقم الطلب" helperText="يتكوّن من ٦ أرقام ويظهر في رسالة التأكيد.">
+      <Button variant="outline">
+        <HugeiconsIcon icon={HelpCircleIcon} size={16} strokeWidth={2} />
+        مرّر لعرض التلميح
+      </Button>
+    </Tooltip>
+    <Tooltip theme="light" side="bottom" helperText="تلميح فاتح أسفل العنصر.">
+      <Badge variant="outline">
+        <HugeiconsIcon icon={Idea01Icon} size={14} strokeWidth={2} />
+        تلميح فاتح
+      </Badge>
+    </Tooltip>
+  </div>
+</Section>
+
+### التقييم
+
+التقييم هو طريقة تُستخدم للتعبير عن مدى رضا المستخدم أو للتعبير عن رأيه. يتضمن اختيار رموز مثل النجوم، ويُستخدم في تقييم المنتجات، ونماذج التقييم، مما يساعد المستخدمين على اتخاذ القرارات وتقديم الملاحظات.
+
+<Section name="rating" code={ratingSource}>
+  <RatingDemo />
+</Section>
+
+### النوافذ المنبثقة
 
 هي نافذة تظهر على الجزء العلوي من الشاشة الرئيسية، تهدف نحو جذب انتباه المستخدم من أجل اتخاذ إجراءات فورية أو إدخال البيانات. غالبًا يوجد بها محتوى مركز مثل النماذج أو التنبيهات، حيث تعمل على منع التفاعل مع الخلفية حتى يتم إغلاقها.
 
@@ -248,6 +683,101 @@ export const brand = (
     />{" "}
     لمعاينة السلوك.
   </p>
+</Section>
+
+## التحميل والحالة
+
+### جاري التحميل
+
+يشير مكون التحميل بأن هناك عملية قائمة وأن المستخدم يجب عليه الانتظار حتى اكتمالها.
+
+<Section name="spinner" code={spinnerSource}>
+  <div className="flex flex-wrap items-center justify-center gap-6">
+    <Spinner size="tiny" />
+    <Spinner size="sm" />
+    <Spinner size="md" tone="neutral" />
+    <Spinner size="lg" />
+    <span className="flex items-center gap-3 rounded-md bg-primary px-4 py-3">
+      <Spinner size="xs" tone="on-color" />
+      <span className="text-sm font-semibold text-primary-foreground">
+        جارٍ الإرسال…
+      </span>
+    </span>
+  </div>
+</Section>
+
+### شريط التقدم
+
+شريط التقدم هو تمثيل مرئي يُستخدم للإشارة إلى تقدم مهمة أو عملية معينة، مثل تحميل ملف، معالجة البيانات، أو إرسال نموذج.
+
+<Section name="progress-bar" code={progressBarSource}>
+  <div className="flex w-full max-w-xl flex-col gap-6">
+    <ProgressBar label="رفع المرفقات" value={64} />
+    <ProgressBar label="اكتملت المعالجة" value={100} tone="success" />
+    <ProgressBar label="مساحة التخزين" value={88} tone="warning" thickness="lg" />
+    <ProgressBar value={30} showValue={false} thickness="sm" />
+  </div>
+</Section>
+
+## التنقل
+
+### قائمة علامات التبويب
+
+قائمة علامات التبويب هي مجموعة من علامات التبويب التي تسمح بالتنقل السهل بين فئات المعلومات ذات الصلة، مما يمنع الحاجة إلى التبديل بين الصفحات المختلفة.
+
+<Section name="tabs" code={tabsSource}>
+  <Tabs defaultValue="overview" className="max-w-xl">
+    <TabsList>
+      <Tab value="overview">نظرة عامة</Tab>
+      <Tab value="requirements">المتطلبات</Tab>
+      <Tab value="fees">الرسوم</Tab>
+    </TabsList>
+    <TabPanel value="overview">
+      خدمة إلكترونية تتيح الاستعلام عن حالة المعاملة برقم الطلب.
+    </TabPanel>
+    <TabPanel value="requirements">
+      هوية وطنية سارية ورقم جوال مسجّل.
+    </TabPanel>
+    <TabPanel value="fees">لا توجد رسوم على هذه الخدمة.</TabPanel>
+  </Tabs>
+</Section>
+
+### مسار التصفح
+
+مسار التصفح هو عنصر واجهة مستخدم يعزز من عملية انتقال المستخدم داخل موقع الويب أو التطبيق، بحيث يوضح المسار ويظهر كيفية تواجد الصفحة الحالية ضمن التسلسل الهرمي للموقع عمومًا.
+
+<Section name="breadcrumbs" code={breadcrumbsSource}>
+  <Breadcrumbs
+    items={[
+      { label: "الرئيسية", href: "#" },
+      { label: "الخدمات", href: "#" },
+      { label: "الاستعلام عن معاملة" },
+    ]}
+  />
+</Section>
+
+### ترقيم الصفحات
+
+يُستخدم ترقيم الصفحات من أجل تقسيم مجموعات كبيرة من المحتوى إلى صفحات متعددة، مما يسمح للمستخدمين بالتنقل خلالها بشكل تسلسلي.
+
+<Section name="pagination" code={paginationSource}>
+  <div className="flex flex-col items-center gap-6">
+    <Pagination totalPageCount={12} defaultPage={4} />
+    <Pagination totalPageCount={5} size="small" />
+  </div>
+</Section>
+
+## البحث والفلاتر
+
+### حقل البحث
+
+مكون حقل البحث يسمح للمستخدمين بإدخال استفساراتهم والعثور على النتائج ذات الصلة داخل التطبيق أو الموقع الإلكتروني.
+
+<Section name="search-box" code={searchBoxSource}>
+  <div className="flex w-full max-w-xl flex-col gap-4">
+    <SearchBox placeholder="ابحث عن خدمة" buttonLabel="بحث" />
+    <SearchBox size="sm" placeholder="بحث سريع" defaultValue="جواز" />
+  </div>
 </Section>
 
 <footer className="mt-10 pb-4 text-center text-xs text-muted-foreground">

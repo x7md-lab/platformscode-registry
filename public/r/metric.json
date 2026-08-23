@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "metric",
+  "type": "registry:ui",
+  "title": "Metric",
+  "description": "DGA «بطاقة المؤشرات»: KPI card with value, trend pill and optional leading icon.",
+  "dependencies": [
+    "@hugeicons/react",
+    "@hugeicons/core-free-icons"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/platformscode/ui/metric.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\"\nimport type { IconSvgElement } from \"@hugeicons/react\"\nimport { ArrowUpRight01Icon, ArrowDownRight01Icon } from \"@hugeicons/core-free-icons\"\nimport { cn } from \"@/lib/utils\"\nimport type { HTMLAttributes } from \"react\"\n\nexport function Metric({\n  label,\n  value,\n  helperText,\n  trend,\n  trendLabel,\n  icon,\n  className,\n  ...props\n}: HTMLAttributes<HTMLDivElement> & {\n  label: string\n  value: string\n  helperText?: string\n  trend?: \"up\" | \"down\"\n  trendLabel?: string\n  icon?: IconSvgElement\n}) {\n  return (\n    <div\n      className={cn(\n        \"flex w-full flex-col gap-3 rounded-lg border border-border bg-card p-6\",\n        className\n      )}\n      {...props}\n    >\n      <div className=\"flex items-start justify-between gap-3\">\n        <span className=\"text-sm font-semibold text-muted-foreground\">{label}</span>\n        {icon ? (\n          <span className=\"flex size-9 shrink-0 items-center justify-center rounded-full bg-primary-light text-primary\">\n            <HugeiconsIcon icon={icon} size={18} strokeWidth={2} />\n          </span>\n        ) : null}\n      </div>\n      <div className=\"flex flex-wrap items-baseline gap-3\">\n        <span className=\"text-3xl font-bold tracking-tight text-foreground\">\n          {value}\n        </span>\n        {trend && trendLabel ? (\n          <span\n            className={cn(\n              \"inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold\",\n              trend === \"up\"\n                ? \"bg-success-light text-success\"\n                : \"bg-destructive-light text-destructive\"\n            )}\n          >\n            <HugeiconsIcon\n              icon={trend === \"up\" ? ArrowUpRight01Icon : ArrowDownRight01Icon}\n              size={14}\n              strokeWidth={2.5}\n            />\n            {trendLabel}\n          </span>\n        ) : null}\n      </div>\n      {helperText ? (\n        <p className=\"m-0 text-xs leading-5 text-muted-foreground\">{helperText}</p>\n      ) : null}\n    </div>\n  )\n}\n",
+      "type": "registry:ui"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "quote",
+  "type": "registry:ui",
+  "title": "Quote",
+  "description": "DGA «الاقتباس»: brand-tinted blockquote with quote mark and author caption.",
+  "dependencies": [
+    "@hugeicons/react",
+    "@hugeicons/core-free-icons"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/platformscode/ui/quote.tsx",
+      "content": "import { HugeiconsIcon } from \"@hugeicons/react\"\nimport { QuoteDownIcon } from \"@hugeicons/core-free-icons\"\nimport { cn } from \"@/lib/utils\"\nimport type { BlockquoteHTMLAttributes, ReactNode } from \"react\"\n\nexport function Quote({\n  author,\n  role,\n  avatar,\n  showMark = true,\n  className,\n  children,\n  ...props\n}: BlockquoteHTMLAttributes<HTMLQuoteElement> & {\n  author?: string\n  role?: string\n  avatar?: ReactNode\n  showMark?: boolean\n}) {\n  return (\n    <figure className={cn(\"m-0 w-full\", className)}>\n      <blockquote\n        className={cn(\n          \"m-0 flex flex-col gap-4 rounded-lg bg-primary-light p-6 text-start\",\n          \"border-s-4 border-primary\"\n        )}\n        {...props}\n      >\n        {showMark ? (\n          <HugeiconsIcon\n            icon={QuoteDownIcon}\n            size={28}\n            strokeWidth={1.5}\n            className=\"text-primary/50\"\n            aria-hidden\n          />\n        ) : null}\n        <p className=\"m-0 text-lg font-medium leading-8 text-foreground\">\n          {children}\n        </p>\n      </blockquote>\n      {author ? (\n        <figcaption className=\"mt-4 flex items-center gap-3\">\n          {avatar}\n          <span className=\"flex flex-col\">\n            <span className=\"text-sm font-bold text-foreground\">{author}</span>\n            {role ? (\n              <span className=\"text-xs text-muted-foreground\">{role}</span>\n            ) : null}\n          </span>\n        </figcaption>\n      ) : null}\n    </figure>\n  )\n}\n",
+      "type": "registry:ui"
+    }
+  ]
+}

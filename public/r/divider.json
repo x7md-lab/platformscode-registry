@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "divider",
+  "type": "registry:ui",
+  "title": "Divider",
+  "description": "DGA «الخط الفاصل»: Base UI separator, horizontal or vertical, with an optional centered label.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/platformscode/ui/divider.tsx",
+      "content": "\"use client\"\n\nimport { Separator } from \"@base-ui/react/separator\"\nimport { cn } from \"@/lib/utils\"\nimport type { ComponentProps, ReactNode } from \"react\"\n\nexport function Divider({\n  orientation = \"horizontal\",\n  label,\n  className,\n  ...props\n}: ComponentProps<typeof Separator> & { label?: ReactNode }) {\n  if (label && orientation === \"horizontal\") {\n    return (\n      <div className={cn(\"flex w-full items-center gap-3\", className)}>\n        <Separator className=\"h-px grow bg-border\" {...props} />\n        <span className=\"shrink-0 text-xs font-semibold text-muted-foreground\">\n          {label}\n        </span>\n        <Separator className=\"h-px grow bg-border\" />\n      </div>\n    )\n  }\n\n  return (\n    <Separator\n      orientation={orientation}\n      className={cn(\n        \"bg-border\",\n        orientation === \"vertical\" ? \"h-full w-px self-stretch\" : \"h-px w-full\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n",
+      "type": "registry:ui"
+    }
+  ]
+}

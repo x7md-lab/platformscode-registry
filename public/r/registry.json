@@ -18,8 +18,35 @@
           "color-primary-hover": "var(--primary-hover)",
           "color-primary-light": "var(--primary-light)",
           "color-destructive-light": "var(--destructive-light)",
+          "color-destructive-border": "var(--destructive-border)",
+          "color-destructive-strong": "var(--destructive-strong)",
           "color-success": "var(--success)",
-          "color-success-light": "var(--success-light)"
+          "color-success-light": "var(--success-light)",
+          "color-success-border": "var(--success-border)",
+          "color-success-strong": "var(--success-strong)",
+          "color-warning": "var(--warning)",
+          "color-warning-light": "var(--warning-light)",
+          "color-warning-border": "var(--warning-border)",
+          "color-warning-strong": "var(--warning-strong)",
+          "color-info": "var(--info)",
+          "color-info-light": "var(--info-light)",
+          "color-info-border": "var(--info-border)",
+          "color-info-strong": "var(--info-strong)",
+          "color-purple": "var(--purple)",
+          "color-purple-light": "var(--purple-light)",
+          "color-purple-border": "var(--purple-border)",
+          "color-purple-strong": "var(--purple-strong)",
+          "color-pink": "var(--pink)",
+          "color-pink-light": "var(--pink-light)",
+          "color-pink-border": "var(--pink-border)",
+          "color-pink-strong": "var(--pink-strong)",
+          "color-orange": "var(--orange)",
+          "color-orange-light": "var(--orange-light)",
+          "color-orange-border": "var(--orange-border)",
+          "color-orange-strong": "var(--orange-strong)",
+          "color-neutral-light": "var(--neutral-light)",
+          "color-neutral-border": "var(--neutral-border)",
+          "color-neutral-strong": "var(--neutral-strong)"
         },
         "light": {
           "background": "#f9fafb",
@@ -36,10 +63,37 @@
           "primary-light": "#f3fcf6",
           "primary-foreground": "#ffffff",
           "secondary": "#dba102",
-          "destructive": "#d92c20",
+          "destructive": "#d92d20",
           "destructive-light": "#fef3f2",
+          "destructive-border": "#fecdca",
+          "destructive-strong": "#b42318",
           "success": "#067647",
           "success-light": "#ecfdf3",
+          "success-border": "#b8eacb",
+          "success-strong": "#166a45",
+          "warning": "#dc6803",
+          "warning-light": "#fffaeb",
+          "warning-border": "#fedf89",
+          "warning-strong": "#b54708",
+          "info": "#1570ef",
+          "info-light": "#eff8ff",
+          "info-border": "#b2ddff",
+          "info-strong": "#175cd3",
+          "purple": "#6938ef",
+          "purple-light": "#f4f3ff",
+          "purple-border": "#d9d6fe",
+          "purple-strong": "#5925dc",
+          "pink": "#dd2590",
+          "pink-light": "#fdf2fa",
+          "pink-border": "#fccdee",
+          "pink-strong": "#c11574",
+          "orange": "#e04f16",
+          "orange-light": "#fef6ee",
+          "orange-border": "#f9dbaf",
+          "orange-strong": "#b93815",
+          "neutral-light": "#f9fafb",
+          "neutral-border": "#d2d6db",
+          "neutral-strong": "#384250",
           "ring": "#161616"
         }
       }
@@ -240,6 +294,449 @@
         {
           "path": "registry/platformscode/hooks/use-media-query.ts",
           "type": "registry:hook"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "DGA «مربع الاختيار»: Base UI checkbox with label, helper and alert text, brand/neutral colors, indeterminate state.",
+      "dependencies": [
+        "@base-ui/react",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/ui/checkbox.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group",
+      "description": "DGA «زر الاختيار»: Base UI radio group with per-item label, helper and alert text.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/ui/radio-group.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "DGA «زر التبديل»: Base UI switch with label, helper and alert text, RTL-aware thumb travel.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/ui/switch.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "text-input",
+      "type": "registry:ui",
+      "title": "Text Input",
+      "description": "DGA «المدخلات»: 40px field, 4px radius, growing focus underline, prefix/suffix/icon slots and success/error/warning feedback icons.",
+      "dependencies": [
+        "@base-ui/react",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/ui/text-input.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "DGA «منطقة النص»: multi-line field with label, helper and alert text, optional resize.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/ui/textarea.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "DGA «القائمة المنسدلة»: Base UI Select with animated popup, check indicators, single or multiple selection.",
+      "dependencies": [
+        "@base-ui/react",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/ui/select.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "inline-alert",
+      "type": "registry:ui",
+      "title": "Inline Alert",
+      "description": "DGA «الإشعارات» (inline): neutral/info/success/warning/error tones, optional colored surface, actions and dismiss.",
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/ui/inline-alert.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "DGA «التلميح»: Base UI tooltip with title, helper text, arrow, dark or light theme.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/ui/tooltip.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "rating",
+      "type": "registry:ui",
+      "title": "Rating",
+      "description": "DGA «التقييم»: star rating with hover preview, keyboard radio semantics and a read-only mode.",
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/ui/rating.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "DGA «جاري التحميل»: seven sizes, neutral/brand/on-color tones.",
+      "files": [
+        {
+          "path": "registry/platformscode/ui/spinner.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "progress-bar",
+      "type": "registry:ui",
+      "title": "Progress Bar",
+      "description": "DGA «شريط التقدم»: Base UI Progress with label, value readout and status tones.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/ui/progress-bar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "DGA «قائمة علامات التبويب»: Base UI Tabs with the 3px brand indicator sliding over a neutral divider rail.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/ui/tabs.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "breadcrumbs",
+      "type": "registry:ui",
+      "title": "Breadcrumbs",
+      "description": "DGA «مسار التصفح»: RTL-aware trail with chevrons, disabled items and aria-current on the last crumb.",
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/ui/breadcrumbs.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "DGA «ترقيم الصفحات»: sibling/ellipsis range algorithm, controlled or uncontrolled, three sizes.",
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/ui/pagination.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "steps",
+      "type": "registry:ui",
+      "title": "Steps",
+      "description": "DGA «الخطوات»: horizontal or vertical step indicator with done/current/upcoming states and connectors.",
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/ui/steps.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "content-switcher",
+      "type": "registry:ui",
+      "title": "Content Switcher",
+      "description": "DGA «مُبدّل المحتوى»: segmented switcher over Base UI Tabs with a sliding pill indicator, on-color variant.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/ui/content-switcher.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "DGA «الصورة الرمزية»: Base UI Avatar with image/initials/icon fallbacks, DGA size scale, square and bordered options.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/ui/avatar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "metric",
+      "type": "registry:ui",
+      "title": "Metric",
+      "description": "DGA «بطاقة المؤشرات»: KPI card with value, trend pill and optional leading icon.",
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/ui/metric.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "search-box",
+      "type": "registry:ui",
+      "title": "Search Box",
+      "description": "DGA «حقل البحث»: search field with clear button and optional submit action.",
+      "dependencies": [
+        "@base-ui/react",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/ui/search-box.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "link",
+      "type": "registry:ui",
+      "title": "Link",
+      "description": "DGA «الرابط»: brand/neutral/on-color link with inline mode, external icon and disabled state.",
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/ui/link.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "list",
+      "type": "registry:ui",
+      "title": "List",
+      "description": "DGA «قائمة التعداد»: ordered, unordered and icon lists with brand markers.",
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/ui/list.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "quote",
+      "type": "registry:ui",
+      "title": "Quote",
+      "description": "DGA «الاقتباس»: brand-tinted blockquote with quote mark and author caption.",
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/ui/quote.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "divider",
+      "type": "registry:ui",
+      "title": "Divider",
+      "description": "DGA «الخط الفاصل»: Base UI separator, horizontal or vertical, with an optional centered label.",
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/ui/divider.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "footer",
+      "type": "registry:ui",
+      "title": "Footer",
+      "description": "DGA «تذييل الصفحة»: link groups, action rows, copyright and logo slot; default or brand-dark tone.",
+      "files": [
+        {
+          "path": "registry/platformscode/ui/footer.tsx",
+          "type": "registry:ui"
         }
       ],
       "registryDependencies": [

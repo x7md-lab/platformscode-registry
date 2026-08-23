@@ -5,7 +5,13 @@ const components: MDXComponents = {
   h1: (props) => (
     <h1 className="mb-2 mt-0 text-3xl font-bold tracking-tight" {...props} />
   ),
-  h2: (props) => <h2 className="mb-3 mt-10 text-xl font-bold" {...props} />,
+  h2: (props) => (
+    <h2
+      className="mb-6 mt-16 border-0 border-b border-solid border-border pb-2 text-2xl font-bold text-primary"
+      {...props}
+    />
+  ),
+  h3: (props) => <h3 className="mb-3 mt-10 text-xl font-bold" {...props} />,
   p: (props) => <p className="my-2 leading-7 text-muted-foreground" {...props} />,
   code: (props) => (
     <code
