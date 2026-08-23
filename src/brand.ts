@@ -43,7 +43,7 @@ export const BRANDS: Record<BrandKey, Ramp> = {
       ring: "#1b8354",
     },
   },
-  // --colors-secondary-gold-*  (dark text: white on gold fails contrast)
+  // --colors-secondary-gold-*
   gold: {
     label: "الذهبي",
     swatch: "#dba102",
@@ -55,7 +55,7 @@ export const BRANDS: Record<BrandKey, Ramp> = {
       "primary-bright": "#f7d54d",
       "primary-light": "#fffef2",
       "primary-soft": "#fffce6",
-      "primary-foreground": "#161616",
+      "primary-foreground": "#ffffff",
       ring: "#b87b02",
     },
   },
