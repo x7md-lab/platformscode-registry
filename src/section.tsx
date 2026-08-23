@@ -7,8 +7,15 @@ import {
   type ReactNode,
 } from "react"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { Copy01Icon, Tick02Icon, TerminalIcon } from "@hugeicons/core-free-icons"
+import {
+  ArrowDown01Icon,
+  Copy01Icon,
+  SourceCodeIcon,
+  Tick02Icon,
+  TerminalIcon,
+} from "@hugeicons/core-free-icons"
 import { Skeleton } from "@/registry/platformscode/ui/skeleton"
+import usageMap from "virtual:mdx-usage"
 
 const CodeView = lazy(() => import("./code-view"))
 
@@ -113,18 +120,58 @@ function InstallCommand({ name }: { name: string }) {
   )
 }
 
+function UsageBlock({ source }: { source: string }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <div className="flex flex-col gap-2">
+      <button
+        type="button"
+        aria-expanded={open}
+        onClick={() => setOpen((value) => !value)}
+        className="flex cursor-pointer items-center gap-1.5 self-start rounded-sm border-0 bg-transparent p-0 text-xs font-semibold text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
+      >
+        <HugeiconsIcon icon={SourceCodeIcon} size={14} strokeWidth={2} />
+        الاستخدام
+        <HugeiconsIcon
+          icon={ArrowDown01Icon}
+          size={14}
+          strokeWidth={2}
+          className={open ? "rotate-180 transition-transform" : "transition-transform"}
+        />
+      </button>
+      {open ? (
+        <div
+          dir="ltr"
+          className="overflow-hidden rounded-md border border-border text-start"
+        >
+          <Suspense fallback={<Skeleton className="h-24 w-full rounded-none" />}>
+            <CodeView code={source} />
+          </Suspense>
+        </div>
+      ) : null}
+    </div>
+  )
+}
+
 export function Section({
   name,
   code,
   children,
+  "data-ref": dataRef,
 }: {
   name: string
   code: string
   children: ReactNode
+  "data-ref"?: string
 }) {
   const [view, setView] = useState<"preview" | "code">("preview")
+  const refKey = dataRef ?? name
+  const usage = usageMap[refKey]
   return (
-    <div className="relative my-4 flex min-h-[300px] flex-col gap-4 rounded-lg border border-border bg-card p-4">
+    <div
+      data-ref={refKey}
+      className="relative my-4 flex min-h-[300px] flex-col gap-4 rounded-lg border border-border bg-card p-4"
+    >
       <div className="flex items-center justify-between gap-4">
         <span dir="ltr" className="font-mono text-xs text-muted-foreground">
           {name}.tsx
@@ -143,6 +190,7 @@ export function Section({
         </div>
       )}
       <InstallCommand name={name} />
+      {usage ? <UsageBlock source={usage} /> : null}
     </div>
   )
 }
