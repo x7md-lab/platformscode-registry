@@ -23,6 +23,17 @@
 
   --secondary: #dba102;
 
+  /* DGA brand palettes — foundations/color-system */
+  --gold: #dba102;
+  --gold-light: #fffef2;
+  --gold-border: #fcf3bd;
+  --gold-strong: #b87b02;
+
+  --lavender: #6d428f;
+  --lavender-light: #f9f5fa;
+  --lavender-border: #e1cce8;
+  --lavender-strong: #532d75;
+
   --destructive: #d92d20;
   --destructive-light: #fef3f2;
   --destructive-border: #fecdca;
@@ -85,6 +96,14 @@
   --color-primary-soft: var(--primary-soft);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-border: var(--gold-border);
+  --color-gold-strong: var(--gold-strong);
+  --color-lavender: var(--lavender);
+  --color-lavender-light: var(--lavender-light);
+  --color-lavender-border: var(--lavender-border);
+  --color-lavender-strong: var(--lavender-strong);
   --color-destructive: var(--destructive);
   --color-destructive-light: var(--destructive-light);
   --color-destructive-border: var(--destructive-border);
