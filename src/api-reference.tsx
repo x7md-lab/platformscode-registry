@@ -6,6 +6,17 @@ import apiMap from "virtual:api-docs"
 const FOCUS_RING =
   "focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
 
+/** Shared column track, applied to both the header row and every prop row. */
+const COLUMNS =
+  "sm:grid sm:grid-cols-[minmax(7rem,1.2fr)_minmax(8rem,2fr)_minmax(4rem,1fr)_2rem]"
+
+/**
+ * Below `sm` each cell stacks and labels itself from its `data-name`
+ * (PocketBase's responsive-table trick), so the header row can be dropped.
+ */
+const CELL_LABEL =
+  "before:mb-0.5 before:block before:text-[10px] before:font-bold before:uppercase before:tracking-wide before:text-muted-foreground before:content-[attr(data-name)] sm:before:hidden"
+
 type DocEntry = { en: string | null; ar: string | null }
 
 function doc(entry: DocEntry | undefined) {
@@ -31,9 +42,12 @@ function PropRow({
   return (
     <details className="group border-0 border-b border-solid border-border last:border-b-0">
       <summary
-        className={`grid cursor-pointer list-none grid-cols-[minmax(7rem,1.2fr)_minmax(8rem,2fr)_minmax(4rem,1fr)_2rem] items-center transition-colors hover:bg-muted/60 [&::-webkit-details-marker]:hidden ${FOCUS_RING}`}
+        className={`relative flex cursor-pointer list-none flex-col gap-2 p-3 pe-10 transition-colors hover:bg-muted/60 [&::-webkit-details-marker]:hidden sm:items-center sm:gap-0 sm:p-0 sm:pe-0 ${COLUMNS} ${FOCUS_RING}`}
       >
-        <span className="overflow-x-auto whitespace-nowrap px-3 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <span
+          data-name="Prop"
+          className={`block w-full sm:overflow-x-auto sm:whitespace-nowrap sm:px-3 sm:py-2 sm:[scrollbar-width:none] sm:[&::-webkit-scrollbar]:hidden ${CELL_LABEL}`}
+        >
           <code className="font-mono text-xs text-foreground">
             {prop.name}
             {prop.optional ? (
@@ -41,17 +55,23 @@ function PropRow({
             ) : null}
           </code>
         </span>
-        <span className="overflow-x-auto whitespace-nowrap px-3 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          <code className="font-mono text-[11px] text-primary-hover">
+        <span
+          data-name="Type"
+          className={`block w-full sm:overflow-x-auto sm:whitespace-nowrap sm:px-3 sm:py-2 sm:[scrollbar-width:none] sm:[&::-webkit-scrollbar]:hidden ${CELL_LABEL}`}
+        >
+          <code className="break-all font-mono text-[11px] text-primary-hover sm:break-normal">
             {prop.type}
           </code>
         </span>
-        <span className="px-3 py-2">
+        <span
+          data-name="Default"
+          className={`block w-full sm:px-3 sm:py-2 ${CELL_LABEL}`}
+        >
           <code className="font-mono text-[11px] text-muted-foreground">
             {prop.default ?? "—"}
           </code>
         </span>
-        <span className="flex items-center justify-center text-muted-foreground">
+        <span className="absolute end-3 top-3 flex items-center justify-center text-muted-foreground sm:static sm:end-auto sm:top-auto">
           <HugeiconsIcon
             icon={ArrowDown01Icon}
             size={14}
@@ -61,7 +81,7 @@ function PropRow({
         </span>
       </summary>
       <dl className="m-0 flex flex-col gap-0 border-0 border-t border-solid border-border bg-muted/30 px-3 py-2 text-xs">
-        <div className="grid grid-cols-[5rem_1fr] items-baseline gap-2 py-1">
+        <div className="grid grid-cols-1 gap-0.5 py-1 sm:grid-cols-[5rem_1fr] sm:items-baseline sm:gap-2">
           <dt className="font-semibold text-muted-foreground">Name</dt>
           <dd className="m-0">
             <code className="font-mono text-xs text-info-strong">
@@ -70,17 +90,17 @@ function PropRow({
           </dd>
         </div>
         {description ? (
-          <div className="grid grid-cols-[5rem_1fr] items-baseline gap-2 border-0 border-t border-solid border-border/60 py-1.5">
+          <div className="grid grid-cols-1 gap-0.5 border-0 border-t border-solid border-border/60 py-1.5 sm:grid-cols-[5rem_1fr] sm:items-baseline sm:gap-2">
             <dt className="font-semibold text-muted-foreground">الوصف</dt>
             <dd dir="rtl" className="m-0 text-start leading-5 text-foreground">
               {description}
             </dd>
           </div>
         ) : null}
-        <div className="grid grid-cols-[5rem_1fr] items-baseline gap-2 border-0 border-t border-solid border-border/60 py-1.5">
+        <div className="grid grid-cols-1 gap-0.5 border-0 border-t border-solid border-border/60 py-1.5 sm:grid-cols-[5rem_1fr] sm:items-baseline sm:gap-2">
           <dt className="font-semibold text-muted-foreground">Type</dt>
           <dd className="m-0 overflow-x-auto">
-            <code className="whitespace-pre font-mono text-[11px] text-primary-hover">
+            <code className="break-all font-mono text-[11px] text-primary-hover sm:whitespace-pre sm:break-normal">
               {prop.type}
               {prop.optional ? " | undefined" : ""}
             </code>
@@ -124,7 +144,7 @@ export function ApiReference({ name }: { name: string }) {
         className={`grid transition-[grid-template-rows] duration-300 ease-out ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
       >
         <div className="min-h-0 overflow-hidden">
-          <div className="flex flex-col gap-6 border-0 border-t border-solid border-border p-4">
+          <div className="flex flex-col gap-6 border-0 border-t border-solid border-border p-3 sm:p-4">
             {documented.map((part) => (
               <section key={part.name} className="flex flex-col gap-2">
                 <h4
@@ -143,17 +163,20 @@ export function ApiReference({ name }: { name: string }) {
                     يرث خصائص{" "}
                     <code
                       dir="ltr"
-                      className="rounded-sm bg-muted px-1 py-0.5 font-mono text-[11px]"
+                      className="inline-block max-w-full overflow-x-auto break-all rounded-sm bg-muted px-1 py-0.5 align-bottom font-mono text-[11px] sm:break-normal"
                     >
                       {part.inherits.join(" & ")}
                     </code>
                   </p>
                 ) : null}
                 {part.props.length ? (
-                  <div dir="ltr" className="overflow-hidden rounded-md border border-border text-start">
+                  <div
+                    dir="ltr"
+                    className="overflow-hidden rounded-md border border-border text-start"
+                  >
                     <div
                       aria-hidden
-                      className="grid grid-cols-[minmax(7rem,1.2fr)_minmax(8rem,2fr)_minmax(4rem,1fr)_2rem] border-0 border-b border-solid border-border bg-muted/60"
+                      className={`hidden border-0 border-b border-solid border-border bg-muted/60 ${COLUMNS}`}
                     >
                       <span className={HEADER_CELL}>Prop</span>
                       <span className={HEADER_CELL}>Type</span>
