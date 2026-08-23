@@ -1,17 +1,20 @@
+import { HugeiconsIcon, type IconSvgElement } from "@hugeicons/react"
 import { cn } from "@/lib/utils"
 import type { HTMLAttributes, ReactNode } from "react"
 
 type Variant = "gray" | "white" | "dark"
 
 const variants: Record<Variant, string> = {
-  gray: "bg-muted text-muted-foreground",
-  white: "bg-card text-muted-foreground border-b border-border",
+  gray: "bg-muted text-neutral-strong",
+  white: "bg-card text-neutral-strong",
   dark: "bg-[#104631] text-white/80",
 }
 
 /**
- * DGA «شريط التنقل الثانوي» — the slim utility bar above the main header
- * (weather, date, language switch, accessibility actions in the templates).
+ * DGA «شريط التنقل الثانوي» — the 40px utility bar above the main header
+ * (weather, date, location + language/accessibility actions in the templates).
+ * Full-bleed with 32px inline padding and space-between, as in the OG
+ * dga-second-nav-header.
  */
 export function SecondNavHeader({
   variant = "gray",
@@ -25,8 +28,19 @@ export function SecondNavHeader({
   actions?: ReactNode
 }) {
   return (
-    <div className={cn("w-full", variants[variant], className)} {...props}>
-      <div className="mx-auto flex h-9 w-full max-w-3xl items-center justify-between gap-4 px-4 text-xs sm:px-5 lg:max-w-5xl">
+    <div
+      aria-label="شريط تنقل ثانوي"
+      className={cn("w-full", variants[variant], className)}
+      {...props}
+    >
+      <div
+        className={cn(
+          "flex h-10 w-full items-center justify-between gap-4 px-4 sm:px-8",
+          variant === "dark"
+            ? "border-0 border-b border-solid border-white/15"
+            : "border-0 border-b border-solid border-border"
+        )}
+      >
         <div className="flex min-w-0 items-center gap-4 overflow-x-auto whitespace-nowrap">
           {content}
         </div>
@@ -39,13 +53,26 @@ export function SecondNavHeader({
 }
 
 export function SecondNavHeaderItem({
+  icon,
   className,
+  children,
   ...props
-}: HTMLAttributes<HTMLSpanElement>) {
+}: HTMLAttributes<HTMLSpanElement> & { icon?: IconSvgElement }) {
   return (
     <span
-      className={cn("inline-flex items-center gap-1.5 text-xs", className)}
+      className={cn("inline-flex shrink-0 items-center gap-1 text-sm", className)}
       {...props}
-    />
+    >
+      {icon ? (
+        <HugeiconsIcon
+          icon={icon}
+          size={16}
+          strokeWidth={2}
+          className="shrink-0 opacity-80"
+          aria-hidden
+        />
+      ) : null}
+      {children}
+    </span>
   )
 }

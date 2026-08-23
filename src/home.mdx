@@ -1,6 +1,8 @@
 import {
   Analytics01Icon,
   CalendarCheck01Icon,
+  CloudIcon,
+  Location01Icon,
   CustomerService01Icon,
   FileVerifiedIcon,
   HelpCircleIcon,
@@ -263,9 +265,11 @@ export const brand = (
     <SecondNavHeader
       content={
         <>
-          <SecondNavHeaderItem>الرياض</SecondNavHeaderItem>
-          <SecondNavHeaderItem>٢١ يناير ٢٠٢٤</SecondNavHeaderItem>
-          <SecondNavHeaderItem>غائم جزئيًا</SecondNavHeaderItem>
+          <SecondNavHeaderItem icon={Location01Icon}>الرياض</SecondNavHeaderItem>
+          <SecondNavHeaderItem icon={CalendarCheck01Icon}>
+            ٢١ يناير ٢٠٢٤
+          </SecondNavHeaderItem>
+          <SecondNavHeaderItem icon={CloudIcon}>غائم جزئيًا</SecondNavHeaderItem>
         </>
       }
       actions={
