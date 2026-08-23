@@ -71,7 +71,7 @@ function BrandPicker({ value }: { value: BrandKey }) {
  */
 export function PreviewSettings() {
   const [open, setOpen] = useState(false)
-  const { contained, padded, brand } = usePreviewPrefs()
+  const { contained, padded, brand, mode } = usePreviewPrefs()
 
   return (
     <Drawer open={open} onOpenChange={setOpen} swipeDirection="right">
@@ -94,6 +94,15 @@ export function PreviewSettings() {
           </DrawerDescription>
         </DrawerHeader>
         <div className="flex flex-col gap-4 p-4">
+          <Switch
+            label="الوضع الداكن"
+            helperText="أسطح داكنة على نهج نفاذ."
+            checked={mode === "dark"}
+            onCheckedChange={(value) =>
+              previewPrefs.set({ mode: value ? "dark" : "light" })
+            }
+          />
+          <Divider />
           <BrandPicker value={brand} />
           <Divider />
           <Switch

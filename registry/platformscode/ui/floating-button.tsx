@@ -9,8 +9,10 @@ type Corner = "start" | "end"
 const variants: Record<Variant, string> = {
   "primary-brand":
     "bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-pressed",
+  // the neutral surface inverts with the mode, so the label tracks it:
+  // near-white on the dark surface, near-black once the surface goes light
   "primary-neutral":
-    "bg-neutral-strongest text-white hover:bg-foreground active:bg-muted-foreground",
+    "bg-neutral-strongest text-background hover:bg-foreground active:bg-muted-foreground",
   "secondary-solid":
     "bg-muted text-foreground hover:bg-border active:bg-border",
 }
@@ -18,8 +20,9 @@ const variants: Record<Variant, string> = {
 const onColorVariants: Record<Variant, string> = {
   "primary-brand":
     "bg-primary text-primary-foreground hover:bg-primary-hover active:bg-primary-pressed",
+  // DGA .floating-button-onColor-true pins these regardless of mode
   "primary-neutral":
-    "bg-white text-foreground hover:bg-white/80 active:bg-white/60",
+    "bg-white text-[#161616] hover:bg-white/80 active:bg-white/60",
   "secondary-solid":
     "bg-white/20 text-white hover:bg-white/20 active:bg-white/40",
 }

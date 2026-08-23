@@ -29,7 +29,9 @@ function ModeToggle() {
       aria-label={dark ? "الوضع الفاتح" : "الوضع الداكن"}
       title={dark ? "الوضع الفاتح" : "الوضع الداكن"}
       onClick={() => previewPrefs.set({ mode: dark ? "light" : "dark" })}
-      className="flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-border bg-card/60 text-muted-foreground transition-colors hover:border-primary/40 hover:bg-card hover:text-foreground focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
+      // on phones the same switch lives in the preview settings sheet,
+      // which keeps the bar from crowding at 390px
+      className="hidden size-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-border bg-card/60 text-muted-foreground transition-colors hover:border-primary/40 hover:bg-card hover:text-foreground focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40 sm:flex"
     >
       <HugeiconsIcon
         icon={dark ? Sun03Icon : Moon02Icon}
