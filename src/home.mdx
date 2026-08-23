@@ -83,6 +83,38 @@ import tabsSource from "@/registry/platformscode/ui/tabs.tsx?raw"
 import breadcrumbsSource from "@/registry/platformscode/ui/breadcrumbs.tsx?raw"
 import paginationSource from "@/registry/platformscode/ui/pagination.tsx?raw"
 import searchBoxSource from "@/registry/platformscode/ui/search-box.tsx?raw"
+import { PhoneInput } from "@/registry/platformscode/ui/phone-input"
+import phoneInputSource from "@/registry/platformscode/ui/phone-input.tsx?raw"
+import { Modal, ModalTrigger, ModalContent, ModalClose } from "@/registry/platformscode/ui/modal"
+import { FileUpload } from "@/registry/platformscode/ui/file-upload"
+import { SecondNavHeader, SecondNavHeaderItem } from "@/registry/platformscode/ui/second-nav-header"
+import modalSource from "@/registry/platformscode/ui/modal.tsx?raw"
+import toastSource from "@/registry/platformscode/ui/toast.tsx?raw"
+import fileUploadSource from "@/registry/platformscode/ui/file-upload.tsx?raw"
+import secondNavHeaderSource from "@/registry/platformscode/ui/second-nav-header.tsx?raw"
+import { ErrorPage } from "@/registry/platformscode/blocks/error-page"
+import { SearchResults } from "@/registry/platformscode/blocks/search-results"
+import { SitemapSection } from "@/registry/platformscode/blocks/sitemap-section"
+import { ContentPage } from "@/registry/platformscode/blocks/content-page"
+import errorPageSource from "@/registry/platformscode/blocks/error-page.tsx?raw"
+import searchResultsSource from "@/registry/platformscode/blocks/search-results.tsx?raw"
+import sitemapSectionSource from "@/registry/platformscode/blocks/sitemap-section.tsx?raw"
+import contentPageSource from "@/registry/platformscode/blocks/content-page.tsx?raw"
+import { ToastDemo } from "./demos"
+import { PageShell } from "@/registry/platformscode/blocks/page-shell"
+import { HeroSection } from "@/registry/platformscode/blocks/hero-section"
+import { ServiceCards } from "@/registry/platformscode/blocks/service-cards"
+import { ContactForm } from "@/registry/platformscode/blocks/contact-form"
+import { FaqSection } from "@/registry/platformscode/blocks/faq-section"
+import { FeedbackSection } from "@/registry/platformscode/blocks/feedback-section"
+import { CookiesBanner } from "@/registry/platformscode/blocks/cookies-banner"
+import pageShellSource from "@/registry/platformscode/blocks/page-shell.tsx?raw"
+import heroSectionSource from "@/registry/platformscode/blocks/hero-section.tsx?raw"
+import serviceCardsSource from "@/registry/platformscode/blocks/service-cards.tsx?raw"
+import contactFormSource from "@/registry/platformscode/blocks/contact-form.tsx?raw"
+import faqSectionSource from "@/registry/platformscode/blocks/faq-section.tsx?raw"
+import feedbackSectionSource from "@/registry/platformscode/blocks/feedback-section.tsx?raw"
+import cookiesBannerSource from "@/registry/platformscode/blocks/cookies-banner.tsx?raw"
 
 export const samplePage = {
   src:
@@ -222,6 +254,29 @@ export const brand = (
   </div>
 </Section>
 
+### شريط التنقل الثانوي
+
+شريط رفيع فوق الشريط الرئيسي لمعلومات سريعة (المدينة، التاريخ، الطقس) وإجراءات مساعدة — كما في قوالب «كود المنصات».
+
+<Section name="second-nav-header" code={secondNavHeaderSource}>
+  <div className="w-full self-start overflow-hidden rounded-md border border-border">
+    <SecondNavHeader
+      content={
+        <>
+          <SecondNavHeaderItem>الرياض</SecondNavHeaderItem>
+          <SecondNavHeaderItem>٢١ يناير ٢٠٢٤</SecondNavHeaderItem>
+          <SecondNavHeaderItem>غائم جزئيًا</SecondNavHeaderItem>
+        </>
+      }
+      actions={
+        <Button size="sm" variant="subtle">
+          English
+        </Button>
+      }
+    />
+  </div>
+</Section>
+
 ## الإجراءات
 
 ### الأزرار
@@ -231,10 +286,12 @@ export const brand = (
 <Section name="button" code={buttonSource}>
   <div className="flex flex-wrap items-center justify-center gap-3">
     <Button>أساسي</Button>
+    <Button variant="secondary">ثانوي</Button>
     <Button variant="outline">محدد</Button>
     <Button variant="subtle">خفيف</Button>
     <Button variant="danger">خطر</Button>
-    <Button size="lg">مقاس كبير</Button>
+    <Button size="md">متوسط</Button>
+    <Button size="sm">صغير</Button>
     <Button disabled>معطل</Button>
   </div>
 </Section>
@@ -323,9 +380,32 @@ export const brand = (
       placeholder="name@example.com"
       alertText="صيغة البريد غير صحيحة."
     />
-    <TextInput label="رقم الجوال" prefix="+966" placeholder="5X XXX XXXX" />
+    <TextInput
+      label="رقم الجوال"
+      dir="ltr"
+      prefix="+966"
+      placeholder="5X XXX XXXX"
+    />
     <TextInput label="حقل معطل" placeholder="غير متاح" disabled />
   </div>
+</Section>
+
+### حقل الجوال
+
+تركيبة قالب صفحة التواصل الرسمي: قائمة رمز الدولة بجانب حقل أرقام باتجاه LTR، مع علامة الإلزام.
+
+<Section name="phone-input" code={phoneInputSource}>
+  <div className="w-full max-w-sm">
+    <PhoneInput required helperText="يُستخدم للتواصل بشأن الطلب." />
+  </div>
+</Section>
+
+### رفع الملفات
+
+منطقة سحب وإفلات بإطار متقطع يتحوّل إلى لون العلامة أثناء السحب، مع قائمة ملفات وحد أقصى للحجم — كما في نموذج التواصل الرسمي.
+
+<Section name="file-upload" code={fileUploadSource}>
+  <FileUpload className="max-w-xl" accept=".pdf" maxSizeMB={5} />
 </Section>
 
 ### منطقة النص
@@ -685,6 +765,36 @@ export const brand = (
   </p>
 </Section>
 
+### النافذة المنبثقة
+
+نافذة عامة بمقاس 600px وحواف 8px وإجراءات تتراص عموديًا على الجوال — بأسلوب dga-modal.
+
+<Section name="modal" code={modalSource}>
+  <Modal>
+    <ModalTrigger
+      render={<Button variant="outline">فتح النافذة</Button>}
+    />
+    <ModalContent
+      title="تأكيد إرسال الطلب"
+      description="بعد الإرسال لا يمكن تعديل بيانات الطلب. هل تريد المتابعة؟"
+      actions={
+        <>
+          <ModalClose render={<Button variant="outline">إلغاء</Button>} />
+          <ModalClose render={<Button>تأكيد الإرسال</Button>} />
+        </>
+      }
+    />
+  </Modal>
+</Section>
+
+### الإشعارات المنبثقة
+
+بطاقة بيضاء بشريط لوني بسماكة 8px على حافة البداية — بأسلوب dga-notification-toast فوق Base UI Toast.
+
+<Section name="toast" code={toastSource}>
+  <ToastDemo />
+</Section>
+
 ## التحميل والحالة
 
 ### جاري التحميل
@@ -778,6 +888,261 @@ export const brand = (
     <SearchBox placeholder="ابحث عن خدمة" buttonLabel="بحث" />
     <SearchBox size="sm" placeholder="بحث سريع" defaultValue="جواز" />
   </div>
+</Section>
+
+## الكتل الجاهزة
+
+الكتلة (block) تجميعة من المكونات في قسم صفحة كامل — مبنية على قوالب «كود المنصات». تُثبَّت بأمر واحد فتُنزَّل معها كل المكونات التي تعتمد عليها.
+
+### هيكل الصفحة
+
+يجمع شريط التنقل العلوي ومسار التصفح والتذييل في هيكل واحد، ويترك محتوى الصفحة لك. يتحوّل الشريط تلقائيًا إلى قائمة الدرج دون 1024px — أو افرض السلوك عبر خاصية `mobile`.
+
+<Section name="page-shell" code={pageShellSource}>
+  <div className="w-full self-start overflow-hidden rounded-md border border-border">
+    <PageShell
+      className="min-h-0"
+      brand={{
+        title: "شعار المنصة",
+        subtitle: "platformscode.sa",
+        mark: (
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-md bg-primary text-lg font-black text-primary-foreground">
+            م
+          </span>
+        ),
+      }}
+      items={[
+        { label: "الرئيسية", href: "#", selected: true },
+        { label: "الخدمات", href: "#" },
+        { label: "عن المنصة", href: "#" },
+      ]}
+      actions={<Button>تسجيل الدخول</Button>}
+      crumbs={[
+        { label: "الرئيسية", href: "#" },
+        { label: "الخدمات", href: "#" },
+        { label: "الاستعلام عن معاملة" },
+      ]}
+      footerGroups={[
+        {
+          title: "الخدمات",
+          links: [
+            { label: "الاستعلام عن معاملة", href: "#" },
+            { label: "إصدار وثيقة", href: "#" },
+          ],
+        },
+      ]}
+      footerActions={[{ label: "سياسة الخصوصية", href: "#" }]}
+      copyright="جميع الحقوق محفوظة © ١٤٤٧هـ"
+    >
+      <p className="m-0 text-sm leading-7 text-muted-foreground">محتوى الصفحة.</p>
+    </PageShell>
+  </div>
+</Section>
+
+### القسم الرئيسي
+
+قسم الواجهة الأول: شارة، عنوان عريض، وصف، حقل بحث، وإجراءات.
+
+<Section name="hero-section" code={heroSectionSource}>
+  <HeroSection
+    eyebrow="خدمة جديدة"
+    title="كل خدمات المنصة في مكان واحد"
+    description="استعلم عن معاملاتك وأصدر وثائقك إلكترونيًا دون زيارة الفروع."
+    search
+    primaryAction={<Button size="lg">ابدأ الخدمة</Button>}
+    secondaryAction={
+      <Button size="lg" variant="outline">
+        تعرّف أكثر
+      </Button>
+    }
+  />
+</Section>
+
+### بطاقات الخدمات
+
+شبكة بطاقات قابلة للاختيار، مع أيقونة مميزة وشارة وحركة عند التمرير.
+
+<Section name="service-cards" code={serviceCardsSource}>
+  <ServiceCards
+    heading="الخدمات الأكثر استخدامًا"
+    description="اختر الخدمة للانتقال إلى صفحتها."
+    services={[
+      {
+        title: "الاستعلام عن معاملة",
+        description: "تتبع حالة معاملتك برقم الطلب.",
+        icon: FileVerifiedIcon,
+        badge: "جديد",
+        href: "#",
+      },
+      {
+        title: "تحديث البيانات",
+        description: "حدّث عنوانك الوطني ووسائل التواصل.",
+        icon: Settings01Icon,
+        href: "#",
+      },
+      {
+        title: "الدعم الفني",
+        description: "تواصل مع فريق الدعم على مدار الساعة.",
+        icon: CustomerService01Icon,
+        href: "#",
+      },
+    ]}
+  />
+</Section>
+
+### نموذج التواصل
+
+نموذج بتحقق من المدخلات، يتحوّل إلى إشعار نجاح بعد الإرسال.
+
+<Section name="contact-form" code={contactFormSource}>
+  <ContactForm
+    className="max-w-2xl"
+    topics={[
+      { label: "استفسار عن خدمة", value: "service" },
+      { label: "شكوى", value: "complaint" },
+      { label: "اقتراح", value: "suggestion" },
+    ]}
+  />
+</Section>
+
+### قسم الأسئلة الشائعة
+
+أكورديون قابل للبحث مع حالة فارغة وبطاقة دعم.
+
+<Section name="faq-section" code={faqSectionSource}>
+  <FaqSection
+    description="أكثر الأسئلة ورودًا حول الخدمة."
+    faqs={[
+      {
+        question: "كم تستغرق معالجة الطلب؟",
+        answer: "ثلاثة أيام عمل من تاريخ اكتمال المرفقات.",
+      },
+      {
+        question: "هل توجد رسوم على الخدمة؟",
+        answer: "لا توجد رسوم على هذه الخدمة.",
+      },
+      {
+        question: "كيف أتابع حالة الطلب؟",
+        answer: "عبر صفحة الاستعلام برقم الطلب المرسل في رسالة التأكيد.",
+      },
+    ]}
+    support={{
+      title: "لم تجد إجابتك؟",
+      description: "فريق الدعم متاح على مدار الساعة.",
+      actionLabel: "تواصل معنا",
+      href: "#",
+    }}
+  />
+</Section>
+
+### قسم التقييم
+
+مسار «هل كانت هذه الصفحة مفيدة؟» — اختيار، ثم أسباب وملاحظات، ثم شكر.
+
+<Section name="feedback-section" code={feedbackSectionSource}>
+  <FeedbackSection className="max-w-2xl" />
+</Section>
+
+### لافتة ملفات تعريف الارتباط
+
+قبول الكل أو رفض غير الضروري أو إدارة التفضيلات بمفاتيح لكل تصنيف.
+
+<Section name="cookies-banner" code={cookiesBannerSource}>
+  <CookiesBanner />
+</Section>
+
+### صفحة الخطأ
+
+تخطيط صفحة 404 الرسمي: توضيح بصري، عنوان 24/600، وصف 18/400، وإجراء أساسي للعودة.
+
+<Section name="error-page" code={errorPageSource}>
+  <ErrorPage />
+</Section>
+
+### نتائج البحث
+
+صفحة البحث الرسمية: حقل بحث، عدّاد نتائج، ترتيب بالتاريخ، نتائج بعلامات وفواصل، وترقيم صفحات في المنتصف.
+
+<Section name="search-results" code={searchResultsSource}>
+  <SearchResults
+    className="max-w-2xl"
+    pageSize={3}
+    results={[
+      {
+        title: "حجز الوحدات السكنية تحت الإنشاء",
+        description: "توثيق عملية البيع والشراء في كتابات العدل لتسجيل العقار باسمك.",
+        tags: ["الإسكان", "خدمة"],
+        date: "2024-11-20",
+      },
+      {
+        title: "الاستعلام عن معاملة",
+        description: "تتبع حالة معاملتك برقم الطلب المرسل في رسالة التأكيد.",
+        tags: ["معاملات"],
+        date: "2024-10-15",
+      },
+      {
+        title: "إصدار وثيقة عمل حر",
+        description: "أصدر وثيقتك إلكترونيًا خلال دقائق دون زيارة الفروع.",
+        tags: ["عمل حر", "جديد"],
+        date: "2024-09-10",
+      },
+      {
+        title: "تحديث العنوان الوطني",
+        description: "حدّث بيانات عنوانك الوطني المرتبط بخدماتك الحكومية.",
+        tags: ["بيانات"],
+        date: "2024-08-05",
+      },
+    ]}
+  />
+</Section>
+
+### خريطة الموقع
+
+شجرة روابط متداخلة بتعداد نقطي بلون العلامة تحت عنوان 30/700 — كما في قالب خريطة الموقع.
+
+<Section name="sitemap-section" code={sitemapSectionSource}>
+  <SitemapSection
+    className="max-w-xl"
+    groups={[
+      {
+        label: "الخدمات",
+        href: "#",
+        children: [
+          { label: "الاستعلام عن معاملة", href: "#" },
+          { label: "إصدار وثيقة", href: "#" },
+        ],
+      },
+      {
+        label: "عن المنصة",
+        href: "#",
+        children: [{ label: "الأسئلة الشائعة", href: "#" }],
+      },
+      { label: "تواصل معنا", href: "#" },
+    ]}
+  />
+</Section>
+
+### صفحة المحتوى
+
+عمود محتوى مع قائمة محتويات جانبية مثبتة تتبع التمرير — يلتف تحت المحتوى على الجوال.
+
+<Section name="content-page" code={contentPageSource}>
+  <ContentPage
+    title="سياسة الخصوصية"
+    description="كيف نتعامل مع بياناتك عند استخدام المنصة."
+    toc={[
+      { label: "جمع البيانات", target: "#collect" },
+      { label: "استخدام البيانات", target: "#use" },
+      { label: "حقوقك", target: "#rights" },
+    ]}
+  >
+    <h2 id="collect">جمع البيانات</h2>
+    <p>نجمع البيانات اللازمة لتقديم الخدمة فقط، وفق الأنظمة المعمول بها.</p>
+    <h2 id="use">استخدام البيانات</h2>
+    <p>تُستخدم البيانات لمعالجة الطلبات وتحسين تجربة الاستخدام.</p>
+    <h2 id="rights">حقوقك</h2>
+    <p>يمكنك طلب الاطلاع على بياناتك أو تصحيحها أو حذفها في أي وقت.</p>
+  </ContentPage>
 </Section>
 
 <footer className="mt-10 pb-4 text-center text-xs text-muted-foreground">

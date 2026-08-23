@@ -45,7 +45,7 @@ export function SearchBox({
     >
       <div
         className={cn(
-          "flex grow items-center gap-2 rounded-sm border border-neutral-strong/50 bg-card px-4 transition-colors",
+          "flex grow items-center gap-2 rounded-sm border border-input bg-card px-4 transition-colors",
           "focus-within:border-ring hover:border-neutral-strong",
           sizes[size]
         )}
@@ -71,7 +71,7 @@ export function SearchBox({
             type="button"
             aria-label="مسح البحث"
             onClick={() => setQuery("")}
-            className="flex size-6 shrink-0 cursor-pointer items-center justify-center rounded-full border-0 bg-muted text-muted-foreground transition-colors hover:text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring"
+            className="flex size-6 shrink-0 cursor-pointer items-center justify-center rounded-full border-0 bg-muted text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
           >
             <HugeiconsIcon icon={Cancel01Icon} size={12} strokeWidth={2.5} />
           </button>
@@ -81,7 +81,7 @@ export function SearchBox({
         <button
           type="submit"
           className={cn(
-            "shrink-0 cursor-pointer rounded-sm border-0 bg-primary px-5 font-semibold text-primary-foreground transition-colors hover:bg-primary-hover focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring",
+            "shrink-0 cursor-pointer rounded-sm border-0 bg-primary px-5 font-semibold text-primary-foreground transition-colors hover:bg-primary-hover focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40",
             sizes[size]
           )}
         >

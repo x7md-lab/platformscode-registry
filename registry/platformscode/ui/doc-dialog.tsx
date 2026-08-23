@@ -20,7 +20,7 @@ import { Cancel01Icon, File02Icon } from "@hugeicons/core-free-icons"
 import type { ReactNode } from "react"
 
 const TRIGGER_CLASS =
-  "inline cursor-pointer border-0 bg-transparent p-0 align-baseline font-[inherit] text-[length:inherit] font-semibold text-primary underline decoration-primary/40 underline-offset-4 hover:decoration-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring"
+  "inline cursor-pointer border-0 bg-transparent p-0 align-baseline font-[inherit] text-[length:inherit] font-semibold text-primary underline decoration-primary/40 underline-offset-4 hover:decoration-primary focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
 
 export interface DocPage {
   src: string
@@ -111,7 +111,7 @@ export function DocDialog({
             </Dialog.Title>
             <Dialog.Close
               aria-label="إغلاق"
-              className="flex size-8 cursor-pointer items-center justify-center rounded-sm border-0 bg-transparent text-muted-foreground hover:bg-muted focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring"
+              className="flex size-8 cursor-pointer items-center justify-center rounded-sm border-0 bg-transparent text-muted-foreground hover:bg-muted focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
             >
               <HugeiconsIcon icon={Cancel01Icon} className="size-4" aria-hidden />
             </Dialog.Close>

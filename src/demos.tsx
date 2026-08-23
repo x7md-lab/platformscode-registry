@@ -2,6 +2,46 @@ import { useState } from "react"
 import { Button } from "@/registry/platformscode/ui/button"
 import { InlineAlert } from "@/registry/platformscode/ui/inline-alert"
 import { Rating } from "@/registry/platformscode/ui/rating"
+import { ToastRegion, useToast } from "@/registry/platformscode/ui/toast"
+
+function ToastButtons() {
+  const toast = useToast()
+  return (
+    <div className="flex flex-wrap items-center justify-center gap-3">
+      <Button
+        onClick={() =>
+          toast.add({
+            title: "تم حفظ الطلب",
+            description: "يمكنك متابعة حالته من صفحة طلباتي.",
+            data: { tone: "success" },
+          })
+        }
+      >
+        إشعار نجاح
+      </Button>
+      <Button
+        variant="outline"
+        onClick={() =>
+          toast.add({
+            title: "تعذّر الاتصال",
+            description: "تحقق من الشبكة ثم أعد المحاولة.",
+            data: { tone: "critical" },
+          })
+        }
+      >
+        إشعار خطأ
+      </Button>
+    </div>
+  )
+}
+
+export function ToastDemo() {
+  return (
+    <ToastRegion>
+      <ToastButtons />
+    </ToastRegion>
+  )
+}
 
 export function RatingDemo() {
   const [value, setValue] = useState(4)

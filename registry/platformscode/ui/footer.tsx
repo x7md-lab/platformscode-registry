@@ -37,16 +37,16 @@ export function Footer({
 }) {
   const onBrand = tone === "brand"
   const linkClass = cn(
-    "rounded-sm text-sm no-underline transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
+    "rounded-sm text-sm no-underline underline-offset-4 transition-colors hover:underline focus-visible:outline-none focus-visible:ring-[3px]",
     onBrand
-      ? "text-white/80 hover:text-white focus-visible:outline-white"
-      : "text-muted-foreground hover:text-foreground focus-visible:outline-ring"
+      ? "text-white/80 hover:text-white focus-visible:ring-white/60"
+      : "text-muted-foreground hover:text-foreground focus-visible:ring-ring/40"
   )
   const dividerClass = onBrand ? "border-white/20" : "border-border"
 
   return (
     <footer className={cn("w-full", tones[tone], className)} {...props}>
-      <div className="mx-auto flex w-full max-w-3xl flex-col px-5 py-8 lg:max-w-5xl">
+      <div className="mx-auto flex w-full max-w-3xl flex-col px-4 py-8 sm:px-5 lg:max-w-5xl">
         {groups.length ? (
           <div className="flex flex-wrap gap-8 pb-8">
             {groups.map((group) => (

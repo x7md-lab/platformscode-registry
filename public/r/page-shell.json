@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "page-shell",
+  "type": "registry:block",
+  "title": "Page Shell",
+  "description": "DGA page scaffold: sticky navigation header that switches to the drawer nav below 1024px, breadcrumbs, main landmark and footer.",
+  "registryDependencies": [
+    "utils",
+    "https://x7md-lab.github.io/platformscode-registry/r/navigation-header.json",
+    "https://x7md-lab.github.io/platformscode-registry/r/footer.json",
+    "https://x7md-lab.github.io/platformscode-registry/r/breadcrumbs.json",
+    "https://x7md-lab.github.io/platformscode-registry/r/use-media-query.json"
+  ],
+  "files": [
+    {
+      "path": "registry/platformscode/blocks/page-shell.tsx",
+      "content": "\"use client\"\n\nimport {\n  NavigationHeader,\n  NavigationHeaderBrand,\n  type NavItem,\n} from \"@/registry/platformscode/ui/navigation-header\"\nimport {\n  Footer,\n  type FooterGroup,\n  type FooterLink,\n} from \"@/registry/platformscode/ui/footer\"\nimport { Breadcrumbs, type Crumb } from \"@/registry/platformscode/ui/breadcrumbs\"\nimport { useMediaQuery } from \"@/registry/platformscode/hooks/use-media-query\"\nimport { cn } from \"@/lib/utils\"\nimport type { ReactNode } from \"react\"\n\nconst SHELL_MOBILE_QUERY = \"(max-width: 1023px)\"\n\nexport function PageShell({\n  brand,\n  items,\n  actions,\n  crumbs,\n  footerGroups,\n  footerActions,\n  footerExtraActions,\n  copyright,\n  mobile,\n  mobileQuery = SHELL_MOBILE_QUERY,\n  className,\n  children,\n}: {\n  brand: { title: string; subtitle?: string; mark: ReactNode; href?: string }\n  items: NavItem[]\n  actions?: ReactNode\n  crumbs?: Crumb[]\n  footerGroups?: FooterGroup[]\n  footerActions?: FooterLink[]\n  footerExtraActions?: FooterLink[]\n  copyright?: string\n  /** Force the drawer nav on or off. Left undefined, the shell follows `mobileQuery`. */\n  mobile?: boolean\n  mobileQuery?: string\n  className?: string\n  children: ReactNode\n}) {\n  const isNarrow = useMediaQuery(mobileQuery)\n  const useDrawerNav = mobile ?? isNarrow\n\n  return (\n    <div className={cn(\"flex min-h-svh flex-col bg-background\", className)}>\n      <NavigationHeader\n        sticky\n        mobile={useDrawerNav}\n        logo={\n          <NavigationHeaderBrand\n            href={brand.href ?? \"#\"}\n            mark={brand.mark}\n            title={brand.title}\n            subtitle={brand.subtitle}\n          />\n        }\n        items={items}\n        actions={\n          actions ? (\n            <div className={useDrawerNav ? \"w-full [&>*]:w-full\" : undefined}>\n              {actions}\n            </div>\n          ) : undefined\n        }\n      />\n      <main id=\"main\" className=\"grow\">\n        <div className=\"mx-auto w-full max-w-3xl px-4 py-6 sm:px-5 lg:max-w-5xl lg:py-8\">\n          {crumbs?.length ? (\n            <Breadcrumbs className=\"mb-4 lg:mb-6\" items={crumbs} />\n          ) : null}\n          {children}\n        </div>\n      </main>\n      <Footer\n        groups={footerGroups}\n        actions={footerActions}\n        extraActions={footerExtraActions}\n        copyright={copyright}\n        logo={brand.mark}\n      />\n    </div>\n  )\n}\n",
+      "type": "registry:block"
+    }
+  ]
+}

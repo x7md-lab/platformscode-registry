@@ -7,15 +7,15 @@ type Tone = "brand" | "neutral" | "on-color"
 type Size = "sm" | "md" | "lg"
 
 const tones: Record<Tone, string> = {
-  brand: "text-primary decoration-primary/40 hover:decoration-primary",
-  neutral: "text-foreground decoration-foreground/40 hover:decoration-foreground",
-  "on-color": "text-white decoration-white/50 hover:decoration-white",
+  brand: "text-primary hover:text-primary-bright active:text-primary-bright",
+  neutral: "text-foreground hover:text-muted-foreground active:text-neutral-border",
+  "on-color": "text-white hover:text-white/80 active:text-white/60",
 }
 
 const sizes: Record<Size, string> = {
-  sm: "text-xs",
-  md: "text-sm",
-  lg: "text-base",
+  sm: "text-sm leading-5",
+  md: "text-base leading-6",
+  lg: "text-lg leading-7",
 }
 
 export function Link({
@@ -42,9 +42,9 @@ export function Link({
       target={external ? "_blank" : props.target}
       rel={external ? "noreferrer noopener" : props.rel}
       className={cn(
-        "cursor-pointer gap-1 rounded-sm font-semibold underline underline-offset-4 transition-colors",
-        "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring",
-        inline ? "inline" : "inline-flex items-center",
+        "cursor-pointer gap-2 rounded-[2px] font-normal no-underline underline-offset-4 transition-colors hover:underline",
+        "focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40",
+        inline ? "inline underline" : "inline-flex items-center",
         disabled
           ? "pointer-events-none text-muted-foreground no-underline"
           : tones[tone],

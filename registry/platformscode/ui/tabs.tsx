@@ -37,9 +37,11 @@ export function Tab({ className, ...props }: ComponentProps<typeof BaseTabs.Tab>
   return (
     <BaseTabs.Tab
       className={cn(
-        "relative z-10 flex cursor-pointer items-center gap-2 whitespace-nowrap rounded-sm border-0 bg-transparent px-4 py-3 text-sm font-semibold text-muted-foreground transition-colors",
-        "hover:bg-muted hover:text-foreground",
-        "focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring",
+        "relative z-10 flex cursor-pointer items-center gap-2 whitespace-nowrap rounded-sm border-0 bg-transparent px-4 py-3 text-sm font-medium text-neutral-strong transition-colors",
+        "hover:bg-muted hover:text-foreground active:bg-border",
+        "after:absolute after:inset-x-4 after:bottom-0 after:z-20 after:h-[3px] after:rounded-full after:bg-primary/40 after:opacity-0 after:transition-opacity",
+        "hover:after:opacity-100 data-[active]:after:opacity-0",
+        "focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40",
         "data-[active]:bg-transparent data-[active]:text-primary",
         className
       )}

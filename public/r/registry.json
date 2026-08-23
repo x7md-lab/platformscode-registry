@@ -16,7 +16,10 @@
           "radius-lg": "16px",
           "radius-xl": "24px",
           "color-primary-hover": "var(--primary-hover)",
+          "color-primary-active": "var(--primary-active)",
+          "color-primary-bright": "var(--primary-bright)",
           "color-primary-light": "var(--primary-light)",
+          "color-primary-soft": "var(--primary-soft)",
           "color-destructive-light": "var(--destructive-light)",
           "color-destructive-border": "var(--destructive-border)",
           "color-destructive-strong": "var(--destructive-strong)",
@@ -46,7 +49,8 @@
           "color-orange-strong": "var(--orange-strong)",
           "color-neutral-light": "var(--neutral-light)",
           "color-neutral-border": "var(--neutral-border)",
-          "color-neutral-strong": "var(--neutral-strong)"
+          "color-neutral-strong": "var(--neutral-strong)",
+          "color-input": "var(--input)"
         },
         "light": {
           "background": "#f9fafb",
@@ -60,7 +64,10 @@
           "border": "#e5e7eb",
           "primary": "#1b8354",
           "primary-hover": "#166a45",
+          "primary-active": "#14573a",
+          "primary-bright": "#54c08a",
           "primary-light": "#f3fcf6",
+          "primary-soft": "#dff6e7",
           "primary-foreground": "#ffffff",
           "secondary": "#dba102",
           "destructive": "#d92d20",
@@ -94,7 +101,8 @@
           "neutral-light": "#f9fafb",
           "neutral-border": "#d2d6db",
           "neutral-strong": "#384250",
-          "ring": "#161616"
+          "ring": "#1b8354",
+          "input": "#9da4ae"
         }
       }
     },
@@ -102,7 +110,7 @@
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
-      "description": "DGA «كود المنصات» button: 4px radius, no border, 2px black focus outline. Variants: primary, outline, subtle, danger.",
+      "description": "DGA «كود المنصات» button: 4px radius, no border, brand focus ring. Variants: primary, outline, subtle, danger — with DGA hover and pressed states.",
       "files": [
         {
           "path": "registry/platformscode/ui/button.tsx",
@@ -392,6 +400,23 @@
       ],
       "registryDependencies": [
         "utils"
+      ]
+    },
+    {
+      "name": "phone-input",
+      "type": "registry:ui",
+      "title": "Phone Input",
+      "description": "DGA contact-template phone group: country-code select + LTR tel input with required marker, as composed in «قالب صفحة التواصل».",
+      "files": [
+        {
+          "path": "registry/platformscode/ui/phone-input.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://x7md-lab.github.io/platformscode-registry/r/select.json",
+        "https://x7md-lab.github.io/platformscode-registry/r/text-input.json"
       ]
     },
     {
@@ -741,6 +766,314 @@
       ],
       "registryDependencies": [
         "utils"
+      ]
+    },
+    {
+      "name": "modal",
+      "type": "registry:ui",
+      "title": "Modal",
+      "description": "DGA «النوافذ المنبثقة»: Base UI Dialog styled as dga-modal — 600px, 24px padding, stacked full-width actions on phones, bottom-sheet entrance on small screens.",
+      "dependencies": [
+        "@base-ui/react",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/ui/modal.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "DGA «الإشعارات المنبثقة»: Base UI Toast styled as dga-notification-toast — white card, 8px tone bar on the start edge, stacked viewport.",
+      "dependencies": [
+        "@base-ui/react",
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/ui/toast.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "file-upload",
+      "type": "registry:ui",
+      "title": "File Upload",
+      "description": "DGA «رفع الملفات»: dashed drop area that turns brand while dragging, file rows with size and remove, max-size validation.",
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/ui/file-upload.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "second-nav-header",
+      "type": "registry:ui",
+      "title": "Second Nav Header",
+      "description": "DGA «شريط التنقل الثانوي»: slim utility bar above the main header (info items + actions), gray/white/dark variants.",
+      "files": [
+        {
+          "path": "registry/platformscode/ui/second-nav-header.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "table-of-content",
+      "type": "registry:ui",
+      "title": "Table of Content",
+      "description": "DGA «قائمة المحتويات»: side rail with 2px start-edge markers, brand highlight for the active section via scroll-spy.",
+      "files": [
+        {
+          "path": "registry/platformscode/ui/table-of-content.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "page-shell",
+      "type": "registry:block",
+      "title": "Page Shell",
+      "description": "DGA page scaffold: sticky navigation header that switches to the drawer nav below 1024px, breadcrumbs, main landmark and footer.",
+      "files": [
+        {
+          "path": "registry/platformscode/blocks/page-shell.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://x7md-lab.github.io/platformscode-registry/r/navigation-header.json",
+        "https://x7md-lab.github.io/platformscode-registry/r/footer.json",
+        "https://x7md-lab.github.io/platformscode-registry/r/breadcrumbs.json",
+        "https://x7md-lab.github.io/platformscode-registry/r/use-media-query.json"
+      ]
+    },
+    {
+      "name": "hero-section",
+      "type": "registry:block",
+      "title": "Hero Section",
+      "description": "Landing hero on the brand-tint surface: eyebrow badge, display heading, description, optional search box and actions.",
+      "files": [
+        {
+          "path": "registry/platformscode/blocks/hero-section.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://x7md-lab.github.io/platformscode-registry/r/badge.json",
+        "https://x7md-lab.github.io/platformscode-registry/r/search-box.json"
+      ]
+    },
+    {
+      "name": "service-cards",
+      "type": "registry:block",
+      "title": "Service Cards",
+      "description": "Responsive grid of selectable service cards with featured icon, badge and a hover-animated call to action.",
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/blocks/service-cards.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://x7md-lab.github.io/platformscode-registry/r/card.json",
+        "https://x7md-lab.github.io/platformscode-registry/r/badge.json"
+      ]
+    },
+    {
+      "name": "contact-form",
+      "type": "registry:block",
+      "title": "Contact Form",
+      "description": "Validated contact form (name, email, phone, topic, message, consent) that swaps to a success alert on submit.",
+      "files": [
+        {
+          "path": "registry/platformscode/blocks/contact-form.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://x7md-lab.github.io/platformscode-registry/r/button.json",
+        "https://x7md-lab.github.io/platformscode-registry/r/checkbox.json",
+        "https://x7md-lab.github.io/platformscode-registry/r/inline-alert.json",
+        "https://x7md-lab.github.io/platformscode-registry/r/select.json",
+        "https://x7md-lab.github.io/platformscode-registry/r/text-input.json",
+        "https://x7md-lab.github.io/platformscode-registry/r/textarea.json"
+      ]
+    },
+    {
+      "name": "faq-section",
+      "type": "registry:block",
+      "title": "FAQ Section",
+      "description": "Searchable FAQ accordion with an empty state and an optional support call-to-action card.",
+      "files": [
+        {
+          "path": "registry/platformscode/blocks/faq-section.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://x7md-lab.github.io/platformscode-registry/r/accordion.json",
+        "https://x7md-lab.github.io/platformscode-registry/r/button.json",
+        "https://x7md-lab.github.io/platformscode-registry/r/card.json",
+        "https://x7md-lab.github.io/platformscode-registry/r/search-box.json"
+      ]
+    },
+    {
+      "name": "feedback-section",
+      "type": "registry:block",
+      "title": "Feedback Section",
+      "description": "DGA «قسم التقييم» flow: was this page useful → reason checkboxes → comment → thank-you alert.",
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/blocks/feedback-section.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://x7md-lab.github.io/platformscode-registry/r/button.json",
+        "https://x7md-lab.github.io/platformscode-registry/r/checkbox.json",
+        "https://x7md-lab.github.io/platformscode-registry/r/inline-alert.json",
+        "https://x7md-lab.github.io/platformscode-registry/r/textarea.json"
+      ]
+    },
+    {
+      "name": "cookies-banner",
+      "type": "registry:block",
+      "title": "Cookies Banner",
+      "description": "DGA «لافتة ملفات تعريف الارتباط»: accept / reject / manage consent with per-category switches.",
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/blocks/cookies-banner.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://x7md-lab.github.io/platformscode-registry/r/button.json",
+        "https://x7md-lab.github.io/platformscode-registry/r/divider.json",
+        "https://x7md-lab.github.io/platformscode-registry/r/link.json",
+        "https://x7md-lab.github.io/platformscode-registry/r/switch.json"
+      ]
+    },
+    {
+      "name": "error-page",
+      "type": "registry:block",
+      "title": "Error Page",
+      "description": "DGA «صفحة الخطأ»: centered illustration slot, 24/600 title, 18/400 description, primary action back home.",
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/blocks/error-page.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://x7md-lab.github.io/platformscode-registry/r/button.json"
+      ]
+    },
+    {
+      "name": "search-results",
+      "type": "registry:block",
+      "title": "Search Results",
+      "description": "DGA «صفحة البحث»: search box, result count, date-sort toggle, tag-labelled results with dividers, centered pagination.",
+      "dependencies": [
+        "@hugeicons/react",
+        "@hugeicons/core-free-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/platformscode/blocks/search-results.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://x7md-lab.github.io/platformscode-registry/r/badge.json",
+        "https://x7md-lab.github.io/platformscode-registry/r/button.json",
+        "https://x7md-lab.github.io/platformscode-registry/r/divider.json",
+        "https://x7md-lab.github.io/platformscode-registry/r/link.json",
+        "https://x7md-lab.github.io/platformscode-registry/r/pagination.json",
+        "https://x7md-lab.github.io/platformscode-registry/r/search-box.json"
+      ]
+    },
+    {
+      "name": "sitemap-section",
+      "type": "registry:block",
+      "title": "Sitemap Section",
+      "description": "DGA «صفحة خريطة الموقع»: brand-bulleted nested link tree under a 30/700 heading.",
+      "files": [
+        {
+          "path": "registry/platformscode/blocks/sitemap-section.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "registryDependencies": [
+        "utils"
+      ]
+    },
+    {
+      "name": "content-page",
+      "type": "registry:block",
+      "title": "Content Page",
+      "description": "DGA «صفحة المحتوى»: prose column with a sticky scroll-spy table-of-content rail that collapses under the content on mobile.",
+      "files": [
+        {
+          "path": "registry/platformscode/blocks/content-page.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "registryDependencies": [
+        "utils",
+        "https://x7md-lab.github.io/platformscode-registry/r/table-of-content.json"
       ]
     }
   ]

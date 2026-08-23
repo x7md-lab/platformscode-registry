@@ -8,9 +8,9 @@ import { cn } from "@/lib/utils"
 type Size = "small" | "medium" | "large"
 
 const sizes: Record<Size, string> = {
-  small: "size-8 text-xs",
-  medium: "size-10 text-sm",
-  large: "size-12 text-base",
+  small: "size-6 text-xs",
+  medium: "size-8 text-sm",
+  large: "size-10 text-sm",
 }
 
 const DOTS = "..."
@@ -93,8 +93,8 @@ export function Pagination({
   }
 
   const cell = cn(
-    "flex cursor-pointer items-center justify-center rounded-sm border-0 bg-transparent font-semibold transition-colors",
-    "focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring",
+    "relative flex cursor-pointer items-center justify-center rounded-sm border-0 bg-transparent font-medium transition-colors",
+    "focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40",
     "disabled:cursor-not-allowed disabled:text-muted-foreground disabled:hover:bg-transparent",
     sizes[size]
   )
@@ -106,7 +106,7 @@ export function Pagination({
         aria-label="الصفحة السابقة"
         disabled={current === 1}
         onClick={() => go(current - 1)}
-        className={cn(cell, "text-foreground hover:bg-muted")}
+        className={cn(cell, "text-foreground hover:bg-muted active:bg-border")}
       >
         <HugeiconsIcon
           icon={ArrowRight01Icon}
@@ -133,9 +133,9 @@ export function Pagination({
             onClick={() => go(item)}
             className={cn(
               cell,
-              item === current
-                ? "bg-primary text-primary-foreground hover:bg-primary-hover"
-                : "text-foreground hover:bg-muted"
+              "text-foreground hover:bg-muted active:bg-border",
+              item === current &&
+                "text-primary after:absolute after:inset-x-1 after:-bottom-px after:h-[3px] after:rounded-full after:bg-primary"
             )}
           >
             {item}
@@ -147,7 +147,7 @@ export function Pagination({
         aria-label="الصفحة التالية"
         disabled={current === totalPageCount}
         onClick={() => go(current + 1)}
-        className={cn(cell, "text-foreground hover:bg-muted")}
+        className={cn(cell, "text-foreground hover:bg-muted active:bg-border")}
       >
         <HugeiconsIcon
           icon={ArrowLeft01Icon}

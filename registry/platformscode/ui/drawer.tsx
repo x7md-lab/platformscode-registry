@@ -114,7 +114,17 @@ function DrawerContent({
       <DrawerPrimitive.Viewport
         data-slot="drawer-viewport"
         data-modal={modal}
-        className="pointer-events-none fixed inset-0 z-50 select-none data-[modal=true]:pointer-events-auto"
+        data-swipe-direction={swipeDirection}
+        className={cn(
+          // The viewport is the only fixed element (matching the Base UI demo):
+          // the popup is flex-aligned inside it, so it stays glued to the
+          // visual edge when iOS Safari's toolbar collapses the viewport.
+          "pointer-events-none fixed inset-0 z-50 flex select-none data-[modal=true]:pointer-events-auto",
+          "data-[swipe-direction=down]:items-end data-[swipe-direction=down]:justify-center",
+          "data-[swipe-direction=up]:items-start data-[swipe-direction=up]:justify-center",
+          "data-[swipe-direction=left]:items-stretch data-[swipe-direction=left]:justify-start",
+          "data-[swipe-direction=right]:items-stretch data-[swipe-direction=right]:justify-end"
+        )}
       >
         <DrawerPrimitive.Popup
           data-slot="drawer-popup"
@@ -122,7 +132,7 @@ function DrawerContent({
           data-snap-points={hasSnapPoints ? "" : undefined}
           className={cn(
 
-            "group/drawer-popup pointer-events-auto fixed z-50 m-(--drawer-inset,0px) flex h-(--drawer-content-height) max-h-(--drawer-content-max-height,none) min-h-0 w-(--drawer-content-width,auto) transform-[translate3d(var(--translate-x,0px),var(--translate-y,0px),0)_scale(var(--stack-scale))] flex-col border-border bg-popover text-sm text-popover-foreground transition-[transform,height,opacity,filter] duration-450 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform outline-none select-none [interpolate-size:allow-keywords] data-[swipe-direction=down]:rounded-t-xl data-[swipe-direction=down]:border-t data-[swipe-direction=left]:rounded-e-xl data-[swipe-direction=left]:border-e data-[swipe-direction=right]:rounded-s-xl data-[swipe-direction=right]:border-s data-[swipe-direction=up]:rounded-b-xl data-[swipe-direction=up]:border-b",
+            "group/drawer-popup pointer-events-auto z-50 m-(--drawer-inset,0px) flex h-(--drawer-content-height) max-h-(--drawer-content-max-height,none) min-h-0 w-(--drawer-content-width,auto) transform-[translate3d(var(--translate-x,0px),var(--translate-y,0px),0)_scale(var(--stack-scale))] flex-col border-border bg-popover text-sm text-popover-foreground transition-[transform,height,opacity,filter] duration-450 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform outline-none select-none [interpolate-size:allow-keywords] data-[swipe-direction=down]:rounded-t-xl data-[swipe-direction=down]:border-t data-[swipe-direction=left]:rounded-e-xl data-[swipe-direction=left]:border-e data-[swipe-direction=right]:rounded-s-xl data-[swipe-direction=right]:border-s data-[swipe-direction=up]:rounded-b-xl data-[swipe-direction=up]:border-b",
 
             "data-nested-drawer-open:overflow-hidden data-nested-drawer-open:brightness-95",
 
@@ -134,17 +144,20 @@ function DrawerContent({
 
             "data-ending-style:transform-(--closed-transform) data-ending-style:opacity-[0.9999] data-ending-style:duration-[calc(var(--drawer-swipe-strength)*400ms)] data-nested-drawer-swiping:duration-0 data-ending-style:data-nested-drawer-swiping:duration-[calc(var(--drawer-swipe-strength)*400ms)] data-starting-style:transform-(--closed-transform) data-swiping:duration-0 data-ending-style:data-swiping:duration-[calc(var(--drawer-swipe-strength)*400ms)]",
 
-            "data-[swipe-axis=y]:inset-x-0 data-[swipe-axis=y]:data-nested-drawer-open:h-(--stack-height)",
+            "data-[swipe-axis=y]:w-full data-[swipe-axis=y]:data-nested-drawer-open:h-(--stack-height)",
 
-            "data-[swipe-axis=x]:inset-y-0 data-[swipe-axis=x]:flex-row",
+            "data-[swipe-axis=x]:flex-row",
 
-            "data-[swipe-direction=down]:bottom-0 data-[swipe-direction=down]:origin-bottom data-[swipe-direction=down]:[--closed-transform:translate3d(0,calc(100%+var(--drawer-inset,0px)+2px),0)] data-[swipe-direction=down]:[--translate-y:calc(var(--drawer-snap-point-offset,0px)+var(--drawer-swipe-movement-y)-var(--stack-peek-offset)-(var(--stack-shrink)*var(--stack-height)))]",
+            // iOS home-indicator clearance on the touched edge
+            "data-[swipe-direction=down]:pb-[env(safe-area-inset-bottom,0px)] data-[swipe-direction=up]:pt-[env(safe-area-inset-top,0px)]",
 
-            "data-[swipe-direction=up]:top-0 data-[swipe-direction=up]:origin-top data-[swipe-direction=up]:[--closed-transform:translate3d(0,calc(-100%-var(--drawer-inset,0px)-2px),0)] data-[swipe-direction=up]:[--translate-y:calc(var(--drawer-snap-point-offset,0px)+var(--drawer-swipe-movement-y)+var(--stack-peek-offset)+(var(--stack-shrink)*var(--stack-height)))]",
+            "data-[swipe-direction=down]:origin-bottom data-[swipe-direction=down]:[--closed-transform:translate3d(0,calc(100%+var(--drawer-inset,0px)+2px),0)] data-[swipe-direction=down]:[--translate-y:calc(var(--drawer-snap-point-offset,0px)+var(--drawer-swipe-movement-y)-var(--stack-peek-offset)-(var(--stack-shrink)*var(--stack-height)))]",
 
-            "data-[swipe-direction=left]:start-0 data-[swipe-direction=left]:origin-start data-[swipe-direction=left]:[--closed-transform:translate3d(calc(-100%-var(--drawer-inset,0px)-2px),0,0)] data-[swipe-direction=left]:[--translate-x:calc(var(--drawer-swipe-movement-x)+var(--stack-peek-offset)+(var(--stack-shrink)*100%))]",
+            "data-[swipe-direction=up]:origin-top data-[swipe-direction=up]:[--closed-transform:translate3d(0,calc(-100%-var(--drawer-inset,0px)-2px),0)] data-[swipe-direction=up]:[--translate-y:calc(var(--drawer-snap-point-offset,0px)+var(--drawer-swipe-movement-y)+var(--stack-peek-offset)+(var(--stack-shrink)*var(--stack-height)))]",
 
-            "data-[swipe-direction=right]:end-0 data-[swipe-direction=right]:origin-end data-[swipe-direction=right]:[--closed-transform:translate3d(calc(100%+var(--drawer-inset,0px)+2px),0,0)] data-[swipe-direction=right]:[--translate-x:calc(var(--drawer-swipe-movement-x)-var(--stack-peek-offset)-(var(--stack-shrink)*100%))]",
+            "data-[swipe-direction=left]:origin-start data-[swipe-direction=left]:[--closed-transform:translate3d(calc(-100%-var(--drawer-inset,0px)-2px),0,0)] data-[swipe-direction=left]:[--translate-x:calc(var(--drawer-swipe-movement-x)+var(--stack-peek-offset)+(var(--stack-shrink)*100%))]",
+
+            "data-[swipe-direction=right]:origin-end data-[swipe-direction=right]:[--closed-transform:translate3d(calc(100%+var(--drawer-inset,0px)+2px),0,0)] data-[swipe-direction=right]:[--translate-x:calc(var(--drawer-swipe-movement-x)-var(--stack-peek-offset)-(var(--stack-shrink)*100%))]",
             className
           )}
           {...props}

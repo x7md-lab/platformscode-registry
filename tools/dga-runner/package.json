@@ -1,0 +1,26 @@
+{
+  "name": "dga-runner",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Mount a DGA template zip ((t|j)sx) in a Vite app with the real platformscode packages, drive it in headless Chrome, measure and interact with the OG implementation.",
+  "scripts": {
+    "fetch": "node fetch.mjs",
+    "run": "node run.mjs"
+  },
+  "dependencies": {
+    "platformscode-new-react": "0.1.44",
+    "platformscode-react": "0.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.0",
+    "chrome-remote-interface": "^0.33.3",
+    "fflate": "^0.8.2",
+    "typescript": "^5.5.0",
+    "vite": "^5.4.0"
+  }
+}

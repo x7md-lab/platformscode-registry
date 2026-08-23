@@ -12,9 +12,9 @@ type Option = { label: string; value: string }
 type Size = "sm" | "md" | "lg"
 
 const sizes: Record<Size, string> = {
-  sm: "h-9 text-sm",
-  md: "h-10 text-sm",
-  lg: "h-12 text-base",
+  sm: "h-7 text-xs",
+  md: "h-8 text-sm",
+  lg: "h-10 text-base",
 }
 
 export function Select({
@@ -44,7 +44,12 @@ export function Select({
       className="flex w-full flex-col gap-1.5"
     >
       {label ? (
-        <Field.Label className="text-sm font-semibold text-foreground data-[disabled]:text-muted-foreground">
+        <Field.Label className="flex items-start gap-1 text-sm font-semibold text-foreground data-[disabled]:text-muted-foreground">
+          {props.required ? (
+            <span aria-hidden className="text-destructive-strong">
+              *
+            </span>
+          ) : null}
           {label}
         </Field.Label>
       ) : null}
@@ -52,11 +57,11 @@ export function Select({
         <BaseSelect.Trigger
           className={cn(
             "flex w-full cursor-pointer items-center justify-between gap-2 rounded-sm border bg-card px-4 text-start transition-colors",
-            "focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-ring",
+            "focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40",
             "data-[disabled]:cursor-not-allowed data-[disabled]:border-border data-[disabled]:bg-muted data-[disabled]:text-muted-foreground",
             invalid
               ? "border-destructive"
-              : "border-neutral-strong/50 hover:border-neutral-strong",
+              : "border-input hover:border-neutral-strong",
             sizes[size],
             className
           )}

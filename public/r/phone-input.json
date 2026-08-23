@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "phone-input",
+  "type": "registry:ui",
+  "title": "Phone Input",
+  "description": "DGA contact-template phone group: country-code select + LTR tel input with required marker, as composed in «قالب صفحة التواصل».",
+  "registryDependencies": [
+    "utils",
+    "https://x7md-lab.github.io/platformscode-registry/r/select.json",
+    "https://x7md-lab.github.io/platformscode-registry/r/text-input.json"
+  ],
+  "files": [
+    {
+      "path": "registry/platformscode/ui/phone-input.tsx",
+      "content": "\"use client\"\n\nimport { Select } from \"@/registry/platformscode/ui/select\"\nimport { TextInput } from \"@/registry/platformscode/ui/text-input\"\nimport { cn } from \"@/lib/utils\"\nimport type { ComponentProps } from \"react\"\n\nexport type PhoneCode = { label: string; value: string }\n\nconst defaultCodes: PhoneCode[] = [\n  { label: \"+966\", value: \"+966\" },\n  { label: \"+971\", value: \"+971\" },\n  { label: \"+973\", value: \"+973\" },\n  { label: \"+974\", value: \"+974\" },\n  { label: \"+965\", value: \"+965\" },\n  { label: \"+968\", value: \"+968\" },\n]\n\n/**\n * DGA contact-template phone group: country-code select + LTR tel input,\n * as composed in the official «قالب صفحة التواصل».\n */\nexport function PhoneInput({\n  label = \"رقم الجوال\",\n  required = false,\n  codes = defaultCodes,\n  code,\n  defaultCode = \"+966\",\n  onCodeChange,\n  size = \"lg\",\n  alertText,\n  helperText,\n  className,\n  ...props\n}: Omit<\n  ComponentProps<typeof TextInput>,\n  \"label\" | \"prefix\" | \"suffix\" | \"dir\" | \"type\" | \"size\"\n> & {\n  label?: string\n  codes?: PhoneCode[]\n  code?: string\n  defaultCode?: string\n  onCodeChange?: (code: string) => void\n  size?: \"sm\" | \"md\" | \"lg\"\n}) {\n  return (\n    <div className={cn(\"flex w-full flex-col gap-1.5\", className)}>\n      {label ? (\n        <span className=\"flex items-start gap-1 text-sm font-semibold text-foreground\">\n          {required ? (\n            <span aria-hidden className=\"text-destructive-strong\">\n              *\n            </span>\n          ) : null}\n          {label}\n        </span>\n      ) : null}\n      <div dir=\"ltr\" className=\"flex items-start gap-2\">\n        <div className=\"w-28 shrink-0\">\n          <Select\n            size={size}\n            options={codes}\n            value={code}\n            defaultValue={code === undefined ? defaultCode : undefined}\n            onValueChange={(value) => onCodeChange?.(String(value ?? \"\"))}\n          />\n        </div>\n        <div className=\"grow\">\n          <TextInput\n            size={size}\n            dir=\"ltr\"\n            type=\"tel\"\n            inputMode=\"tel\"\n            autoComplete=\"tel-national\"\n            aria-label={label}\n            required={required}\n            placeholder=\"5X XXX XXXX\"\n            alertText={alertText}\n            helperText={helperText}\n            {...props}\n          />\n        </div>\n      </div>\n    </div>\n  )\n}\n",
+      "type": "registry:ui"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "faq-section",
+  "type": "registry:block",
+  "title": "FAQ Section",
+  "description": "Searchable FAQ accordion with an empty state and an optional support call-to-action card.",
+  "registryDependencies": [
+    "utils",
+    "https://x7md-lab.github.io/platformscode-registry/r/accordion.json",
+    "https://x7md-lab.github.io/platformscode-registry/r/button.json",
+    "https://x7md-lab.github.io/platformscode-registry/r/card.json",
+    "https://x7md-lab.github.io/platformscode-registry/r/search-box.json"
+  ],
+  "files": [
+    {
+      "path": "registry/platformscode/blocks/faq-section.tsx",
+      "content": "\"use client\"\n\nimport { useState } from \"react\"\nimport {\n  Accordion,\n  AccordionContent,\n  AccordionItem,\n  AccordionTrigger,\n} from \"@/registry/platformscode/ui/accordion\"\nimport { Button } from \"@/registry/platformscode/ui/button\"\nimport { Card } from \"@/registry/platformscode/ui/card\"\nimport { SearchBox } from \"@/registry/platformscode/ui/search-box\"\nimport { cn } from \"@/lib/utils\"\nimport type { ReactNode } from \"react\"\n\nexport type Faq = {\n  question: string\n  answer: ReactNode\n}\n\nexport function FaqSection({\n  heading = \"الأسئلة الشائعة\",\n  description,\n  faqs,\n  searchable = true,\n  support,\n  className,\n}: {\n  heading?: string\n  description?: string\n  faqs: Faq[]\n  searchable?: boolean\n  support?: { title: string; description: string; actionLabel: string; href?: string }\n  className?: string\n}) {\n  const [query, setQuery] = useState(\"\")\n  const visible = query\n    ? faqs.filter((faq) => faq.question.includes(query))\n    : faqs\n\n  return (\n    <section className={cn(\"flex w-full flex-col gap-6\", className)}>\n      <div className=\"flex flex-col gap-2\">\n        <h2 className=\"m-0 text-2xl font-bold tracking-tight text-foreground\">\n          {heading}\n        </h2>\n        {description ? (\n          <p className=\"m-0 max-w-2xl text-sm leading-7 text-muted-foreground\">\n            {description}\n          </p>\n        ) : null}\n      </div>\n\n      {searchable ? (\n        <SearchBox\n          className=\"max-w-md\"\n          placeholder=\"ابحث في الأسئلة\"\n          onSearch={setQuery}\n        />\n      ) : null}\n\n      {visible.length ? (\n        <Accordion multiple={false}>\n          {visible.map((faq) => (\n            <AccordionItem key={faq.question}>\n              <AccordionTrigger>{faq.question}</AccordionTrigger>\n              <AccordionContent>{faq.answer}</AccordionContent>\n            </AccordionItem>\n          ))}\n        </Accordion>\n      ) : (\n        <p className=\"m-0 rounded-md bg-muted p-6 text-center text-sm text-muted-foreground\">\n          لا توجد أسئلة مطابقة لبحثك.\n        </p>\n      )}\n\n      {support ? (\n        <Card className=\"flex flex-col items-start gap-3 bg-primary-light p-6 sm:flex-row sm:items-center sm:justify-between\">\n          <div className=\"flex flex-col gap-1\">\n            <h3 className=\"m-0 text-base font-bold text-foreground\">\n              {support.title}\n            </h3>\n            <p className=\"m-0 text-sm text-muted-foreground\">\n              {support.description}\n            </p>\n          </div>\n          <Button\n            onClick={() => {\n              if (support.href) window.location.assign(support.href)\n            }}\n          >\n            {support.actionLabel}\n          </Button>\n        </Card>\n      ) : null}\n    </section>\n  )\n}\n",
+      "type": "registry:block"
+    }
+  ]
+}

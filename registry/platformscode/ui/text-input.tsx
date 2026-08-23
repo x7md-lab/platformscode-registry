@@ -15,9 +15,9 @@ type Size = "sm" | "md" | "lg"
 type Feedback = "success" | "error" | "warning"
 
 const sizes: Record<Size, string> = {
-  sm: "h-9 text-sm",
-  md: "h-10 text-sm",
-  lg: "h-12 text-base",
+  sm: "h-7 text-xs",
+  md: "h-8 text-sm",
+  lg: "h-10 text-base",
 }
 
 const feedbackIcons = {
@@ -42,6 +42,7 @@ export function TextInput({
   icon,
   prefix,
   suffix,
+  dir,
   className,
   ...props
 }: Omit<ComponentProps<typeof Input>, "size" | "prefix"> & {
@@ -62,25 +63,32 @@ export function TextInput({
       className="flex w-full flex-col gap-1.5"
     >
       {label ? (
-        <Field.Label className="text-sm font-semibold text-foreground data-[disabled]:text-muted-foreground">
+        <Field.Label className="flex items-start gap-1 text-sm font-semibold text-foreground data-[disabled]:text-muted-foreground">
+          {props.required ? (
+            <span aria-hidden className="text-destructive-strong">
+              *
+            </span>
+          ) : null}
           {label}
         </Field.Label>
       ) : null}
       <div
+        dir={dir}
         className={cn(
-          "relative flex w-full items-center gap-2 overflow-hidden rounded-sm border bg-card px-4 transition-colors",
-          "after:absolute after:bottom-0 after:start-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-ring after:transition-[width] after:duration-200 rtl:after:translate-x-1/2",
+          "relative flex w-full items-center gap-2 overflow-hidden rounded-sm border bg-card px-2 transition-[color,background-color,border-color,box-shadow]",
+          "focus-within:shadow-[0_2px_4px_-2px_rgba(16,24,40,0.06),0_4px_8px_-2px_rgba(16,24,40,0.1)]",
+          "after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-0 after:-translate-x-1/2 after:bg-ring after:transition-[width] after:duration-200",
           "focus-within:after:w-full",
           invalid
             ? "border-destructive after:bg-destructive"
-            : "border-neutral-strong/50 hover:border-neutral-strong",
+            : "border-input hover:border-neutral-strong",
           props.disabled ? "border-border bg-muted after:hidden" : undefined,
           props.readOnly ? "border-border after:hidden" : undefined,
           sizes[size]
         )}
       >
         {prefix ? (
-          <span className="-ms-4 flex h-full items-center bg-muted px-3 text-sm text-muted-foreground">
+          <span className="-ms-2 flex h-full items-center bg-muted px-3 text-sm text-muted-foreground">
             {prefix}
           </span>
         ) : null}
@@ -102,7 +110,7 @@ export function TextInput({
           </span>
         ) : null}
         {suffix ? (
-          <span className="-me-4 flex h-full items-center bg-muted px-3 text-sm text-muted-foreground">
+          <span className="-me-2 flex h-full items-center bg-muted px-3 text-sm text-muted-foreground">
             {suffix}
           </span>
         ) : null}

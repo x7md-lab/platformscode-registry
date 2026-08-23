@@ -30,7 +30,7 @@ export function Breadcrumbs({
                   icon={ArrowLeft01Icon}
                   size={16}
                   strokeWidth={2}
-                  className="shrink-0 text-muted-foreground rtl:rotate-180"
+                  className="shrink-0 text-muted-foreground ltr:rotate-180"
                   aria-hidden
                 />
               ) : null}
@@ -48,7 +48,7 @@ export function Breadcrumbs({
               ) : (
                 <a
                   href={item.href}
-                  className="rounded-sm px-1 text-sm text-foreground no-underline hover:underline hover:underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring"
+                  className="rounded-sm px-1 text-sm text-foreground no-underline hover:underline hover:underline-offset-4 focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
                 >
                   {item.label}
                 </a>

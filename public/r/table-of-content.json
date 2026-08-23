@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "table-of-content",
+  "type": "registry:ui",
+  "title": "Table of Content",
+  "description": "DGA «قائمة المحتويات»: side rail with 2px start-edge markers, brand highlight for the active section via scroll-spy.",
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/platformscode/ui/table-of-content.tsx",
+      "content": "\"use client\"\n\nimport { useEffect, useState } from \"react\"\nimport { cn } from \"@/lib/utils\"\n\nexport type TocEntry = {\n  label: string\n  target: string\n  children?: TocEntry[]\n}\n\n/**\n * DGA «قائمة المحتويات» — side rail listing page sections, 2px start-edge\n * rail per entry that turns brand for the active section (scroll-spy).\n */\nexport function TableOfContent({\n  title = \"في هذه الصفحة\",\n  subtitle,\n  entries,\n  spy = true,\n  className,\n}: {\n  title?: string\n  subtitle?: string\n  entries: TocEntry[]\n  spy?: boolean\n  className?: string\n}) {\n  const [active, setActive] = useState<string | null>(null)\n\n  useEffect(() => {\n    if (!spy) return\n    const targets = entries\n      .flatMap((entry) => [entry, ...(entry.children ?? [])])\n      .map((entry) => document.getElementById(entry.target.replace(/^#/, \"\")))\n      .filter((element): element is HTMLElement => Boolean(element))\n    if (!targets.length) return\n    const observer = new IntersectionObserver(\n      (records) => {\n        for (const record of records) {\n          if (record.isIntersecting) setActive(`#${record.target.id}`)\n        }\n      },\n      { rootMargin: \"-20% 0px -70% 0px\" }\n    )\n    targets.forEach((target) => observer.observe(target))\n    return () => observer.disconnect()\n  }, [entries, spy])\n\n  const renderEntry = (entry: TocEntry, depth: number) => {\n    const isActive = active === entry.target\n    return (\n      <li key={entry.target} className=\"list-none\">\n        <a\n          href={entry.target}\n          aria-current={isActive ? \"location\" : undefined}\n          onClick={() => setActive(entry.target)}\n          className={cn(\n            \"relative block border-0 border-s-2 border-solid py-1.5 text-sm no-underline transition-colors\",\n            depth === 0 ? \"ps-4\" : \"ps-8\",\n            isActive\n              ? \"border-primary font-semibold text-primary\"\n              : \"border-neutral-border text-muted-foreground hover:text-foreground\",\n            \"focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40\"\n          )}\n        >\n          {entry.label}\n        </a>\n        {entry.children?.length ? (\n          <ul className=\"m-0 p-0\">\n            {entry.children.map((child) => renderEntry(child, depth + 1))}\n          </ul>\n        ) : null}\n      </li>\n    )\n  }\n\n  return (\n    <nav\n      aria-label={title}\n      className={cn(\"flex w-[228px] flex-col gap-2\", className)}\n    >\n      <div className=\"flex flex-col gap-1 ps-4\">\n        <span className=\"text-sm font-bold text-foreground\">{title}</span>\n        {subtitle ? (\n          <span className=\"text-xs text-muted-foreground\">{subtitle}</span>\n        ) : null}\n      </div>\n      <ul className=\"m-0 flex flex-col p-0\">\n        {entries.map((entry) => renderEntry(entry, 0))}\n      </ul>\n    </nav>\n  )\n}\n",
+      "type": "registry:ui"
+    }
+  ]
+}

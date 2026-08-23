@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "error-page",
+  "type": "registry:block",
+  "title": "Error Page",
+  "description": "DGA «صفحة الخطأ»: centered illustration slot, 24/600 title, 18/400 description, primary action back home.",
+  "dependencies": [
+    "@hugeicons/react",
+    "@hugeicons/core-free-icons"
+  ],
+  "registryDependencies": [
+    "utils",
+    "https://x7md-lab.github.io/platformscode-registry/r/button.json"
+  ],
+  "files": [
+    {
+      "path": "registry/platformscode/blocks/error-page.tsx",
+      "content": "\"use client\"\n\nimport { HugeiconsIcon } from \"@hugeicons/react\"\nimport { Alert01Icon } from \"@hugeicons/core-free-icons\"\nimport { Button } from \"@/registry/platformscode/ui/button\"\nimport { cn } from \"@/lib/utils\"\nimport type { ReactNode } from \"react\"\n\n/**\n * DGA «صفحة الخطأ» — centered illustration, 24/600 title, 18/400 description,\n * one primary action back home.\n */\nexport function ErrorPage({\n  code = \"404\",\n  title = \"الصفحة غير موجودة\",\n  description = \"الصفحة التي تبحث عنها غير متوفرة أو تم نقلها. تحقق من الرابط أو عد إلى الصفحة الرئيسية.\",\n  actionLabel = \"العودة إلى الرئيسية\",\n  actionHref = \"/\",\n  onAction,\n  media,\n  className,\n}: {\n  code?: string\n  title?: string\n  description?: string\n  actionLabel?: string\n  actionHref?: string\n  onAction?: () => void\n  media?: ReactNode\n  className?: string\n}) {\n  return (\n    <section\n      className={cn(\n        \"mx-auto flex w-full max-w-[460px] flex-col items-center gap-16 py-20 text-center\",\n        className\n      )}\n    >\n      {media ?? (\n        <div className=\"flex flex-col items-center gap-4\">\n          <span className=\"flex size-20 items-center justify-center rounded-full bg-destructive-light text-destructive\">\n            <HugeiconsIcon icon={Alert01Icon} size={40} strokeWidth={1.5} />\n          </span>\n          <span\n            aria-hidden\n            className=\"font-mono text-5xl font-bold tracking-widest text-border\"\n            dir=\"ltr\"\n          >\n            {code}\n          </span>\n        </div>\n      )}\n      <div className=\"mx-10 flex flex-col items-center\">\n        <h2 className=\"m-0 mb-4 text-2xl font-semibold leading-8 text-foreground\">\n          {title}\n        </h2>\n        <p className=\"m-0 mb-8 text-lg font-normal leading-7 text-foreground\">\n          {description}\n        </p>\n        <Button\n          size=\"lg\"\n          onClick={() => {\n            if (onAction) onAction()\n            else window.location.assign(actionHref)\n          }}\n        >\n          {actionLabel}\n        </Button>\n      </div>\n    </section>\n  )\n}\n",
+      "type": "registry:block"
+    }
+  ]
+}

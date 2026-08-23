@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "modal",
+  "type": "registry:ui",
+  "title": "Modal",
+  "description": "DGA «النوافذ المنبثقة»: Base UI Dialog styled as dga-modal — 600px, 24px padding, stacked full-width actions on phones, bottom-sheet entrance on small screens.",
+  "dependencies": [
+    "@base-ui/react",
+    "@hugeicons/react",
+    "@hugeicons/core-free-icons"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/platformscode/ui/modal.tsx",
+      "content": "\"use client\"\n\nimport { Dialog } from \"@base-ui/react/dialog\"\nimport { HugeiconsIcon } from \"@hugeicons/react\"\nimport { Cancel01Icon } from \"@hugeicons/core-free-icons\"\nimport { cn } from \"@/lib/utils\"\nimport type { ComponentProps, ReactNode } from \"react\"\n\nexport function Modal(props: ComponentProps<typeof Dialog.Root>) {\n  return <Dialog.Root {...props} />\n}\n\nexport const ModalTrigger = Dialog.Trigger\nexport const ModalClose = Dialog.Close\n\nexport function ModalContent({\n  title,\n  description,\n  actions,\n  showClose = true,\n  className,\n  children,\n  ...props\n}: ComponentProps<typeof Dialog.Popup> & {\n  title?: ReactNode\n  description?: ReactNode\n  actions?: ReactNode\n  showClose?: boolean\n}) {\n  return (\n    <Dialog.Portal>\n      <Dialog.Backdrop className=\"fixed inset-0 z-50 min-h-dvh bg-black/40 transition-opacity duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0 supports-[-webkit-touch-callout:none]:absolute\" />\n      <Dialog.Viewport className=\"fixed inset-0 z-50 flex items-end justify-center p-0 sm:items-center sm:p-6\">\n        <Dialog.Popup\n          className={cn(\n            // DGA dga-modal: 600px, 24px padding, 8px radius, 24px gap, 3xl shadow\n            \"flex w-full max-w-[600px] flex-col gap-6 rounded-t-md bg-card p-6 shadow-2xl outline-none sm:rounded-md\",\n            \"max-h-[calc(100dvh-3rem)] overflow-y-auto overscroll-contain\",\n            \"transition-[transform,opacity] duration-200 ease-out\",\n            \"data-starting-style:translate-y-4 data-starting-style:opacity-0 data-ending-style:translate-y-4 data-ending-style:opacity-0\",\n            \"sm:data-starting-style:translate-y-0 sm:data-starting-style:scale-95 sm:data-ending-style:translate-y-0 sm:data-ending-style:scale-95\",\n            className\n          )}\n          {...props}\n        >\n          {(title || showClose) && (\n            <div className=\"flex w-full items-start justify-between gap-4\">\n              {title ? (\n                <Dialog.Title className=\"m-0 text-lg font-bold text-foreground\">\n                  {title}\n                </Dialog.Title>\n              ) : (\n                <span />\n              )}\n              {showClose && (\n                <Dialog.Close\n                  aria-label=\"إغلاق\"\n                  className=\"flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-sm border-0 bg-transparent text-muted-foreground transition-colors hover:bg-muted hover:text-foreground active:bg-border focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40\"\n                >\n                  <HugeiconsIcon icon={Cancel01Icon} size={18} strokeWidth={2} />\n                </Dialog.Close>\n              )}\n            </div>\n          )}\n          <div className=\"flex w-full flex-col gap-2\">\n            {description ? (\n              <Dialog.Description className=\"m-0 text-sm leading-7 text-muted-foreground\">\n                {description}\n              </Dialog.Description>\n            ) : null}\n            {children}\n          </div>\n          {actions ? (\n            <div className=\"flex w-full flex-col-reverse gap-2 sm:flex-row sm:items-center sm:justify-end sm:gap-3 [&>button]:w-full sm:[&>button]:w-auto\">\n              {actions}\n            </div>\n          ) : null}\n        </Dialog.Popup>\n      </Dialog.Viewport>\n    </Dialog.Portal>\n  )\n}\n",
+      "type": "registry:ui"
+    }
+  ]
+}

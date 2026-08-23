@@ -27,7 +27,12 @@ export function Textarea({
       className="flex w-full flex-col gap-1.5"
     >
       {label ? (
-        <Field.Label className="text-sm font-semibold text-foreground data-[disabled]:text-muted-foreground">
+        <Field.Label className="flex items-start gap-1 text-sm font-semibold text-foreground data-[disabled]:text-muted-foreground">
+          {props.required ? (
+            <span aria-hidden className="text-destructive-strong">
+              *
+            </span>
+          ) : null}
           {label}
         </Field.Label>
       ) : null}
@@ -36,12 +41,13 @@ export function Textarea({
           <textarea
             rows={rows}
             className={cn(
-              "w-full rounded-sm border bg-card px-4 py-3 font-sans text-sm text-foreground transition-colors",
-              "placeholder:text-muted-foreground focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-ring",
+              "w-full rounded-sm border bg-card px-4 py-3 font-sans text-sm text-foreground transition-[color,background-color,border-color,box-shadow]",
+              "placeholder:text-muted-foreground focus:outline-none focus:border-neutral-strong",
+              "focus:shadow-[0_2px_4px_-2px_rgba(16,24,40,0.06),0_4px_8px_-2px_rgba(16,24,40,0.1)]",
               "disabled:cursor-not-allowed disabled:border-border disabled:bg-muted disabled:text-muted-foreground",
               invalid
                 ? "border-destructive"
-                : "border-neutral-strong/50 hover:border-neutral-strong",
+                : "border-input hover:border-neutral-strong",
               resize ? "resize-y" : "resize-none",
               className
             )}

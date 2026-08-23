@@ -18,17 +18,24 @@ export function Switch({
 }) {
   return (
     <Field.Root disabled={props.disabled} className="flex flex-col gap-1.5">
-      <Field.Label className="flex cursor-pointer items-center gap-3 text-sm text-foreground data-[disabled]:cursor-not-allowed data-[disabled]:text-muted-foreground">
+      <Field.Label className="flex cursor-pointer items-center gap-3 text-sm text-foreground has-[[data-checked]]:text-primary data-[disabled]:cursor-not-allowed data-[disabled]:text-muted-foreground">
         <BaseSwitch.Root
           className={cn(
-            "relative h-6 w-11 shrink-0 cursor-pointer rounded-full border-0 bg-neutral-border p-0.5 transition-colors",
-            "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring",
-            "data-[checked]:bg-primary data-[disabled]:cursor-not-allowed data-[disabled]:opacity-60",
+            "group relative h-6 w-12 shrink-0 cursor-pointer rounded-full bg-card p-1 transition-colors",
+            "border border-solid border-foreground data-[checked]:border-primary data-[checked]:bg-primary",
+            "hover:ring-4 hover:ring-muted focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/40",
+            "data-[disabled]:cursor-not-allowed data-[disabled]:border-input data-[disabled]:bg-card data-[disabled]:ring-0",
             className
           )}
           {...props}
         >
-          <BaseSwitch.Thumb className="block size-5 rounded-full bg-card shadow-sm transition-transform ltr:data-[checked]:translate-x-5 rtl:data-[checked]:-translate-x-5" />
+          <BaseSwitch.Thumb
+            className={cn(
+              "block size-4 rounded-full bg-foreground transition-[transform,background-color] duration-300",
+              "data-[checked]:bg-card ltr:data-[checked]:translate-x-6 rtl:data-[checked]:-translate-x-6",
+              "group-data-[disabled]:bg-input"
+            )}
+          />
         </BaseSwitch.Root>
         {label ? <span className="leading-5">{label}</span> : null}
       </Field.Label>

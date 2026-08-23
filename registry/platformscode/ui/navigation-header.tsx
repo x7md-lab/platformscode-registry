@@ -38,16 +38,20 @@ export interface NavItem {
 
 function navItemClass(selected?: boolean, disabled?: boolean) {
   return cn(
-    "relative inline-flex h-full items-center gap-1 rounded-sm border-0 bg-transparent px-4 text-sm no-underline transition-colors lg:px-6",
-    "focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring",
+    "relative inline-flex h-full items-center gap-1 rounded-[2px] border-0 bg-transparent px-4 text-base font-medium no-underline transition-colors lg:px-6",
+    "focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40",
+    "after:absolute after:inset-x-2 after:bottom-0 after:h-2 after:rounded-full after:transition-opacity",
     disabled
-      ? "cursor-not-allowed text-muted-foreground"
+      ? "cursor-not-allowed text-muted-foreground after:hidden"
       : selected
-        ? "cursor-pointer bg-primary font-semibold text-primary-foreground hover:bg-primary-hover"
+        ? cn(
+            "cursor-pointer bg-primary font-semibold text-primary-foreground hover:bg-primary-hover active:bg-primary-hover",
+            "after:bg-primary-bright after:opacity-100"
+          )
         : cn(
-            "cursor-pointer text-foreground hover:bg-muted active:bg-primary-hover active:text-primary-foreground",
-            "after:absolute after:inset-x-4 after:bottom-0 after:h-[3px] after:rounded-full after:bg-primary after:opacity-0 after:transition-opacity lg:after:inset-x-6",
-            "hover:after:opacity-100 focus-visible:after:opacity-100 data-[popup-open]:after:opacity-100 active:after:opacity-0"
+            "cursor-pointer text-foreground hover:bg-muted active:bg-border",
+            "after:bg-input after:opacity-0 hover:after:opacity-100 data-[popup-open]:after:opacity-100",
+            "active:after:bg-foreground active:after:opacity-100"
           )
   )
 }
@@ -56,16 +60,19 @@ function EntryContent({ entry }: { entry: NavMenuEntry }) {
   return (
     <>
       {entry.icon && (
-        <HugeiconsIcon
-          icon={entry.icon}
-          className="mt-0.5 size-4 shrink-0 text-muted-foreground"
+        <span
+          className="flex shrink-0 items-center justify-center rounded-md bg-primary-light p-3 text-primary"
           aria-hidden
-        />
+        >
+          <HugeiconsIcon icon={entry.icon} className="size-5" />
+        </span>
       )}
       <span className="flex min-w-0 grow flex-col gap-0.5">
-        <span className="text-sm font-medium text-foreground">{entry.label}</span>
+        <span className="entry-label text-base font-semibold text-foreground">
+          {entry.label}
+        </span>
         {entry.helper && (
-          <span className="text-xs leading-5 text-muted-foreground">
+          <span className="text-sm leading-5 text-muted-foreground">
             {entry.helper}
           </span>
         )}
@@ -76,7 +83,7 @@ function EntryContent({ entry }: { entry: NavMenuEntry }) {
 }
 
 const ENTRY_CLASS =
-  "flex w-full cursor-pointer items-start gap-3 rounded-sm border-0 bg-transparent px-3 py-2 text-start no-underline outline-none data-[highlighted]:bg-muted"
+  "flex w-full min-w-[300px] cursor-pointer items-center gap-4 rounded-md border-0 bg-transparent px-4 py-2 text-start no-underline outline-none data-[highlighted]:bg-muted data-[highlighted]:[&_.entry-label]:underline active:bg-border"
 
 function DesktopItem({ item }: { item: NavItem }) {
   if (item.menu?.length) {
@@ -91,7 +98,7 @@ function DesktopItem({ item }: { item: NavItem }) {
         </Menu.Trigger>
         <Menu.Portal>
           <Menu.Positioner sideOffset={8} align="start">
-            <Menu.Popup className="z-50 min-w-56 rounded-md border border-border bg-card p-1 shadow-lg outline-none">
+            <Menu.Popup className="z-50 rounded-md border border-border bg-card p-2 shadow-lg outline-none">
               {item.menu.map((entry, i) =>
                 entry.href ? (
                   <Menu.LinkItem key={i} href={entry.href} className={ENTRY_CLASS}>
@@ -206,15 +213,23 @@ export function NavigationHeaderBrand({
   href?: string
 }) {
   const content = (
-    <span className="flex items-center">
+    <span className="flex min-w-0 items-center">
       {mark}
       {(title || subtitle) && (
-        <span className="mx-4 h-12 w-px bg-black/20" aria-hidden />
+        <span
+          className="mx-2 h-12 w-px shrink-0 bg-black/20 sm:mx-4"
+          aria-hidden
+        />
       )}
-      <span className="flex flex-col">
-        <span className="text-sm font-bold text-foreground">{title}</span>
+      <span className="flex min-w-0 flex-col">
+        <span className="truncate text-sm font-bold text-foreground">
+          {title}
+        </span>
         {subtitle && (
-          <span className="font-mono text-xs text-muted-foreground" dir="ltr">
+          <span
+            className="truncate font-mono text-xs text-muted-foreground"
+            dir="ltr"
+          >
             {subtitle}
           </span>
         )}
@@ -222,7 +237,7 @@ export function NavigationHeaderBrand({
     </span>
   )
   return href ? (
-    <a href={href} className="no-underline">
+    <a href={href} className="min-w-0 no-underline">
       {content}
     </a>
   ) : (
@@ -281,7 +296,7 @@ export function NavigationHeader({
         <Drawer showSwipeHandle>
           <DrawerTrigger
             aria-label={navLabel}
-            className="flex size-9 cursor-pointer items-center justify-center rounded-sm border-0 bg-transparent text-foreground active:bg-muted focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring"
+            className="flex size-9 cursor-pointer items-center justify-center rounded-sm border-0 bg-transparent text-foreground active:bg-muted focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
           >
             <HugeiconsIcon icon={Menu01Icon} className="size-5" aria-hidden />
           </DrawerTrigger>

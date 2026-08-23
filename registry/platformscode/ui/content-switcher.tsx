@@ -45,7 +45,7 @@ export function ContentSwitcher({
             value={index}
             className={cn(
               "relative z-10 flex cursor-pointer items-center justify-center whitespace-nowrap rounded-sm border-0 bg-transparent font-semibold transition-colors",
-              "focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring",
+              "focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40",
               onColor
                 ? "text-white/80 data-[active]:text-white"
                 : "text-muted-foreground hover:text-foreground data-[active]:text-foreground",

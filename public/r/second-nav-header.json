@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "second-nav-header",
+  "type": "registry:ui",
+  "title": "Second Nav Header",
+  "description": "DGA «شريط التنقل الثانوي»: slim utility bar above the main header (info items + actions), gray/white/dark variants.",
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/platformscode/ui/second-nav-header.tsx",
+      "content": "import { cn } from \"@/lib/utils\"\nimport type { HTMLAttributes, ReactNode } from \"react\"\n\ntype Variant = \"gray\" | \"white\" | \"dark\"\n\nconst variants: Record<Variant, string> = {\n  gray: \"bg-muted text-muted-foreground\",\n  white: \"bg-card text-muted-foreground border-b border-border\",\n  dark: \"bg-[#104631] text-white/80\",\n}\n\n/**\n * DGA «شريط التنقل الثانوي» — the slim utility bar above the main header\n * (weather, date, language switch, accessibility actions in the templates).\n */\nexport function SecondNavHeader({\n  variant = \"gray\",\n  content,\n  actions,\n  className,\n  ...props\n}: HTMLAttributes<HTMLDivElement> & {\n  variant?: Variant\n  content?: ReactNode\n  actions?: ReactNode\n}) {\n  return (\n    <div className={cn(\"w-full\", variants[variant], className)} {...props}>\n      <div className=\"mx-auto flex h-9 w-full max-w-3xl items-center justify-between gap-4 px-4 text-xs sm:px-5 lg:max-w-5xl\">\n        <div className=\"flex min-w-0 items-center gap-4 overflow-x-auto whitespace-nowrap\">\n          {content}\n        </div>\n        {actions ? (\n          <div className=\"flex shrink-0 items-center gap-2\">{actions}</div>\n        ) : null}\n      </div>\n    </div>\n  )\n}\n\nexport function SecondNavHeaderItem({\n  className,\n  ...props\n}: HTMLAttributes<HTMLSpanElement>) {\n  return (\n    <span\n      className={cn(\"inline-flex items-center gap-1.5 text-xs\", className)}\n      {...props}\n    />\n  )\n}\n",
+      "type": "registry:ui"
+    }
+  ]
+}

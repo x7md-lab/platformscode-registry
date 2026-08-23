@@ -10,7 +10,7 @@
   "files": [
     {
       "path": "registry/platformscode/ui/card.tsx",
-      "content": "import { cn } from \"@/lib/utils\"\nimport type { HTMLAttributes } from \"react\"\n\nexport function Card({ className, ...props }: HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div\n      className={cn(\n        \"rounded-lg border border-border bg-card text-card-foreground shadow-sm\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n",
+      "content": "import { cn } from \"@/lib/utils\"\nimport type { HTMLAttributes } from \"react\"\n\nexport function Card({\n  selectable = false,\n  selected = false,\n  className,\n  ...props\n}: HTMLAttributes<HTMLDivElement> & {\n  selectable?: boolean\n  selected?: boolean\n}) {\n  return (\n    <div\n      data-selected={selected || undefined}\n      className={cn(\n        \"rounded-lg border border-border bg-card text-card-foreground shadow-sm transition-colors\",\n        selectable &&\n          \"cursor-pointer hover:bg-neutral-light active:bg-muted focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40\",\n        selected && \"border-primary bg-primary-light\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n",
       "type": "registry:ui"
     }
   ]

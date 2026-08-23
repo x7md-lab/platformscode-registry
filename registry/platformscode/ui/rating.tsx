@@ -67,7 +67,7 @@ export function Rating({
             onMouseEnter={() => setHovered(starValue)}
             onFocus={() => setHovered(starValue)}
             onBlur={() => setHovered(null)}
-            className="cursor-pointer rounded-sm border-0 bg-transparent p-0.5 leading-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring"
+            className="cursor-pointer rounded-sm border-0 bg-transparent p-0.5 leading-none focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
           >
             <Star filled={starValue <= shown} size={sizes[size]} />
           </button>

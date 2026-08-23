@@ -35,7 +35,7 @@ export function DigitalStamp({
         type="button"
         onClick={() => setOpen(!open)}
         aria-expanded={open}
-        className="flex w-full cursor-pointer items-center gap-2.5 border-0 bg-transparent py-2 text-start focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring"
+        className="flex w-full cursor-pointer items-center gap-2.5 border-0 bg-transparent py-2 text-start focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
       >
         <HugeiconsIcon
           icon={Stamp02Icon}
