@@ -22,7 +22,7 @@ import type { ReactNode } from "react"
 const TRIGGER_CLASS =
   "inline cursor-pointer border-0 bg-transparent p-0 align-baseline font-[inherit] text-[length:inherit] font-semibold text-primary underline decoration-primary/40 underline-offset-4 hover:decoration-primary focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
 
-export interface DocPage {
+export type DocPage = {
   src: string
   width: number
   height: number

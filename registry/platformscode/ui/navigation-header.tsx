@@ -13,7 +13,7 @@ import {
 import { cn } from "@/lib/utils"
 import type { ReactNode } from "react"
 
-export interface NavMenuEntry {
+export type NavMenuEntry = {
   label: ReactNode
   href?: string
   onClick?: () => void
@@ -25,7 +25,7 @@ export interface NavMenuEntry {
   badge?: ReactNode
 }
 
-export interface NavItem {
+export type NavItem = {
   label: ReactNode
   href?: string
   onClick?: () => void

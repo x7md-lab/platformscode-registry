@@ -6,7 +6,7 @@ import { HugeiconsIcon, type IconSvgElement } from "@hugeicons/react"
 import { ArrowDown01Icon, Stamp02Icon } from "@hugeicons/core-free-icons"
 import { cn } from "@/lib/utils"
 
-export interface StampItem {
+export type StampItem = {
   icon: IconSvgElement
   title: string
   description: ReactNode
