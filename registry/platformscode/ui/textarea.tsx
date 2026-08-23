@@ -50,7 +50,7 @@ export function Textarea({
           <textarea
             rows={rows}
             className={cn(
-              "w-full rounded-sm border bg-card px-4 py-3 font-sans text-sm text-foreground transition-[color,background-color,border-color,box-shadow]",
+              "w-full rounded-sm border bg-card px-4 py-3 font-sans text-sm text-foreground transition-[color,background-color,border-color,box-shadow] any-pointer-coarse:text-base",
               "placeholder:text-muted-foreground focus:outline-none focus:border-neutral-strong",
               "focus:shadow-[0_2px_4px_-2px_rgba(16,24,40,0.06),0_4px_8px_-2px_rgba(16,24,40,0.1)]",
               "disabled:cursor-not-allowed disabled:border-border disabled:bg-muted disabled:text-muted-foreground",

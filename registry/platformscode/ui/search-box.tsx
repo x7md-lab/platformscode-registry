@@ -8,9 +8,10 @@ import { cn } from "@/lib/utils"
 
 type Size = "sm" | "md" | "lg"
 
+// 16px on touch devices so iOS Safari doesn't auto-zoom the focused field.
 const sizes: Record<Size, string> = {
-  sm: "h-9 text-sm",
-  md: "h-11 text-sm",
+  sm: "h-9 text-sm any-pointer-coarse:text-base",
+  md: "h-11 text-sm any-pointer-coarse:text-base",
   lg: "h-13 text-base",
 }
 

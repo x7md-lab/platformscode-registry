@@ -14,9 +14,11 @@ import type { ComponentProps, ReactNode } from "react"
 type Size = "sm" | "md" | "lg"
 type Feedback = "success" | "error" | "warning"
 
+// 16px on touch devices so iOS Safari doesn't auto-zoom the focused field
+// (matches the Base UI input demo: text-sm any-pointer-coarse:text-base).
 const sizes: Record<Size, string> = {
-  sm: "h-7 text-xs",
-  md: "h-8 text-sm",
+  sm: "h-7 text-xs any-pointer-coarse:text-base",
+  md: "h-8 text-sm any-pointer-coarse:text-base",
   lg: "h-10 text-base",
 }
 
