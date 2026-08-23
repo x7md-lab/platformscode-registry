@@ -11,6 +11,10 @@ const markers: Record<Tone, string> = {
   "on-color": "marker:text-white",
 }
 
+/**
+ * DGA list: ordered, unordered or icon-led, with brand markers.
+ * Renders a `<ul>` or `<ol>` element.
+ */
 export function List({
   variant = "unordered",
   tone = "brand",
@@ -36,6 +40,10 @@ export function List({
   )
 }
 
+/**
+ * A single list entry with an optional leading brand icon.
+ * Renders an `<li>` element.
+ */
 export function ListItem({
   icon,
   className,

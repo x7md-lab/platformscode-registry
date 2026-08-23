@@ -63,6 +63,12 @@ function paginationRange(
   ]
 }
 
+/**
+ * DGA pagination with sibling/ellipsis ranges and the brand underline on
+ * the current page. Renders a `<nav>` element with page buttons.
+ *
+ * Documentation: [كود المنصات](https://x7md-lab.github.io/platformscode-registry/)
+ */
 export function Pagination({
   totalPageCount,
   page,
@@ -73,12 +79,28 @@ export function Pagination({
   label = "ترقيم الصفحات",
   className,
 }: {
+  /** Total number of pages. */
   totalPageCount: number
+  /** Controlled current page (1-based). */
   page?: number
+  /**
+   * Initial page when uncontrolled.
+   * @default 1
+   */
   defaultPage?: number
+  /**
+   * Pages shown on each side of the current page.
+   * @default 1
+   */
   siblingCount?: number
+  /**
+   * DGA cell sizes: small 24px, medium 32px, large 40px.
+   * @default "medium"
+   */
   size?: Size
+  /** Called with the new page on navigation. */
   onChange?: (page: number) => void
+  /** Accessible name of the navigation landmark. */
   label?: string
   className?: string
 }) {

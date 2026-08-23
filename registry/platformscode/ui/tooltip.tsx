@@ -16,6 +16,10 @@ const arrows: Record<Theme, string> = {
   light: "fill-card stroke-border",
 }
 
+/**
+ * DGA tooltip over Base UI with title, helper text and arrow.
+ * Renders a portalled popup anchored to its trigger.
+ */
 export function Tooltip({
   children,
   title,

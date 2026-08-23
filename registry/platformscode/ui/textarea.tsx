@@ -4,6 +4,10 @@ import { Field } from "@base-ui/react/field"
 import { cn } from "@/lib/utils"
 import type { ComponentProps } from "react"
 
+/**
+ * DGA multi-line text field with label, helper and alert text.
+ * Renders a labelled `<textarea>` element.
+ */
 export function Textarea({
   label,
   helperText,
@@ -14,10 +18,15 @@ export function Textarea({
   rows = 4,
   ...props
 }: ComponentProps<"textarea"> & {
+  /** Semibold label above the field; `required` adds the red marker. */
   label?: string
+  /** Muted helper line under the field. */
   helperText?: string
+  /** Error line; also paints the border red. */
   alertText?: string
+  /** Forces the error border without an error message. */
   error?: boolean
+  /** Allows vertical resizing by the user. */
   resize?: boolean
 }) {
   const invalid = error || Boolean(alertText)

@@ -10,7 +10,7 @@
   "files": [
     {
       "path": "registry/platformscode/ui/skeleton.tsx",
-      "content": "import { cn } from \"@/lib/utils\"\nimport type { HTMLAttributes } from \"react\"\n\nexport function Skeleton({ className, ...props }: HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div\n      data-slot=\"skeleton\"\n      className={cn(\"animate-pulse rounded-md bg-muted\", className)}\n      {...props}\n    />\n  )\n}\n",
+      "content": "import { cn } from \"@/lib/utils\"\nimport type { HTMLAttributes } from \"react\"\n\n/**\n * Pulsing placeholder shown while content loads. Renders a `<div>` element.\n */\nexport function Skeleton({ className, ...props }: HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div\n      data-slot=\"skeleton\"\n      className={cn(\"animate-pulse rounded-md bg-muted\", className)}\n      {...props}\n    />\n  )\n}\n",
       "type": "registry:ui"
     }
   ]

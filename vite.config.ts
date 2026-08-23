@@ -4,6 +4,7 @@ import { defineConfig, type Plugin } from "vite"
 import react from "@vitejs/plugin-react"
 import tailwindcss from "@tailwindcss/vite"
 import mdx from "@mdx-js/rollup"
+import { apiDocs } from "./vite.api-docs"
 
 function dedent(block: string) {
   const lines = block.replace(/^\n+|\s+$/g, "").split("\n")
@@ -60,6 +61,7 @@ export default defineConfig({
     react({ include: /\.([tj]sx?|mdx?)$/ }),
     tailwindcss(),
     mdxUsage(),
+    apiDocs(),
   ],
   resolve: {
     alias: {

@@ -26,6 +26,7 @@
     "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
+    "@ast-grep/napi": "^0.45.1",
     "@eslint/js": "^9.32.0",
     "@mdx-js/rollup": "^3.1.1",
     "@tailwindcss/vite": "^4.1.11",

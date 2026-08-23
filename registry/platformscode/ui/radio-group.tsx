@@ -6,6 +6,10 @@ import { Field } from "@base-ui/react/field"
 import { cn } from "@/lib/utils"
 import type { ComponentProps } from "react"
 
+/**
+ * Groups radio items and manages the single selection.
+ * Renders a Base UI `RadioGroup` element.
+ */
 export function RadioGroup({
   className,
   ...props
@@ -15,6 +19,10 @@ export function RadioGroup({
   )
 }
 
+/**
+ * DGA radio option: 24px circle, brand dot when checked, press ripple.
+ * Renders a labelled Base UI `Radio.Root`.
+ */
 export function RadioItem({
   label,
   helperText,
@@ -22,8 +30,11 @@ export function RadioItem({
   className,
   ...props
 }: ComponentProps<typeof Radio.Root> & {
+  /** Visible label rendered beside the circle. */
   label?: string
+  /** Muted helper line under the label. */
   helperText?: string
+  /** Error line; also paints the circle border red. */
   alertText?: string
 }) {
   return (

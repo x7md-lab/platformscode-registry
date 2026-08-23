@@ -4,6 +4,10 @@ import { Separator } from "@base-ui/react/separator"
 import { cn } from "@/lib/utils"
 import type { ComponentProps, ReactNode } from "react"
 
+/**
+ * DGA separator, horizontal or vertical, with an optional centered label.
+ * Renders a Base UI `Separator` element.
+ */
 export function Divider({
   orientation = "horizontal",
   label,

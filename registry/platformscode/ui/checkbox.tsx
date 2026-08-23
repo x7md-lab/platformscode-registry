@@ -23,6 +23,12 @@ const colors: Record<Color, string> = {
     "data-[checked]:border-foreground data-[checked]:bg-foreground data-[indeterminate]:border-foreground data-[indeterminate]:bg-foreground",
 }
 
+/**
+ * DGA checkbox over Base UI, with label, helper and alert text and the
+ * official press ripple. Renders a labelled Base UI `Checkbox.Root`.
+ *
+ * Documentation: [كود المنصات](https://x7md-lab.github.io/platformscode-registry/)
+ */
 export function Checkbox({
   label,
   helperText,
@@ -32,10 +38,21 @@ export function Checkbox({
   className,
   ...props
 }: ComponentProps<typeof BaseCheckbox.Root> & {
+  /** Visible label rendered beside the box. */
   label?: string
+  /** Muted helper line under the label. */
   helperText?: string
+  /** Error line; also paints the box border red. */
   alertText?: string
+  /**
+   * Checked fill: brand green or neutral black.
+   * @default "brand"
+   */
   color?: Color
+  /**
+   * DGA box sizes: sm 16px, md 20px, lg 24px.
+   * @default "md"
+   */
   size?: BoxSize
 }) {
   return (

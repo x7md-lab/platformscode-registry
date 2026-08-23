@@ -4,6 +4,9 @@ import { Tabs as BaseTabs } from "@base-ui/react/tabs"
 import { cn } from "@/lib/utils"
 import type { ComponentProps } from "react"
 
+/**
+ * Groups all parts of the tabs. Renders a Base UI `Tabs.Root` element.
+ */
 export function Tabs({
   className,
   ...props
@@ -11,11 +14,18 @@ export function Tabs({
   return <BaseTabs.Root className={cn("w-full", className)} {...props} />
 }
 
+/**
+ * Strip of tab buttons with the sliding 3px brand indicator over a neutral
+ * rail. Renders a Base UI `Tabs.List` element.
+ */
 export function TabsList({
   className,
   divider = true,
   ...props
-}: ComponentProps<typeof BaseTabs.List> & { divider?: boolean }) {
+}: ComponentProps<typeof BaseTabs.List> & {
+  /** Shows the neutral rail under the tabs. */
+  divider?: boolean
+}) {
   return (
     <BaseTabs.List
       className={cn(
@@ -33,6 +43,10 @@ export function TabsList({
   )
 }
 
+/**
+ * A single tab button with the DGA hover underline preview.
+ * Renders a Base UI `Tabs.Tab` element.
+ */
 export function Tab({ className, ...props }: ComponentProps<typeof BaseTabs.Tab>) {
   return (
     <BaseTabs.Tab
@@ -50,6 +64,9 @@ export function Tab({ className, ...props }: ComponentProps<typeof BaseTabs.Tab>
   )
 }
 
+/**
+ * Content shown while its tab is selected. Renders a Base UI `Tabs.Panel`.
+ */
 export function TabPanel({
   className,
   ...props

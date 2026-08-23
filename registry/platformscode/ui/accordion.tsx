@@ -7,6 +7,10 @@ import { ArrowDown01Icon } from "@hugeicons/core-free-icons"
 import { cn } from "@/lib/utils"
 import type { ComponentProps } from "react"
 
+/**
+ * Groups all parts of the accordion. Renders a Base UI `Accordion.Root`
+ * (`<div>` element).
+ */
 export function Accordion({
   className,
   ...props
@@ -14,6 +18,9 @@ export function Accordion({
   return <BaseAccordion.Root className={cn("w-full", className)} {...props} />
 }
 
+/**
+ * A single collapsible entry. Renders a Base UI `Accordion.Item` element.
+ */
 export function AccordionItem({
   className,
   ...props
@@ -26,6 +33,10 @@ export function AccordionItem({
   )
 }
 
+/**
+ * Header button that toggles its item, with a rotating chevron.
+ * Renders a Base UI `Accordion.Trigger` (`<button>` element).
+ */
 export function AccordionTrigger({
   className,
   children,
@@ -53,6 +64,10 @@ export function AccordionTrigger({
   )
 }
 
+/**
+ * Collapsible body with a framer-motion height entrance.
+ * Renders a Base UI `Accordion.Panel` element.
+ */
 export function AccordionContent({
   className,
   children,

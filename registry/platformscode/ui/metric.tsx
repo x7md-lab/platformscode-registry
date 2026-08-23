@@ -4,6 +4,10 @@ import { ArrowUpRight01Icon, ArrowDownRight01Icon } from "@hugeicons/core-free-i
 import { cn } from "@/lib/utils"
 import type { HTMLAttributes } from "react"
 
+/**
+ * DGA KPI card with value, trend pill and optional leading icon.
+ * Renders a `<div>` card element.
+ */
 export function Metric({
   label,
   value,

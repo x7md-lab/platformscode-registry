@@ -1,6 +1,10 @@
 import { cn } from "@/lib/utils"
 import type { HTMLAttributes } from "react"
 
+/**
+ * DGA surface: white card with 16px radius and subtle shadow. `selectable`
+ * adds the official hover/pressed states. Renders a `<div>` element.
+ */
 export function Card({
   selectable = false,
   selected = false,

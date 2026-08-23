@@ -17,6 +17,10 @@ export type SwitcherItem = {
   content: ReactNode
 }
 
+/**
+ * DGA segmented switcher over Base UI Tabs with a sliding pill indicator.
+ * Renders a Base UI `Tabs.Root` with a tablist and panels.
+ */
 export function ContentSwitcher({
   items,
   size = "md",

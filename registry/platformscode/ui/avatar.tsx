@@ -16,6 +16,10 @@ const sizes: Record<Size, string> = {
   120: "size-30 text-4xl",
 }
 
+/**
+ * DGA avatar over Base UI with image, initials or icon fallback and the
+ * official size scale. Renders a Base UI `Avatar.Root` element.
+ */
 export function Avatar({
   size = 40,
   square = false,
@@ -60,6 +64,9 @@ export function Avatar({
   )
 }
 
+/**
+ * Overlapping row of avatars. Renders a `<div>` element.
+ */
 export function AvatarGroup({
   className,
   ...props

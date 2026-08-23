@@ -20,6 +20,9 @@ const tones: Record<Tone, string> = {
   "on-color": "border-white/30 border-t-white",
 }
 
+/**
+ * DGA loading indicator. Renders a `<div role="status">` with a spinning ring.
+ */
 export function Spinner({
   size = "md",
   tone = "brand",

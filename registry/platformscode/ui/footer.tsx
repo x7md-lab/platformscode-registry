@@ -18,6 +18,10 @@ const tones: Record<Tone, string> = {
   brand: "bg-[#104631] text-white",
 }
 
+/**
+ * DGA page footer: link groups, action rows, copyright and logo slot, in a
+ * default or brand-dark tone. Renders a `<footer>` element.
+ */
 export function Footer({
   logo,
   groups = [],

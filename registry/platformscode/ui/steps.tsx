@@ -7,6 +7,10 @@ export type Step = {
   description?: string
 }
 
+/**
+ * DGA step indicator with done/current/upcoming states and connectors,
+ * horizontal or vertical. Renders an `<ol>` element.
+ */
 export function Steps({
   steps,
   activeStep = 0,

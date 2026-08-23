@@ -32,6 +32,13 @@ const feedbackColors: Record<Feedback, string> = {
   warning: "text-warning",
 }
 
+/**
+ * DGA text field over Base UI Input: 1px border, center-out focus underline
+ * and focus shadow, prefix/suffix slots and feedback icons.
+ * Renders a labelled field wrapping an `<input>` element.
+ *
+ * Documentation: [كود المنصات](https://x7md-lab.github.io/platformscode-registry/)
+ */
 export function TextInput({
   label,
   helperText,
@@ -46,14 +53,26 @@ export function TextInput({
   className,
   ...props
 }: Omit<ComponentProps<typeof Input>, "size" | "prefix"> & {
+  /** Semibold label above the field; `required` adds the red marker. */
   label?: string
+  /** Muted helper line under the field. */
   helperText?: string
+  /** Error line; also paints the border and underline red. */
   alertText?: string
+  /**
+   * DGA field heights: sm 28px, md 32px, lg 40px.
+   * @default "md"
+   */
   size?: Size
+  /** Forces the error border without an error message. */
   error?: boolean
+  /** Trailing status icon: success, error or warning. */
   feedback?: Feedback
+  /** Leading icon inside the field. */
   icon?: ReactNode
+  /** Filled slot on the start edge (e.g. a phone country code). */
   prefix?: ReactNode
+  /** Filled slot on the end edge. */
   suffix?: ReactNode
 }) {
   const invalid = error || Boolean(alertText)

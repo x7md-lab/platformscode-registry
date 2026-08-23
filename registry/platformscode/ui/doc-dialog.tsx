@@ -59,6 +59,10 @@ function Pages({ title, pages }: { title: string; pages: DocPage[] }) {
   )
 }
 
+/**
+ * Text link that opens a document viewer: a dialog on wide screens, a
+ * swipeable bottom drawer on phones. Renders a `<button>` styled as a link.
+ */
 export function DocDialog({
   label,
   title,

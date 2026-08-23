@@ -9,6 +9,10 @@ export type Crumb = {
   disabled?: boolean
 }
 
+/**
+ * DGA breadcrumb trail with RTL-aware chevrons and `aria-current` on the
+ * last crumb. Renders a `<nav>` element wrapping an ordered list.
+ */
 export function Breadcrumbs({
   items,
   label = "مسار التنقل",

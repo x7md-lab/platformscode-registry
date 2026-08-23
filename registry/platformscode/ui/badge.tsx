@@ -32,6 +32,12 @@ const selecteds: Record<Variant, string> = {
   destructive: "border-destructive bg-destructive text-primary-foreground",
 }
 
+/**
+ * DGA chip / status tag: 4px radius, tinted surface with border.
+ * Renders a `<span>` element.
+ *
+ * Documentation: [كود المنصات](https://x7md-lab.github.io/platformscode-registry/)
+ */
 export function Badge({
   className,
   variant = "default",
@@ -41,10 +47,30 @@ export function Badge({
   selected = false,
   ...props
 }: HTMLAttributes<HTMLSpanElement> & {
+  /**
+   * Color family of the chip.
+   * @default "default"
+   */
   variant?: Variant
+  /**
+   * DGA chip heights: sm 20px, md 24px, lg 32px.
+   * @default "md"
+   */
   size?: Size
+  /**
+   * Pill shape instead of the default 4px radius.
+   * @default false
+   */
   rounded?: boolean
+  /**
+   * Enables hover / pressed states and keyboard focus ring.
+   * @default false
+   */
   interactive?: boolean
+  /**
+   * Filled selected state (as in the DGA chip).
+   * @default false
+   */
   selected?: boolean
 }) {
   return (

@@ -6,13 +6,24 @@ import { Cancel01Icon } from "@hugeicons/core-free-icons"
 import { cn } from "@/lib/utils"
 import type { ComponentProps, ReactNode } from "react"
 
+/**
+ * Groups all parts of the modal and holds its open state.
+ * Renders a Base UI `Dialog.Root` (no HTML element of its own).
+ */
 export function Modal(props: ComponentProps<typeof Dialog.Root>) {
   return <Dialog.Root {...props} />
 }
 
+/** Opens the modal. Renders a Base UI `Dialog.Trigger` (`<button>`). */
 export const ModalTrigger = Dialog.Trigger
+/** Closes the modal. Renders a Base UI `Dialog.Close` (`<button>`). */
 export const ModalClose = Dialog.Close
 
+/**
+ * The DGA modal surface: 600px card with title, description and stacked
+ * actions, backdrop and viewport included. Renders a portalled Base UI
+ * `Dialog.Popup` element.
+ */
 export function ModalContent({
   title,
   description,

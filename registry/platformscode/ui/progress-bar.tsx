@@ -13,6 +13,10 @@ const tones: Record<Tone, string> = {
   error: "bg-destructive",
 }
 
+/**
+ * DGA progress bar over Base UI Progress with label and value readout.
+ * Renders a Base UI `Progress.Root` element.
+ */
 export function ProgressBar({
   label,
   tone = "brand",

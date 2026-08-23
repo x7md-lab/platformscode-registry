@@ -42,6 +42,10 @@ export const ToastProvider = Toast.Provider
 // eslint-disable-next-line react-refresh/only-export-components
 export const useToast = Toast.useToastManager
 
+/**
+ * Portalled viewport rendering the queued toasts in the start corner.
+ * Renders a Base UI `Toast.Viewport` element.
+ */
 export function Toaster() {
   return (
     <Toast.Portal>

@@ -16,6 +16,7 @@ import {
   TerminalIcon,
 } from "@hugeicons/core-free-icons"
 import { Skeleton } from "@/registry/platformscode/ui/skeleton"
+import { ApiReference } from "./api-reference"
 import usageMap from "virtual:mdx-usage"
 
 const CodeView = lazy(() => import("./code-view"))
@@ -287,6 +288,7 @@ export function Section({
       <div className="mt-auto flex flex-col gap-3">
         <InstallCommand name={name} />
         {usage ? <UsageBlock source={usage} /> : null}
+        <ApiReference name={refKey} />
       </div>
     </div>
   )

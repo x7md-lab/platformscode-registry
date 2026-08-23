@@ -5,6 +5,10 @@ import { Field } from "@base-ui/react/field"
 import { cn } from "@/lib/utils"
 import type { ComponentProps } from "react"
 
+/**
+ * DGA switch over Base UI: 48x24 track, dark thumb when off, brand track
+ * with white thumb when on, hover halo. Renders a labelled `Switch.Root`.
+ */
 export function Switch({
   label,
   helperText,
@@ -12,8 +16,11 @@ export function Switch({
   className,
   ...props
 }: ComponentProps<typeof BaseSwitch.Root> & {
+  /** Visible label; turns brand-colored while the switch is on. */
   label?: string
+  /** Muted helper line under the control. */
   helperText?: string
+  /** Error line under the control. */
   alertText?: string
 }) {
   return (

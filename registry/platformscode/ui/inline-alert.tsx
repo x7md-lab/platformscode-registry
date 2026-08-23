@@ -49,6 +49,10 @@ const tones: Record<Tone, { plain: string; colored: string; icon: string }> = {
   },
 }
 
+/**
+ * DGA inline notification with tone icon, lead/helper text, optional
+ * actions and dismiss. Renders a `<div role="alert">` element.
+ */
 export function InlineAlert({
   tone = "neutral",
   leadText,

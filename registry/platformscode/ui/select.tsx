@@ -17,6 +17,12 @@ const sizes: Record<Size, string> = {
   lg: "h-10 text-base",
 }
 
+/**
+ * DGA dropdown over Base UI Select with an animated popup and check
+ * indicators. Renders a labelled trigger button and a portalled listbox.
+ *
+ * Documentation: [كود المنصات](https://x7md-lab.github.io/platformscode-registry/)
+ */
 export function Select({
   options,
   label,
@@ -28,12 +34,25 @@ export function Select({
   className,
   ...props
 }: Omit<ComponentProps<typeof BaseSelect.Root>, "items"> & {
+  /** Selectable options as label/value pairs. */
   options: Option[]
+  /** Semibold label above the trigger; `required` adds the red marker. */
   label?: string
+  /**
+   * Text shown while nothing is selected.
+   * @default "اختر"
+   */
   placeholder?: string
+  /** Muted helper line under the trigger. */
   helperText?: string
+  /** Error line; also paints the trigger border red. */
   alertText?: string
+  /** Forces the error border without an error message. */
   error?: boolean
+  /**
+   * DGA field heights: sm 28px, md 32px, lg 40px.
+   * @default "md"
+   */
   size?: Size
   className?: string
 }) {

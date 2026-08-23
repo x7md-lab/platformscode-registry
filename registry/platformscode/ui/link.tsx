@@ -18,6 +18,10 @@ const sizes: Record<Size, string> = {
   lg: "text-lg leading-7",
 }
 
+/**
+ * DGA text link: no underline at rest, underline + brightened color on
+ * hover, external-link icon. Renders an `<a>` element.
+ */
 export function Link({
   tone = "brand",
   size = "md",

@@ -201,15 +201,23 @@ function DrawerItem({ item }: { item: NavItem }) {
   )
 }
 
+/**
+ * Brand slot for the header: logo mark, divider and a two-line title.
+ * Renders an `<a>` element when `href` is set, otherwise a `<span>`.
+ */
 export function NavigationHeaderBrand({
   mark,
   title,
   subtitle,
   href,
 }: {
+  /** Logo mark element (image or monogram). */
   mark: ReactNode
+  /** Entity name, bold line. */
   title: ReactNode
+  /** Muted second line (e.g. the domain). */
   subtitle?: ReactNode
+  /** Makes the brand a link to this URL. */
   href?: string
 }) {
   const content = (
@@ -245,6 +253,13 @@ export function NavigationHeaderBrand({
   )
 }
 
+/**
+ * DGA top navigation bar: brand, nav items with dropdown menus and the
+ * official hover pill, primary actions and a skip link. The mobile variant
+ * moves the items into a bottom drawer. Renders a `<header>` element.
+ *
+ * Documentation: [كود المنصات](https://x7md-lab.github.io/platformscode-registry/)
+ */
 export function NavigationHeader({
   logo,
   items,
@@ -257,19 +272,23 @@ export function NavigationHeader({
   drawerTitle = "القائمة",
   className,
 }: {
-
+  /** Brand slot, usually a `NavigationHeaderBrand`. */
   logo: ReactNode
-
+  /** Navigation items; entries with `menu` open a dropdown. */
   items: NavItem[]
-
+  /** End-side actions (e.g. a login button). */
   actions?: ReactNode
-
+  /** Switches to the hamburger + bottom drawer variant. */
   mobile?: boolean
-
+  /** Sticks the bar to the top of the viewport. */
   sticky?: boolean
+  /** Target of the skip-to-content link. */
   skipHref?: string
+  /** Label of the skip-to-content link. */
   skipLabel?: ReactNode
+  /** Accessible name of the navigation landmark. */
   navLabel?: string
+  /** Title shown at the top of the mobile drawer. */
   drawerTitle?: ReactNode
   className?: string
 }) {

@@ -14,6 +14,10 @@ const sizes: Record<Size, string> = {
   lg: "h-13 text-base",
 }
 
+/**
+ * DGA search field with clear button and optional submit action.
+ * Renders a `<form role="search">` element.
+ */
 export function SearchBox({
   size = "md",
   placeholder = "ابحث",

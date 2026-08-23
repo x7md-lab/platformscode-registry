@@ -23,12 +23,29 @@ const sizes: Record<Size, string> = {
   lg: "h-10 px-4 text-base leading-6",
 }
 
+/**
+ * DGA action button with the official hover and pressed states.
+ * Renders a `<button>` element.
+ *
+ * Documentation: [كود المنصات](https://x7md-lab.github.io/platformscode-registry/)
+ */
 export function Button({
   className,
   variant = "primary",
   size = "lg",
   ...props
-}: ButtonHTMLAttributes<HTMLButtonElement> & { variant?: Variant; size?: Size }) {
+}: ButtonHTMLAttributes<HTMLButtonElement> & {
+  /**
+   * Visual style of the button.
+   * @default "primary"
+   */
+  variant?: Variant
+  /**
+   * DGA size scale: sm 24px, md 32px, lg 40px.
+   * @default "lg"
+   */
+  size?: Size
+}) {
   return (
     <button
       className={cn(

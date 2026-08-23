@@ -13,6 +13,10 @@ export type StampItem = {
   ok?: boolean
 }
 
+/**
+ * DGA digital-signature bar: collapsible verification list with staggered
+ * circular check items. Renders a `<div>` element.
+ */
 export function DigitalStamp({
   heading,
   items,

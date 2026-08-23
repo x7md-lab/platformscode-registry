@@ -13,6 +13,10 @@ const sizes: Record<Size, number> = {
   large: 32,
 }
 
+/**
+ * DGA star rating with hover preview and radio-group keyboard semantics.
+ * Renders a `<div role="radiogroup">` of star buttons.
+ */
 export function Rating({
   value = 0,
   onChange,

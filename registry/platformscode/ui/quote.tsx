@@ -3,6 +3,10 @@ import { QuoteDownIcon } from "@hugeicons/core-free-icons"
 import { cn } from "@/lib/utils"
 import type { BlockquoteHTMLAttributes, ReactNode } from "react"
 
+/**
+ * DGA quote: brand-tinted blockquote with quote mark and author caption.
+ * Renders a `<figure>` wrapping a `<blockquote>` element.
+ */
 export function Quote({
   author,
   role,
