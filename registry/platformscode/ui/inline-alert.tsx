@@ -29,22 +29,22 @@ const tones: Record<Tone, { plain: string; colored: string; icon: string }> = {
   },
   info: {
     plain: "border-border bg-card",
-    colored: "border-info-border bg-[#f5faff]",
+    colored: "border-info-border bg-info-light",
     icon: "text-info",
   },
   success: {
     plain: "border-border bg-card",
-    colored: "border-success-border bg-[#f6fef9]",
+    colored: "border-success-border bg-success-light",
     icon: "text-success",
   },
   warning: {
     plain: "border-border bg-card",
-    colored: "border-warning-border bg-[#fffcf5]",
+    colored: "border-warning-border bg-warning-light",
     icon: "text-warning",
   },
   error: {
     plain: "border-border bg-card",
-    colored: "border-destructive-border bg-[#fffbfa]",
+    colored: "border-destructive-border bg-destructive-light",
     icon: "text-destructive",
   },
 }

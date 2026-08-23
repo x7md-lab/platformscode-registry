@@ -1,6 +1,7 @@
 import { useCallback, useSyncExternalStore } from "react"
 import { HugeiconsIcon } from "@hugeicons/react"
-import { GithubIcon } from "@hugeicons/core-free-icons"
+import { GithubIcon, Moon02Icon, Sun03Icon } from "@hugeicons/core-free-icons"
+import { previewPrefs, usePreviewPrefs } from "./preview-prefs"
 
 const REPO = "x7md-lab/platformscode-registry"
 const REPO_URL = `https://github.com/${REPO}`
@@ -15,6 +16,27 @@ function useScrolled(threshold = 8) {
     subscribe,
     () => window.scrollY > threshold,
     () => false
+  )
+}
+
+function ModeToggle() {
+  const { mode } = usePreviewPrefs()
+  const dark = mode === "dark"
+  return (
+    <button
+      type="button"
+      aria-pressed={dark}
+      aria-label={dark ? "الوضع الفاتح" : "الوضع الداكن"}
+      title={dark ? "الوضع الفاتح" : "الوضع الداكن"}
+      onClick={() => previewPrefs.set({ mode: dark ? "light" : "dark" })}
+      className="flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full border border-border bg-card/60 text-muted-foreground transition-colors hover:border-primary/40 hover:bg-card hover:text-foreground focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
+    >
+      <HugeiconsIcon
+        icon={dark ? Sun03Icon : Moon02Icon}
+        size={16}
+        strokeWidth={2}
+      />
+    </button>
   )
 }
 
@@ -53,25 +75,28 @@ export function SiteHeader() {
           </span>
         </a>
 
-        <a
-          href={REPO_URL}
-          target="_blank"
-          rel="noreferrer noopener"
-          dir="ltr"
-          aria-label={`مستودع ${REPO} على GitHub`}
-          className="group inline-flex min-w-0 shrink items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1.5 font-mono text-xs text-muted-foreground no-underline transition-colors hover:border-primary/40 hover:bg-card hover:text-foreground focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
-        >
-          <HugeiconsIcon
-            icon={GithubIcon}
-            size={15}
-            strokeWidth={2}
-            className="shrink-0 transition-transform duration-300 group-hover:scale-110"
-          />
-          <span className="truncate">
-            <span className="hidden sm:inline">x7md-lab/</span>
-            platformscode-registry
-          </span>
-        </a>
+        <div className="flex min-w-0 shrink items-center gap-2">
+          <ModeToggle />
+          <a
+            href={REPO_URL}
+            target="_blank"
+            rel="noreferrer noopener"
+            dir="ltr"
+            aria-label={`مستودع ${REPO} على GitHub`}
+            className="group inline-flex min-w-0 shrink items-center gap-2 rounded-full border border-border bg-card/60 px-3 py-1.5 font-mono text-xs text-muted-foreground no-underline transition-colors hover:border-primary/40 hover:bg-card hover:text-foreground focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
+          >
+            <HugeiconsIcon
+              icon={GithubIcon}
+              size={15}
+              strokeWidth={2}
+              className="shrink-0 transition-transform duration-300 group-hover:scale-110"
+            />
+            <span className="truncate">
+              <span className="hidden sm:inline">x7md-lab/</span>
+              platformscode-registry
+            </span>
+          </a>
+        </div>
       </div>
     </header>
   )

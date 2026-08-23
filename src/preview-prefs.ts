@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from "react"
-import { applyBrand, type BrandKey } from "./brand"
+import { applyBrand, applyMode, type BrandKey, type Mode } from "./brand"
 
 export type PreviewPrefs = {
   /** Keep previews inside the section card on phones. Off = full-bleed. */
@@ -8,16 +8,32 @@ export type PreviewPrefs = {
   padded: boolean
   /** Active DGA brand palette. */
   brand: BrandKey
+  /** Light or dark surfaces. */
+  mode: Mode
 }
 
-let prefs: PreviewPrefs = { contained: true, padded: true, brand: "green" }
+const initialMode: Mode =
+  typeof window !== "undefined" &&
+  window.matchMedia?.("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light"
+
+let prefs: PreviewPrefs = {
+  contained: true,
+  padded: true,
+  brand: "green",
+  mode: initialMode,
+}
+
 const listeners = new Set<() => void>()
 
 export const previewPrefs = {
   get: () => prefs,
   set(next: Partial<PreviewPrefs>) {
     prefs = { ...prefs, ...next }
-    if (next.brand) applyBrand(next.brand)
+    if (next.mode) applyMode(next.mode)
+    // the brand ramp differs per mode, so re-apply on either change
+    if (next.brand || next.mode) applyBrand(prefs.brand, prefs.mode)
     listeners.forEach((listener) => listener())
   },
   subscribe(listener: () => void) {
@@ -27,6 +43,8 @@ export const previewPrefs = {
     }
   },
 }
+
+if (typeof document !== "undefined") applyMode(prefs.mode)
 
 export function usePreviewPrefs() {
   return useSyncExternalStore(

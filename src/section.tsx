@@ -257,7 +257,7 @@ function UsageBlock({ source }: { source: string }) {
 // portrait — `w-screen` + negative inline margins — so a demo can use the
 // full screen width; the card chrome returns at `sm` or in landscape.
 
-const SHELL = "relative my-4 flex min-h-[300px] flex-col gap-4 rounded-lg border border-border bg-card py-4"
+const SHELL = "relative my-4 flex min-h-[300px] flex-col gap-4 border border-border bg-card py-4"
 
 const SHELL_BLEED = [
   "max-sm:portrait:mx-[calc(50%-50vw)] max-sm:portrait:w-screen",
@@ -359,7 +359,8 @@ export function Section({
       data-ref={refKey}
       data-contained={!bleeds || undefined}
       data-shell={isShell || undefined}
-      className={`${SHELL} ${bleeds ? SHELL_BLEED : ""}`}
+      // page chrome reads as a band, not a card — no radius
+      className={`${SHELL} ${isShell ? "" : "rounded-lg"} ${bleeds ? SHELL_BLEED : ""}`}
     >
       <SectionToolbar name={name} view={view} onChange={setView} />
       {view === "preview" ? (
