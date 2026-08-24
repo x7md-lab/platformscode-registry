@@ -59,7 +59,7 @@ export function TableOfContent({
             "relative block border-0 border-s-2 border-solid py-1.5 text-sm no-underline transition-colors",
             depth === 0 ? "ps-4" : "ps-8",
             isActive
-              ? "border-primary font-semibold text-primary"
+              ? "border-primary-accent font-semibold text-primary-accent"
               : "border-neutral-border text-muted-foreground hover:text-foreground",
             "focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
           )}

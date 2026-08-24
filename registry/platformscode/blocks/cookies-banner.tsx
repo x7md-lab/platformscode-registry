@@ -83,7 +83,7 @@ export function CookiesBanner({
     >
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-center gap-2">
-          <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary-light text-primary">
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-primary-light text-primary-accent">
             <HugeiconsIcon icon={CookieIcon} size={22} strokeWidth={2} />
           </span>
           <h3 className="m-0 text-lg font-bold text-foreground">{title}</h3>

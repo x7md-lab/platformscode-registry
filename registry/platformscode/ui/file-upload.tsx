@@ -109,14 +109,18 @@ export function FileUpload({
         <span
           className={cn(
             "flex size-11 items-center justify-center rounded-full",
-            dragging ? "bg-primary-soft text-primary" : "bg-card text-muted-foreground"
+            dragging
+              ? "bg-primary-soft text-primary-accent"
+              : "bg-card text-muted-foreground"
           )}
         >
           <HugeiconsIcon icon={CloudUploadIcon} size={22} strokeWidth={2} />
         </span>
         <span className="text-sm font-bold text-foreground">{heading}</span>
         <span className="text-xs text-muted-foreground">{helper}</span>
-        <span className="text-sm font-semibold text-primary">{browseLabel}</span>
+        <span className="text-sm font-semibold text-primary-accent">
+          {browseLabel}
+        </span>
         <input
           ref={inputRef}
           type="file"

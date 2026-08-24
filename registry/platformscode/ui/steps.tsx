@@ -64,7 +64,7 @@ export function Steps({
                   done
                     ? "border-primary bg-primary text-primary-foreground"
                     : current
-                      ? "border-primary bg-primary-light text-primary"
+                      ? "border-primary-accent bg-primary-light text-primary-accent"
                       : "border-border bg-card text-muted-foreground"
                 )}
               >

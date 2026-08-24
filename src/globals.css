@@ -23,6 +23,9 @@
   --primary-light: #f3fcf6;
   --primary-soft: #dff6e7;
   --primary-foreground: #ffffff;
+  /* Brand as *ink* rather than fill. Identical to --primary in light, so this
+     token is a no-op here; it only diverges in .dark. See the note there. */
+  --primary-accent: #1b8354;
 
   --secondary: #dba102;
 
@@ -108,6 +111,15 @@
   --primary-light: #092a1e;
   --primary-soft: #104631;
   --primary-foreground: #ffffff;
+  /*
+   * Brand ink moves up the ramp on dark surfaces. Measured on نفاذ, the
+   * 600-step green used as text fails outright: #1b8354 on #1f2a37 is 3.06:1
+   * and #166a45 is 2.20:1, both below the 4.5:1 floor for body text. The
+   * 300-step reads at 8.63:1 (AAA) and matches نفاذ's own `green.fg` (#86efac)
+   * and almusaid's `primary.color` (#34d399), which both shift the accent for
+   * exactly this reason.
+   */
+  --primary-accent: #88d8ad;
 
   --gold: #f7d54d;
   --gold-light: #472400;
@@ -179,6 +191,7 @@
   --color-primary-light: var(--primary-light);
   --color-primary-soft: var(--primary-soft);
   --color-primary-foreground: var(--primary-foreground);
+  --color-primary-accent: var(--primary-accent);
   --color-secondary: var(--secondary);
   --color-gold: var(--gold);
   --color-gold-light: var(--gold-light);

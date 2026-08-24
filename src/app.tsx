@@ -9,7 +9,7 @@ const components: MDXComponents = {
   ),
   h2: (props) => (
     <h2
-      className="mb-6 mt-16 border-0 border-b border-solid border-border pb-2 text-2xl font-bold text-primary"
+      className="mb-6 mt-16 border-0 border-b border-solid border-border pb-2 text-2xl font-bold text-primary-accent"
       {...props}
     />
   ),
@@ -24,7 +24,7 @@ const components: MDXComponents = {
   ),
   a: (props) => (
     <a
-      className="font-semibold text-primary underline decoration-primary/40 underline-offset-4 hover:decoration-primary"
+      className="font-semibold text-primary-accent underline decoration-primary-accent/40 underline-offset-4 hover:decoration-primary-accent"
       {...props}
     />
   ),

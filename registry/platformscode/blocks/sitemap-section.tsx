@@ -10,7 +10,7 @@ function Tree({ links, depth }: { links: SitemapLink[]; depth: number }) {
   return (
     <ul
       className={cn(
-        "m-0 flex flex-col gap-4 p-0 text-primary",
+        "m-0 flex flex-col gap-4 p-0 text-primary-accent",
         depth === 0 ? "list-disc" : "ms-4 list-[circle]",
         "list-inside"
       )}
@@ -19,7 +19,7 @@ function Tree({ links, depth }: { links: SitemapLink[]; depth: number }) {
         <li key={link.label + link.href}>
           <a
             href={link.href}
-            className="rounded-sm text-base font-normal text-foreground no-underline underline-offset-4 hover:text-primary hover:underline focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
+            className="rounded-sm text-base font-normal text-foreground no-underline underline-offset-4 hover:text-primary-accent hover:underline focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
           >
             {link.label}
           </a>

@@ -7,7 +7,8 @@ type Tone = "brand" | "neutral" | "on-color"
 type Size = "sm" | "md" | "lg"
 
 const tones: Record<Tone, string> = {
-  brand: "text-primary hover:text-primary-bright active:text-primary-bright",
+  brand:
+    "text-primary-accent hover:text-primary-bright active:text-primary-bright",
   neutral: "text-foreground hover:text-muted-foreground active:text-neutral-border",
   "on-color": "text-white hover:text-white/80 active:text-white/60",
 }

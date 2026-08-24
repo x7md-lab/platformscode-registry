@@ -20,7 +20,7 @@ import { Cancel01Icon, File02Icon } from "@hugeicons/core-free-icons"
 import type { ReactNode } from "react"
 
 const TRIGGER_CLASS =
-  "inline cursor-pointer border-0 bg-transparent p-0 align-baseline font-[inherit] text-[length:inherit] font-semibold text-primary underline decoration-primary/40 underline-offset-4 hover:decoration-primary focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
+  "inline cursor-pointer border-0 bg-transparent p-0 align-baseline font-[inherit] text-[length:inherit] font-semibold text-primary-accent underline decoration-primary-accent/40 underline-offset-4 hover:decoration-primary-accent focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
 
 export type DocPage = {
   src: string
@@ -85,7 +85,7 @@ export function DocDialog({
             <DrawerTitle className="flex items-center justify-center gap-2 text-sm font-bold">
               <HugeiconsIcon
                 icon={File02Icon}
-                className="size-4 shrink-0 text-primary"
+                className="size-4 shrink-0 text-primary-accent"
                 aria-hidden
               />
               {title}
@@ -110,7 +110,11 @@ export function DocDialog({
         >
           <header className="flex items-center justify-between gap-3 border-b border-border px-5 py-3">
             <Dialog.Title className="m-0 flex items-center gap-2 text-sm font-bold">
-              <HugeiconsIcon icon={File02Icon} className="size-4 text-primary" aria-hidden />
+              <HugeiconsIcon
+                icon={File02Icon}
+                className="size-4 text-primary-accent"
+                aria-hidden
+              />
               {title}
             </Dialog.Title>
             <Dialog.Close

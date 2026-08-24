@@ -36,7 +36,7 @@ export function Metric({
       <div className="flex items-start justify-between gap-3">
         <span className="text-sm font-semibold text-muted-foreground">{label}</span>
         {icon ? (
-          <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary-light text-primary">
+          <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary-light text-primary-accent">
             <HugeiconsIcon icon={icon} size={18} strokeWidth={2} />
           </span>
         ) : null}

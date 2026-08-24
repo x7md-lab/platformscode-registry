@@ -16,9 +16,16 @@ const boxSizes: Record<BoxSize, string> = {
   lg: "size-6",
 }
 
+/*
+ * On dark surfaces the fill takes the light end of the ramp and the mark goes
+ * dark. DGA ships white-on-#1b8354, which is only 4.75:1 — fine for a button
+ * label, thin for a 14px glyph — and the fill itself sits at just 3.06:1
+ * against the #1f2a37 card, so the box outline barely registers. Inverting
+ * puts the mark at 11.13:1 and the fill at 8.63:1, both AAA.
+ */
 const colors: Record<Color, string> = {
   brand:
-    "data-[checked]:border-primary data-[checked]:bg-primary data-[checked]:hover:border-primary-active data-[checked]:hover:bg-primary-active data-[indeterminate]:border-primary data-[indeterminate]:bg-primary",
+    "data-[checked]:border-primary data-[checked]:bg-primary data-[checked]:hover:border-primary-active data-[checked]:hover:bg-primary-active data-[indeterminate]:border-primary data-[indeterminate]:bg-primary dark:data-[checked]:border-primary-accent dark:data-[checked]:bg-primary-accent dark:data-[checked]:hover:border-primary-accent dark:data-[checked]:hover:bg-primary-accent dark:data-[indeterminate]:border-primary-accent dark:data-[indeterminate]:bg-primary-accent",
   neutral:
     "data-[checked]:border-foreground data-[checked]:bg-foreground data-[indeterminate]:border-foreground data-[indeterminate]:bg-foreground",
 }
@@ -72,7 +79,7 @@ export function Checkbox({
           )}
           {...props}
         >
-          <BaseCheckbox.Indicator className="flex items-center justify-center text-primary-foreground">
+          <BaseCheckbox.Indicator className="flex items-center justify-center text-primary-foreground dark:text-background">
             <HugeiconsIcon
               icon={Tick02Icon}
               size={14}

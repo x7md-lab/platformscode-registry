@@ -43,13 +43,13 @@ export function DigitalStamp({
       >
         <HugeiconsIcon
           icon={Stamp02Icon}
-          className="size-4 shrink-0 text-primary sm:size-5"
+          className="size-4 shrink-0 text-primary-accent sm:size-5"
           aria-hidden
         />
         <p className="m-0 grow text-[13px] font-medium leading-[18px] text-foreground sm:text-sm sm:leading-5">
           {heading}
         </p>
-        <span className="flex shrink-0 items-center gap-1.5 whitespace-nowrap text-[13px] text-primary sm:gap-2 sm:text-sm">
+        <span className="flex shrink-0 items-center gap-1.5 whitespace-nowrap text-[13px] text-primary-accent sm:gap-2 sm:text-sm">
           {open ? hideLabel : showLabel}
           <HugeiconsIcon
             icon={ArrowDown01Icon}

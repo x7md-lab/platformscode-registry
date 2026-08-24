@@ -47,7 +47,7 @@ export function AccordionTrigger({
       <BaseAccordion.Trigger
         className={cn(
           "group flex w-full items-center justify-between gap-4 bg-transparent py-4 text-start text-base font-semibold",
-          "cursor-pointer border-0 text-foreground outline-none transition-colors hover:text-primary",
+          "cursor-pointer border-0 text-foreground outline-none transition-colors hover:text-primary-accent",
           "focus-visible:rounded-md focus-visible:ring-2 focus-visible:ring-ring",
           className
         )}

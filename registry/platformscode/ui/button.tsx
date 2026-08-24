@@ -12,7 +12,7 @@ const variants: Record<Variant, string> = {
   outline:
     "bg-transparent text-foreground outline outline-1 -outline-offset-1 outline-border hover:bg-muted active:bg-border active:outline-neutral-border disabled:text-muted-foreground",
   subtle:
-    "bg-transparent text-primary hover:bg-primary-light active:bg-primary-soft disabled:text-muted-foreground",
+    "bg-transparent text-primary-accent hover:bg-primary-light active:bg-primary-soft disabled:text-muted-foreground",
   danger:
     "bg-destructive text-primary-foreground hover:bg-destructive-strong active:bg-destructive-strong disabled:bg-muted disabled:text-muted-foreground",
 }

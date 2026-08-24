@@ -29,7 +29,7 @@ const feedbackIcons = {
 }
 
 const feedbackColors: Record<Feedback, string> = {
-  success: "text-primary",
+  success: "text-primary-accent",
   error: "text-destructive",
   warning: "text-warning",
 }

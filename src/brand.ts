@@ -19,6 +19,8 @@ type Vars = {
   "primary-light": string
   "primary-soft": string
   "primary-foreground": string
+  /** Brand used as ink; equals `primary` in light, lightens on dark. */
+  "primary-accent": string
   ring: string
 }
 
@@ -45,6 +47,7 @@ export const BRANDS: Record<BrandKey, Ramp> = {
       "primary-light": "#f3fcf6",
       "primary-soft": "#dff6e7",
       "primary-foreground": "#ffffff",
+      "primary-accent": "#1b8354",
       ring: "#1b8354",
     },
     dark: {
@@ -56,6 +59,7 @@ export const BRANDS: Record<BrandKey, Ramp> = {
       "primary-light": "#092a1e",
       "primary-soft": "#104631",
       "primary-foreground": "#ffffff",
+      "primary-accent": "#88d8ad",
       ring: "#54c08a",
     },
   },
@@ -72,6 +76,10 @@ export const BRANDS: Record<BrandKey, Ramp> = {
       "primary-light": "#fffef2",
       "primary-soft": "#fffce6",
       "primary-foreground": "#ffffff",
+      // gold as ink needs two steps down: #dba102 is 2.0:1 on white and
+      // #b87b02 only 3.25:1 against the muted surface. #945c01 clears AA at
+      // 5.03:1 while staying on the DGA gold ramp. Fills keep #dba102.
+      "primary-accent": "#945c01",
       ring: "#b87b02",
     },
     dark: {
@@ -83,6 +91,7 @@ export const BRANDS: Record<BrandKey, Ramp> = {
       "primary-light": "#472400",
       "primary-soft": "#6e3c00",
       "primary-foreground": "#ffffff",
+      "primary-accent": "#fae996",
       ring: "#f7d54d",
     },
   },
@@ -99,6 +108,7 @@ export const BRANDS: Record<BrandKey, Ramp> = {
       "primary-light": "#f9f5fa",
       "primary-soft": "#f2e9f5",
       "primary-foreground": "#ffffff",
+      "primary-accent": "#6d428f",
       ring: "#6d428f",
     },
     dark: {
@@ -110,6 +120,7 @@ export const BRANDS: Record<BrandKey, Ramp> = {
       "primary-light": "#16072e",
       "primary-soft": "#281047",
       "primary-foreground": "#ffffff",
+      "primary-accent": "#ccadd9",
       ring: "#a57bba",
     },
   },

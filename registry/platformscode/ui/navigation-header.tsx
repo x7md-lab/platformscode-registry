@@ -61,7 +61,7 @@ function EntryContent({ entry }: { entry: NavMenuEntry }) {
     <>
       {entry.icon && (
         <span
-          className="flex shrink-0 items-center justify-center rounded-md bg-primary-light p-3 text-primary"
+          className="flex shrink-0 items-center justify-center rounded-md bg-primary-light p-3 text-primary-accent"
           aria-hidden
         >
           <HugeiconsIcon icon={entry.icon} className="size-5" />
@@ -148,7 +148,7 @@ function DrawerItem({ item }: { item: NavItem }) {
     item.disabled
       ? "cursor-not-allowed text-muted-foreground"
       : item.selected
-        ? "bg-primary-light text-primary"
+        ? "bg-primary-light text-primary-accent"
         : "text-foreground active:bg-muted"
   )
 

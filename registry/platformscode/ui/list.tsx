@@ -6,7 +6,7 @@ import type { HTMLAttributes, LiHTMLAttributes } from "react"
 type Tone = "brand" | "neutral" | "on-color"
 
 const markers: Record<Tone, string> = {
-  brand: "marker:text-primary",
+  brand: "marker:text-primary-accent",
   neutral: "marker:text-muted-foreground",
   "on-color": "marker:text-white",
 }
@@ -53,7 +53,7 @@ export function ListItem({
   return (
     <li className={cn(icon ? "flex items-start gap-2" : undefined, className)} {...props}>
       {icon ? (
-        <span className="mt-1 flex shrink-0 text-primary">
+        <span className="mt-1 flex shrink-0 text-primary-accent">
           <HugeiconsIcon icon={icon} size={16} strokeWidth={2} />
         </span>
       ) : null}

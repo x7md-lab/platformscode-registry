@@ -47,13 +47,16 @@ export function RadioItem({
             "active:before:scale-100",
             "focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40",
             "data-[checked]:border-primary data-[checked]:bg-card data-[checked]:hover:border-primary-active",
+            "dark:data-[checked]:border-primary-accent dark:data-[checked]:hover:border-primary-accent",
             "data-[disabled]:cursor-not-allowed data-[disabled]:bg-muted",
             alertText ? "border-destructive" : undefined,
             className
           )}
           {...props}
         >
-          <Radio.Indicator className="size-3.5 rounded-full bg-primary-active" />
+          {/* the dot takes the light end of the ramp on dark surfaces, where
+              primary-active sits at 1.4:1 against the card — invisible */}
+          <Radio.Indicator className="size-3.5 rounded-full bg-primary-active dark:bg-primary-accent" />
         </Radio.Root>
         {label ? <span className="leading-5">{label}</span> : null}
       </Field.Label>

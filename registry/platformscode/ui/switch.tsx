@@ -25,11 +25,14 @@ export function Switch({
 }) {
   return (
     <Field.Root disabled={props.disabled} className="flex flex-col gap-1.5">
-      <Field.Label className="flex cursor-pointer items-center gap-3 text-sm text-foreground has-[[data-checked]]:text-primary data-[disabled]:cursor-not-allowed data-[disabled]:text-muted-foreground">
+      <Field.Label className="flex cursor-pointer items-center gap-3 text-sm text-foreground has-[[data-checked]]:text-primary-accent data-[disabled]:cursor-not-allowed data-[disabled]:text-muted-foreground">
         <BaseSwitch.Root
           className={cn(
             "group relative h-6 w-12 shrink-0 cursor-pointer rounded-full bg-card p-1 transition-colors",
             "border border-solid border-foreground data-[checked]:border-primary data-[checked]:bg-primary",
+            // dark: the track takes the light end of the ramp so the thumb can
+            // go dark — see checkbox.tsx for the measurements behind this
+            "dark:data-[checked]:border-primary-accent dark:data-[checked]:bg-primary-accent",
             "hover:ring-4 hover:ring-muted focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring/40",
             "data-[disabled]:cursor-not-allowed data-[disabled]:border-input data-[disabled]:bg-card data-[disabled]:ring-0",
             className
@@ -39,7 +42,10 @@ export function Switch({
           <BaseSwitch.Thumb
             className={cn(
               "block size-4 rounded-full bg-foreground transition-[transform,background-color] duration-300",
-              "data-[checked]:bg-card ltr:data-[checked]:translate-x-6 rtl:data-[checked]:-translate-x-6",
+              // white on the brand track in light (4.75:1, as DGA ships it);
+              // dark ink on the lightened track in dark (11.13:1)
+              "data-[checked]:bg-primary-foreground dark:data-[checked]:bg-background",
+              "ltr:data-[checked]:translate-x-6 rtl:data-[checked]:-translate-x-6",
               "group-data-[disabled]:bg-input"
             )}
           />

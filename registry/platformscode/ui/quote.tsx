@@ -35,7 +35,7 @@ export function Quote({
             icon={QuoteDownIcon}
             size={28}
             strokeWidth={1.5}
-            className="text-primary/50"
+            className="text-primary-accent/50"
             aria-hidden
           />
         ) : null}

@@ -60,7 +60,7 @@ export function ServiceCards({
           >
             <div className="flex items-start justify-between gap-3">
               {service.icon ? (
-                <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary-light text-primary transition-colors group-hover:bg-primary-soft">
+                <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-primary-light text-primary-accent transition-colors group-hover:bg-primary-soft">
                   <HugeiconsIcon icon={service.icon} size={22} strokeWidth={2} />
                 </span>
               ) : null}
@@ -74,7 +74,7 @@ export function ServiceCards({
             <p className="m-0 grow text-sm leading-6 text-muted-foreground">
               {service.description}
             </p>
-            <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary">
+            <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary-accent">
               ابدأ الخدمة
               <HugeiconsIcon
                 icon={ArrowLeft01Icon}

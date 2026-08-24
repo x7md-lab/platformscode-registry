@@ -157,7 +157,7 @@ export function Pagination({
               cell,
               "text-foreground hover:bg-muted active:bg-border",
               item === current &&
-                "text-primary after:absolute after:inset-x-1 after:-bottom-px after:h-[3px] after:rounded-full after:bg-primary"
+                "text-primary-accent after:absolute after:inset-x-1 after:-bottom-px after:h-[3px] after:rounded-full after:bg-primary-accent"
             )}
           >
             {item}

@@ -120,7 +120,7 @@ export function Select({
                   className="flex cursor-pointer select-none items-center justify-between gap-2 rounded-sm px-3 py-2 text-sm text-popover-foreground outline-none data-[highlighted]:bg-muted data-[selected]:font-semibold"
                 >
                   <BaseSelect.ItemText>{option.label}</BaseSelect.ItemText>
-                  <BaseSelect.ItemIndicator className="flex text-primary">
+                  <BaseSelect.ItemIndicator className="flex text-primary-accent">
                     <HugeiconsIcon icon={Tick02Icon} size={16} strokeWidth={2.5} />
                   </BaseSelect.ItemIndicator>
                 </BaseSelect.Item>
